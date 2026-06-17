@@ -1,0 +1,22 @@
+{
+  "documents": [],
+  "metadata": {
+    "excluded_roots": [
+      "<xq-implementation-workspace>",
+      "<agent-session-log>",
+      "<agent-session-state>",
+      "old Copilot/Codeium/Windsurf plans",
+      "external dependency source trees"
+    ],
+    "generated_at": "2026-06-17T15:53:20+00:00",
+    "plan_root": "plans",
+    "scope_root": "<public-or-private-plan-root>",
+    "tree_root": "plans/xq-integrated-rebuild"
+  },
+  "summary": {
+    "by_bucket": {},
+    "by_status": {},
+    "documents_with_flow": 0,
+    "total_flow_items": 0
+  }
+}

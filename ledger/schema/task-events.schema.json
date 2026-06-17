@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "enum": [
+              "task_claimed",
+              "task_started",
+              "task_heartbeat"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "lease": {
+                "required": [
+                  "task_id",
+                  "actor",
+                  "session_id",
+                  "claimed_at",
+                  "heartbeat_at",
+                  "lease_seconds"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "lease"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "task_completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "command_summary": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "command_summary_sha256": {
+                "maxLength": 64,
+                "minLength": 64,
+                "type": "string"
+              },
+              "record_path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "record_sha256": {
+                "maxLength": 64,
+                "minLength": 64,
+                "type": "string"
+              },
+              "source_md_sha256": {
+                "maxLength": 64,
+                "minLength": 64,
+                "type": "string"
+              }
+            },
+            "required": [
+              "record_path",
+              "record_sha256",
+              "source_md_sha256",
+              "command_summary",
+              "command_summary_sha256"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "enum": [
+              "task_failed",
+              "task_blocked"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "failure_type": {
+                "enum": [
+                  "test-failed",
+                  "build-failed",
+                  "missing-dependency",
+                  "plan-ambiguous",
+                  "source-boundary-risk",
+                  "harness-error"
+                ],
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "failure_type",
+              "reason"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "task_reopened"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "from_status": {
+                "enum": [
+                  "blocked",
+                  "stale-completion"
+                ],
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "from_status",
+              "reason"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_type": {
+            "const": "task_override"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "properties": {
+              "gate": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "gate",
+              "reason"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "actor": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "created_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_sha256": {
+      "maxLength": 64,
+      "minLength": 64,
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "task_claimed",
+        "task_started",
+        "task_heartbeat",
+        "task_released",
+        "task_completed",
+        "task_failed",
+        "task_blocked",
+        "task_reopened",
+        "task_override"
+      ],
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "previous_event_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "task_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "created_at",
+    "event_type",
+    "task_id",
+    "actor",
+    "session_id",
+    "payload",
+    "previous_event_sha256",
+    "event_sha256"
+  ],
+  "title": "XQ Ledger Task Event",
+  "type": "object"
+}

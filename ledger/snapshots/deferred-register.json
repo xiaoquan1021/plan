@@ -1,0 +1,298 @@
+{
+  "documents": [
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/00-execution-entry.md",
+      "registered_boundaries": 22,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 23
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/08-surface-mesh.md",
+      "registered_boundaries": 12,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 13
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/05-3d-segmentation.md",
+      "registered_boundaries": 11,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 12
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/09-volume-mesh.md",
+      "registered_boundaries": 11,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 12
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/06-model-lofting-and-capping.md",
+      "registered_boundaries": 10,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 11
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/11-simulation-boundary-conditions.md",
+      "registered_boundaries": 10,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 11
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/12-simulation-solver-export.md",
+      "registered_boundaries": 10,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 11
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/04-medical-image-io/02-dicom-pixel-decode.md",
+      "registered_boundaries": 8,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 9
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/01-path-planning.md",
+      "registered_boundaries": 8,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 9
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/03-lumen-contour-editing.md",
+      "registered_boundaries": 8,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 9
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/04-medical-image-io/06-vti-minc-tiff-reader.md",
+      "registered_boundaries": 6,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 7
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/09-acceptance-repair/01-0007-project-acceptance.md",
+      "registered_boundaries": 6,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 7
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/05-workbench-visualization/04-3d-scene-viewer.md",
+      "registered_boundaries": 5,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 6
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/06-workflow/03-command-and-undo.md",
+      "registered_boundaries": 5,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 6
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/07-model-face-metadata.md",
+      "registered_boundaries": 5,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 6
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/13-rom-and-multiphysics.md",
+      "registered_boundaries": 5,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 6
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/05-workbench-visualization/05-tool-panels.md",
+      "registered_boundaries": 4,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 5
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/07-domain-features/10-mesh-boundary-transfer.md",
+      "registered_boundaries": 3,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 4
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/05-workbench-visualization/03-mpr-viewers.md",
+      "registered_boundaries": 2,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 3
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/05-workbench-visualization/01-main-window-layout.md",
+      "registered_boundaries": 1,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 2
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/05-workbench-visualization/02-project-tree.md",
+      "registered_boundaries": 1,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 2
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/05-workbench-visualization/06-four-pane-layout.md",
+      "registered_boundaries": 1,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 2
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 0,
+      "path": "plans/xq-integrated-rebuild/03-native-project-io/08-xq-native-save-format.md",
+      "registered_boundaries": 1,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 1
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 0,
+      "path": "plans/xq-integrated-rebuild/08-xq-zip-selection/02-code-rewrite-mapping.md",
+      "registered_boundaries": 1,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 1
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 2,
+      "path": "plans/xq-integrated-rebuild/09-acceptance-repair/02-failure-routing.md",
+      "registered_boundaries": 0,
+      "routing_policy": 7,
+      "section_markers": 2,
+      "total_deferred": 11
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/2026-06-11-xq-lightweight-dependency-refactor-from-XQ-main-zip.md",
+      "registered_boundaries": 0,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 1
+    },
+    {
+      "needs_owner_confirmation": 0,
+      "not_a_deferred_boundary": 1,
+      "path": "plans/xq-integrated-rebuild/README.md",
+      "registered_boundaries": 0,
+      "routing_policy": 0,
+      "section_markers": 0,
+      "total_deferred": 1
+    }
+  ],
+  "metadata": {
+    "excluded_roots": [
+      "<xq-implementation-workspace>",
+      "<agent-session-log>",
+      "<agent-session-state>",
+      "old Copilot/Codeium/Windsurf plans",
+      "external dependency source trees"
+    ],
+    "generated_at": "2026-06-17T15:53:20+00:00",
+    "plan_root": "plans",
+    "scope_root": "<public-or-private-plan-root>",
+    "tree_root": "plans/xq-integrated-rebuild"
+  },
+  "summary": {
+    "by_bucket": {
+      "archived-deferred-boundary": 129,
+      "checked-routing-or-plan-step": 1,
+      "deferred-expanded-scope-boundary": 6,
+      "deferred-register-row": 1,
+      "deferred-route-table-header": 1,
+      "deferred-routing-policy": 7,
+      "deferred-scope-boundary": 20,
+      "deferred-section-heading": 1,
+      "diagnostic-command-reference": 1,
+      "ledger-pointer": 24
+    },
+    "by_owner": {
+      "acceptance repair": 18,
+      "domain features": 104,
+      "execution-entry": 23,
+      "main-plan-index": 1,
+      "medical image IO": 16,
+      "native project IO": 1,
+      "readme-index": 1,
+      "workbench visualization": 20,
+      "workflow": 6,
+      "zip source selection": 1
+    },
+    "by_status": {
+      "not-a-deferred-boundary": 26,
+      "registered-boundary": 156,
+      "routing-policy": 7,
+      "section-marker": 2
+    },
+    "needs_owner_confirmation": 0,
+    "not_a_deferred_boundary": 26,
+    "registered_boundaries": 156,
+    "routing_policy": 7,
+    "section_markers": 2,
+    "total_deferred": 191
+  }
+}

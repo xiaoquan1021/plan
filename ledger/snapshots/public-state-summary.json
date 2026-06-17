@@ -1,0 +1,48 @@
+{
+  "counts": {
+    "hard_blocking_gates": {
+      "active_plan_kernel_violations": 0,
+      "claim_actionable": 0,
+      "deferred_needs_owner_confirmation": 0,
+      "dependency_violations": 0,
+      "execution_flow_items": 0,
+      "invalid_private_evidence_files": 0,
+      "invalid_task_leases": 0,
+      "missing_private_evidence_links": 0,
+      "needs_hardening_documents": 0,
+      "scope_violations": 0,
+      "task_event_errors": 0
+    },
+    "plan_documents": 60,
+    "role_counts": {
+      "child-plan": 49,
+      "execution-entry": 1,
+      "governance": 4,
+      "main-plan": 1,
+      "readme-mirror": 1,
+      "supporting-plan": 4
+    },
+    "status_counts": {
+      "blocked": 1,
+      "completed": 25,
+      "not-executable-index": 3,
+      "ready-for-ledger-review": 31
+    },
+    "task_blocking_states": {
+      "blocked_tasks": 1,
+      "expired_task_leases": 0,
+      "lease_expired_tasks": 0,
+      "stale_completion_tasks": 0
+    },
+    "tasks": 60
+  },
+  "notes": [
+    "This file intentionally contains counts only.",
+    "Raw command outputs, record JSON, task event history, and private session records are not included."
+  ],
+  "private_session_metrics_included": false,
+  "raw_private_evidence_included": false,
+  "raw_execution_records_included": false,
+  "snapshot_type": "sanitized-public-state-summary",
+  "task_events_included": false
+}

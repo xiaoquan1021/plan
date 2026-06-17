@@ -1,0 +1,37 @@
+# Python/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Private execution artifacts intentionally excluded from this public snapshot
+_evidence/
+**/_evidence/
+_execution-records/
+**/_execution-records/
+ledger/task-events.jsonl
+ledger/private-task-events.jsonl
+ledger/task-locks/
+ledger/audit-summary.json
+ledger/claim-triage.json
+ledger/claims.jsonl
+ledger/deferred-items.jsonl
+ledger/deferred-register.json
+ledger/execution-flow-items.jsonl
+ledger/execution-flow-register.json
+ledger/plan-docs.json
+ledger/plan-kernel-violations.jsonl
+ledger/private-execution-records/
+ledger/task-runtime-summary.json
+ledger/tasks.json
+.local/
+
+# Local editor/system files
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+.env
+.env.*

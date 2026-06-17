@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "acceptance": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "evidence": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "item": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_item_sha256": {
+            "maxLength": 64,
+            "minLength": 64,
+            "type": "string"
+          },
+          "source_line_hint": {
+            "type": "string"
+          },
+          "source_section": {
+            "enum": [
+              "Acceptance",
+              "Test Plan"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "not-applicable"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "source_section",
+          "source_item_sha256",
+          "status",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "actor": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "commands": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "argv": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "ended_at": {
+            "type": "string"
+          },
+          "exit_code": {
+            "type": "integer"
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "stderr_excerpt": {
+            "type": "string"
+          },
+          "stdout_excerpt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "argv",
+          "cwd",
+          "started_at",
+          "ended_at",
+          "exit_code",
+          "stdout_excerpt",
+          "stderr_excerpt"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "created_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "overall_status": {
+      "enum": [
+        "passed",
+        "failed"
+      ],
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_md": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_md_sha256": {
+      "maxLength": 64,
+      "minLength": 64,
+      "type": "string"
+    },
+    "task_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "source_md",
+    "source_md_sha256",
+    "created_at",
+    "actor",
+    "session_id",
+    "commands",
+    "acceptance",
+    "overall_status"
+  ],
+  "title": "XQ Ledger Evidence",
+  "type": "object"
+}

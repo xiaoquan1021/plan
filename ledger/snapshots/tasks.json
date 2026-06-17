@@ -1,0 +1,828 @@
+{
+  "metadata": {
+    "note": "Completion statuses are derived from the private ledger; raw command record remains private.",
+    "raw_private_evidence_included": false,
+    "raw_task_events_included": false,
+    "snapshot_type": "sanitized-public-task-selection",
+    "source": "XQ integrated rebuild private ledger"
+  },
+  "tasks": [
+    {
+      "checked_step_count": 0,
+      "evidence_status": "unverified",
+      "id": "main-plan",
+      "missing_required_sections": [],
+      "role": "main-plan",
+      "source_md": "plans/2026-06-11-xq-lightweight-dependency-refactor-from-XQ-main-zip.md",
+      "status": "not-executable-index",
+      "unchecked_step_count": 0,
+      "verification_source": null
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "unverified",
+      "id": "execution-entry",
+      "missing_required_sections": [],
+      "role": "execution-entry",
+      "source_md": "plans/xq-integrated-rebuild/00-execution-entry.md",
+      "status": "not-executable-index",
+      "unchecked_step_count": 0,
+      "verification_source": null
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "00-governance-00-source-boundary-and-rules",
+      "missing_required_sections": [],
+      "role": "governance",
+      "source_md": "plans/xq-integrated-rebuild/00-governance/00-source-boundary-and-rules.md",
+      "status": "completed",
+      "task_dependencies": [],
+      "unchecked_step_count": 6,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "00-governance-01-architecture-first-discipline",
+      "last_failure_type": "harness-error",
+      "missing_required_sections": [],
+      "role": "governance",
+      "source_md": "plans/xq-integrated-rebuild/00-governance/01-architecture-first-discipline.md",
+      "status": "completed",
+      "task_dependencies": [
+        "00-governance-00-source-boundary-and-rules"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "00-governance-02-document-repair-policy",
+      "last_failure_type": "plan-ambiguous",
+      "missing_required_sections": [],
+      "role": "governance",
+      "source_md": "plans/xq-integrated-rebuild/00-governance/02-document-repair-policy.md",
+      "status": "completed",
+      "task_dependencies": [
+        "00-governance-01-architecture-first-discipline"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "00-governance-03-child-document-hardening-standard",
+      "missing_required_sections": [],
+      "role": "governance",
+      "source_md": "plans/xq-integrated-rebuild/00-governance/03-child-document-hardening-standard.md",
+      "status": "completed",
+      "task_dependencies": [
+        "00-governance-02-document-repair-policy"
+      ],
+      "unchecked_step_count": 6,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "01-foundation-01-empty-project-skeleton",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/01-foundation/01-empty-project-skeleton.md",
+      "status": "completed",
+      "task_dependencies": [],
+      "unchecked_step_count": 10,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "01-foundation-02-top-level-cmake",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/01-foundation/02-top-level-cmake.md",
+      "status": "completed",
+      "task_dependencies": [
+        "01-foundation-01-empty-project-skeleton"
+      ],
+      "unchecked_step_count": 10,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 18,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "01-foundation-03-superbuild-version-lock",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/01-foundation/03-superbuild-version-lock.md",
+      "status": "completed",
+      "task_dependencies": [
+        "01-foundation-02-top-level-cmake"
+      ],
+      "unchecked_step_count": 1,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 2,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "01-foundation-04-dependency-role-map",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/01-foundation/04-dependency-role-map.md",
+      "status": "completed",
+      "task_dependencies": [
+        "01-foundation-03-superbuild-version-lock"
+      ],
+      "unchecked_step_count": 3,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-01-xqproject-lifecycle",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/01-xqproject-lifecycle.md",
+      "status": "completed",
+      "task_dependencies": [],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 7,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-02-xqscene-ownership",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/02-xqscene-ownership.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-01-xqproject-lifecycle"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-03-xqdatanode-and-metadata",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/03-xqdatanode-and-metadata.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-02-xqscene-ownership"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-04-xqimagevolume",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/04-xqimagevolume.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-03-xqdatanode-and-metadata"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-05-xqpath",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/05-xqpath.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-04-xqimagevolume"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-06-xqcontourgroup",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/06-xqcontourgroup.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-05-xqpath"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-07-xqsurfacemodel",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/07-xqsurfacemodel.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-06-xqcontourgroup"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-08-xqmesh",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/08-xqmesh.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-07-xqsurfacemodel"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "02-core-data-09-xqsimulationcase",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/09-xqsimulationcase.md",
+      "status": "completed",
+      "task_dependencies": [
+        "02-core-data-08-xqmesh"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-01-open-project-directory",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/01-open-project-directory.md",
+      "status": "completed",
+      "task_dependencies": [],
+      "unchecked_step_count": 6,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-02-svproj-project-manifest",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/02-svproj-project-manifest.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-01-open-project-directory"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-03-pth-path-reader",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/03-pth-path-reader.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-02-svproj-project-manifest"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-04-ctgr-contour-reader",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/04-ctgr-contour-reader.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-03-pth-path-reader"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-05-mdl-vtp-model-reader",
+      "last_failure_type": "test-failed",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/05-mdl-vtp-model-reader.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-04-ctgr-contour-reader"
+      ],
+      "unchecked_step_count": 2,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 8,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-06-msh-vtu-mesh-reader",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/06-msh-vtu-mesh-reader.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-05-mdl-vtp-model-reader"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-07-sjb-simulation-reader",
+      "last_failure_type": "test-failed",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/07-sjb-simulation-reader.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-06-msh-vtu-mesh-reader"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 7,
+      "evidence_status": "verified-runner-backed-private-artifact",
+      "id": "03-native-project-io-08-xq-native-save-format",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/08-xq-native-save-format.md",
+      "status": "completed",
+      "task_dependencies": [
+        "03-native-project-io-07-sjb-simulation-reader"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "blocked_reason": "DICOM scanner contract requires DCMTK metadata scanning, but <xq-rebuild-workspace>/externals/install has no DCMTKConfig.cmake or dcmtk/dcmdata/dctk.h; Test Plan target xq_io_tests is also absent, so completion cannot be runner-backed without first supplying the controlled DCMTK dependency and test target wiring.",
+      "checked_step_count": 5,
+      "evidence_status": "unverified",
+      "id": "04-medical-image-io-01-dicom-series-scanner",
+      "last_failure_type": "missing-dependency",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/01-dicom-series-scanner.md",
+      "status": "blocked",
+      "task_dependencies": [],
+      "unchecked_step_count": 1,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "unverified",
+      "id": "04-medical-image-io-02-dicom-pixel-decode",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/02-dicom-pixel-decode.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "04-medical-image-io-01-dicom-series-scanner"
+      ],
+      "unchecked_step_count": 2,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "unverified",
+      "id": "04-medical-image-io-03-dicom-private-tags",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/03-dicom-private-tags.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "04-medical-image-io-02-dicom-pixel-decode"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 6,
+      "evidence_status": "unverified",
+      "id": "04-medical-image-io-04-nifti-reader",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/04-nifti-reader.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "04-medical-image-io-03-dicom-private-tags"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 7,
+      "evidence_status": "unverified",
+      "id": "04-medical-image-io-05-nrrd-metaimage-reader",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/05-nrrd-metaimage-reader.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "04-medical-image-io-04-nifti-reader"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 41,
+      "evidence_status": "unverified",
+      "id": "04-medical-image-io-06-vti-minc-tiff-reader",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/06-vti-minc-tiff-reader.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "04-medical-image-io-05-nrrd-metaimage-reader"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 13,
+      "evidence_status": "unverified",
+      "id": "05-workbench-visualization-01-main-window-layout",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/01-main-window-layout.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 12,
+      "evidence_status": "unverified",
+      "id": "05-workbench-visualization-02-project-tree",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/02-project-tree.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "05-workbench-visualization-01-main-window-layout"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 21,
+      "evidence_status": "unverified",
+      "id": "05-workbench-visualization-03-mpr-viewers",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/03-mpr-viewers.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "05-workbench-visualization-02-project-tree"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 123,
+      "evidence_status": "unverified",
+      "id": "05-workbench-visualization-04-3d-scene-viewer",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/04-3d-scene-viewer.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "05-workbench-visualization-03-mpr-viewers"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 10,
+      "evidence_status": "unverified",
+      "id": "05-workbench-visualization-05-tool-panels",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/05-tool-panels.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "05-workbench-visualization-04-3d-scene-viewer"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 16,
+      "evidence_status": "unverified",
+      "id": "05-workbench-visualization-06-four-pane-layout",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/06-four-pane-layout.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "05-workbench-visualization-05-tool-panels"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 6,
+      "evidence_status": "unverified",
+      "id": "06-workflow-01-workflow-state-machine",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/06-workflow/01-workflow-state-machine.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "unverified",
+      "id": "06-workflow-02-stage-source-relations",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/06-workflow/02-stage-source-relations.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "06-workflow-01-workflow-state-machine"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 6,
+      "evidence_status": "unverified",
+      "id": "06-workflow-03-command-and-undo",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/06-workflow/03-command-and-undo.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "06-workflow-02-stage-source-relations"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-01-path-planning",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/01-path-planning.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 5,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-02-centerline-frames",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/02-centerline-frames.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-01-path-planning"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 7,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-03-lumen-contour-editing",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/03-lumen-contour-editing.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-02-centerline-frames"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 6,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-04-contour-lofting-inputs",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/04-contour-lofting-inputs.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-03-lumen-contour-editing"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 15,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-05-3d-segmentation",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/05-3d-segmentation.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-04-contour-lofting-inputs"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 8,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-06-model-lofting-and-capping",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/06-model-lofting-and-capping.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-05-3d-segmentation"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 7,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-07-model-face-metadata",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/07-model-face-metadata.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-06-model-lofting-and-capping"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 8,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-08-surface-mesh",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/08-surface-mesh.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-07-model-face-metadata"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 10,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-09-volume-mesh",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/09-volume-mesh.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-08-surface-mesh"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 6,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-10-mesh-boundary-transfer",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/10-mesh-boundary-transfer.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-09-volume-mesh"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 13,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-11-simulation-boundary-conditions",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/11-simulation-boundary-conditions.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-10-mesh-boundary-transfer"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 13,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-12-simulation-solver-export",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/12-simulation-solver-export.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-11-simulation-boundary-conditions"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 9,
+      "evidence_status": "unverified",
+      "id": "07-domain-features-13-rom-and-multiphysics",
+      "missing_required_sections": [],
+      "role": "child-plan",
+      "source_md": "plans/xq-integrated-rebuild/07-domain-features/13-rom-and-multiphysics.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "07-domain-features-12-simulation-solver-export"
+      ],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 6,
+      "evidence_status": "unverified",
+      "id": "08-xq-zip-selection-01-code-selection-rules",
+      "missing_required_sections": [],
+      "role": "supporting-plan",
+      "source_md": "plans/xq-integrated-rebuild/08-xq-zip-selection/01-code-selection-rules.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [],
+      "unchecked_step_count": 6,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 7,
+      "evidence_status": "unverified",
+      "id": "08-xq-zip-selection-02-code-rewrite-mapping",
+      "missing_required_sections": [],
+      "role": "supporting-plan",
+      "source_md": "plans/xq-integrated-rebuild/08-xq-zip-selection/02-code-rewrite-mapping.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "08-xq-zip-selection-01-code-selection-rules"
+      ],
+      "unchecked_step_count": 4,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 12,
+      "evidence_status": "unverified",
+      "id": "09-acceptance-repair-01-0007-project-acceptance",
+      "missing_required_sections": [],
+      "role": "supporting-plan",
+      "source_md": "plans/xq-integrated-rebuild/09-acceptance-repair/01-0007-project-acceptance.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [],
+      "unchecked_step_count": 0,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 3,
+      "evidence_status": "unverified",
+      "id": "09-acceptance-repair-02-failure-routing",
+      "missing_required_sections": [],
+      "role": "supporting-plan",
+      "source_md": "plans/xq-integrated-rebuild/09-acceptance-repair/02-failure-routing.md",
+      "status": "ready-for-ledger-review",
+      "task_dependencies": [
+        "09-acceptance-repair-01-0007-project-acceptance"
+      ],
+      "unchecked_step_count": 5,
+      "verification_source": "Test Plan"
+    },
+    {
+      "checked_step_count": 0,
+      "evidence_status": "unverified",
+      "id": "readme",
+      "missing_required_sections": [],
+      "role": "readme-mirror",
+      "source_md": "plans/xq-integrated-rebuild/README.md",
+      "status": "not-executable-index",
+      "unchecked_step_count": 0,
+      "verification_source": null
+    }
+  ]
+}
