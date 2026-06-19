@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "task_id": "PR-M1-001",
+  "title": "Contract kernel policies and templates",
+  "task_kind": "plan-contract",
+  "plan_rewrite_milestone": "PR-M1",
+  "product_milestone": null,
+  "epic_id": "PR-M1-CONTRACT-KERNEL",
+  "dependencies": ["PR-M0-001"],
+  "source_contracts": [
+    "docs/contracts/product-scope-v1.md",
+    "docs/contracts/target-architecture.md",
+    "docs/contracts/core-data-semantics.md",
+    "docs/contracts/final-acceptance-contract.md",
+    "docs/contracts/agent-orchestration-contract.md",
+    "docs/contracts/git-worktree-policy.md"
+  ],
+  "source_contract_hashes": {},
+  "allowed_logical_scopes": ["PLAN_WORKSPACE"],
+  "forbidden_actions": ["declare implementation completed"],
+  "claimability_rules": ["PR-M0 contracts must exist"],
+  "machine_acceptance": ["contract links validate", "template schemas validate"],
+  "required_evidence": ["schema validation output"],
+  "blocked_reason": null,
+  "unblock_condition": null,
+  "owner": "Codex B",
+  "next_action": "validate contract kernel",
+  "supersedes": [],
+  "status": "ready-for-ledger-review",
+  "decision_state": "none"
+}

@@ -1,74 +1,20 @@
 {
-  "completion_standard_counts": {
-    "verified-runner-backed": 25
-  },
-  "dependency_violations": [],
-  "event_errors": [],
-  "gate_summary": {
-    "hard_blocking_gates": {
-      "active_plan_kernel_violations": 0,
-      "claim_actionable": 0,
-      "deferred_needs_owner_confirmation": 0,
-      "dependency_violations": 0,
-      "execution_flow_items": 0,
-      "invalid_private_evidence_files": 0,
-      "invalid_task_leases": 0,
-      "missing_private_evidence_links": 0,
-      "needs_hardening_documents": 0,
-      "scope_violations": 0,
-      "task_event_errors": 0
-    },
-    "informational_counts": {
-      "active_task_leases": 0,
-      "claim_not_verification": 2,
-      "claimed_tasks": 0,
-      "claims": 2,
-      "completed_tasks": 25,
-      "deferred_items": 191,
-      "deferred_not_boundary": 26,
-      "deferred_registered_boundaries": 156,
-      "deferred_routing_policy": 7,
-      "deferred_section_markers": 2,
-      "failed_retry_ready_tasks": 0,
-      "not_executable_index_tasks": 3,
-      "override_events": 0,
-      "ready_tasks": 31,
-      "task_events": 103
-    },
-    "task_blocking_states": {
-      "blocked_tasks": 1,
-      "expired_task_leases": 0,
-      "lease_expired_tasks": 0,
-      "stale_completion_tasks": 0
-    }
-  },
-  "invalid_private_evidence": [],
-  "leases": {
-    "active_leases": [],
-    "active_task_ids": [],
-    "expired_leases": [],
-    "expired_task_ids": [],
-    "invalid_leases": []
-  },
   "metadata": {
-    "excluded_roots": [
-      "<xq-implementation-workspace>",
-      "<agent-session-log>",
-      "<agent-session-state>",
-      "old Copilot/Codeium/Windsurf plans",
-      "external dependency source trees"
-    ],
-    "generated_at": "2026-06-17T15:53:20+00:00",
-    "plan_root": "plans",
-    "scope_root": "<public-or-private-plan-root>",
-    "tree_root": "plans/xq-integrated-rebuild"
+    "generated_at": "1970-01-01T00:00:00+00:00",
+    "generator": "harness/generate_snapshots.py",
+    "generator_version": 1,
+    "projection_mode": "definitions-only",
+    "schema_version": 1,
+    "source_hash": "ed21cca1b9341243878befa78f9532fe2d4e74d6787fedfeaed612d9bbf0da9e"
   },
-  "missing_private_evidence": [],
-  "stale_completed": [],
+  "private_inputs": {
+    "completion_records": "not-provided",
+    "runtime_events": "not-provided",
+    "workspace_report": "not-provided"
+  },
+  "runtime_projection": "none",
   "status_counts": {
-    "blocked": 1,
-    "completed": 25,
-    "not-executable-index": 3,
-    "ready-for-ledger-review": 31
+    "blocked": 11,
+    "ready-for-ledger-review": 4
   }
 }

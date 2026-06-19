@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Ledger Migration",
+  "type": "object",
+  "required": ["schema_version", "migration_id", "mappings"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "migration_id": { "type": "string" },
+    "mappings": { "type": "array" }
+  }
+}

@@ -1,0 +1,11 @@
+schema_version: 1
+task_id: XQ-M1-CORE-001
+task_pack_sha256: null
+base_commit: null
+result_commit: null
+changed_files: []
+commands_run: []
+test_results: []
+artifacts: []
+unresolved_issues: []
+decision_request: gate-required

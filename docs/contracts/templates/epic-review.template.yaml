@@ -1,0 +1,13 @@
+schema_version: 1
+epic_id: XQ-M1-CORE-DATA
+epic_contract_sha256: null
+review_base_commit: null
+review_head_commit: null
+required_outcomes: []
+architecture_constraints: []
+acceptance_evidence: []
+cross_task_integration_findings: []
+unresolved_risks: []
+contract_defects: []
+decision: blocked
+required_repairs: []

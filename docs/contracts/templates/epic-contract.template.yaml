@@ -1,0 +1,23 @@
+schema_version: 1
+contract_version: 1
+epic_id: XQ-M1-CORE-DATA
+title: Core Data Authority
+decision_state: proposed
+approved_by: null
+base_commit: null
+dependency_contract_sha256: null
+implementation_dependency_lock_path: IMPLEMENTATION_WORKSPACE/dependencies.lock.json
+implementation_dependency_lock_sha256: null
+toolchain_manifest_sha256: null
+supersedes: []
+required_outcomes: []
+architecture_constraints: []
+allowed_logical_scopes: []
+forbidden_actions: []
+acceptance_levels: [L0]
+required_evidence: []
+stale_triggers:
+  - contract_sha_changed
+  - base_commit_changed
+  - dependency_lock_changed
+  - toolchain_changed

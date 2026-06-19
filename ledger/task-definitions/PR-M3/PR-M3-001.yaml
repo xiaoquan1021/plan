@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task_id": "PR-M3-001",
+  "title": "First Core Data epic contract readiness",
+  "task_kind": "contract-readiness",
+  "plan_rewrite_milestone": "PR-M3",
+  "product_milestone": "XQ-M1",
+  "epic_id": "XQ-M1-CORE-DATA",
+  "dependencies": ["PR-M2-001"],
+  "source_contracts": [
+    "docs/contracts/core-data-semantics.md",
+    "docs/contracts/templates/epic-contract.template.yaml",
+    "docs/contracts/templates/atomic-task-pack.template.yaml",
+    "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+    "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"
+  ],
+  "source_contract_hashes": {},
+  "allowed_logical_scopes": ["PLAN_WORKSPACE"],
+  "forbidden_actions": ["issue task without baseline", "start implementation"],
+  "claimability_rules": ["schema validates draft task pack"],
+  "machine_acceptance": ["atomic task draft validates", "execution_ready remains false"],
+  "required_evidence": ["schema validation output"],
+  "blocked_reason": null,
+  "unblock_condition": null,
+  "owner": "Codex A",
+  "next_action": "approve or revise Core Data Epic Contract",
+  "supersedes": [],
+  "status": "ready-for-ledger-review",
+  "decision_state": "proposed"
+}

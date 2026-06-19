@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Tests for the XQ ledger task harness."""
 
 from __future__ import annotations
@@ -143,7 +143,7 @@ def make_runner_command_entry(
     session_id: str = "test-session",
 ) -> dict:
     safe_command_id = command_id or f"cmd-{task['id']}"
-    artifact = tmp_path / "<private-evidence-dir>/command-runs" / session_id / f"{safe_command_id}.json"
+    artifact = tmp_path / "private-evidence-dir/command-runs" / session_id / f"{safe_command_id}.json"
     started_at = utc_now()
     ended_at = utc_now()
     stdout_text = "ok\n" if exit_code == 0 else ""
@@ -253,8 +253,8 @@ def test_empty_event_log_preserves_baseline_counts() -> None:
 
 
 def test_harness_runner_creates_command_artifact_and_summary(tmp_path: Path) -> None:
-    artifact = tmp_path / "<private-evidence-dir>/command-runs/s/task-a.json"
-    summary = tmp_path / "<private-evidence-dir>/command-summaries/s/task-a.json"
+    artifact = tmp_path / "private-evidence-dir/command-runs/s/task-a.json"
+    summary = tmp_path / "private-evidence-dir/command-summaries/s/task-a.json"
 
     result = run_harness_command(
         task_id="task-a",
@@ -279,7 +279,7 @@ def test_harness_runner_creates_command_artifact_and_summary(tmp_path: Path) -> 
 
 def test_completion_requires_runner_backed_command_when_requested(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
 
     try:
@@ -317,7 +317,7 @@ def test_completion_requires_all_acceptance_and_test_plan_items_when_requested(t
     )
     task["source_md_sha256"] = file_sha256(source)
     command_entry = make_runner_command_entry(tmp_path, task)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(
         record,
         task,
@@ -373,7 +373,7 @@ def test_completion_coverage_includes_fenced_test_plan_commands(tmp_path: Path) 
         argv=["python3", "harness/ledger_task.py", "validate-events"],
         command_id="cmd-validate-events",
     )
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(
         record,
         task,
@@ -441,7 +441,7 @@ def test_completion_coverage_rejects_missing_fenced_test_plan_commands(tmp_path:
         encoding="utf-8",
     )
     command_entry = make_runner_command_entry(tmp_path, task)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(
         record,
         task,
@@ -497,7 +497,7 @@ def test_fenced_test_plan_command_must_match_runner_argv(tmp_path: Path) -> None
         task,
         argv=["python3", "-m", "py_compile", "ledger_task.py"],
     )
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(
         record,
         task,
@@ -562,7 +562,7 @@ def test_fenced_test_plan_command_accepts_equivalent_runner_argv(tmp_path: Path)
         task,
         argv=["python3", "harness/ledger_task.py", "preflight"],
     )
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     normalized_command = "python3 harness/ledger_task.py preflight"
     make_record(
         record,
@@ -621,7 +621,7 @@ def test_event_hash_chain_detects_tampering(tmp_path: Path) -> None:
 
 def test_completion_requires_passing_evidence(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source, overall_status="failed")
 
     try:
@@ -639,7 +639,7 @@ def test_completion_requires_passing_evidence(tmp_path: Path) -> None:
 
 def test_completion_requires_acceptance_item_from_current_source(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source, acceptance_item="Imaginary acceptance item.")
 
     try:
@@ -657,7 +657,7 @@ def test_completion_requires_acceptance_item_from_current_source(tmp_path: Path)
 
 def test_completion_requires_acceptance_source_section(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source, source_section=None)
 
     try:
@@ -675,7 +675,7 @@ def test_completion_requires_acceptance_source_section(tmp_path: Path) -> None:
 
 def test_completion_rejects_all_not_applicable_acceptance(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source, overall_status="passed", acceptance_status="not-applicable")
 
     try:
@@ -891,7 +891,7 @@ def test_record_complete_requires_command_summary_file(tmp_path: Path) -> None:
 
 def test_record_complete_keeps_lease_when_event_fails(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     command_entry = make_runner_command_entry(tmp_path, task)
     make_record(
         record,
@@ -901,7 +901,7 @@ def test_record_complete_keeps_lease_when_event_fails(tmp_path: Path) -> None:
         acceptance_items=make_full_gate_items(),
         session_id="smoke",
     )
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary, command_entry=command_entry)
     events = []
     original_runtime = ledger_task.runtime_tasks
@@ -953,10 +953,10 @@ def test_record_complete_keeps_lease_when_event_fails(tmp_path: Path) -> None:
 
 def test_record_complete_payload_binds_evidence_and_command_summary_hashes(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     command_entry = make_runner_command_entry(tmp_path, task)
     make_record(record, task, source, command_entry=command_entry, acceptance_items=make_full_gate_items())
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary, command_entry=command_entry)
     appended_payloads: list[dict] = []
     original_runtime = ledger_task.runtime_tasks
@@ -1185,9 +1185,9 @@ def test_event_payload_schema_detects_missing_required_fields(tmp_path: Path) ->
 
 def test_completion_event_derives_completed_and_stale(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary)
     events = tmp_path / "task-events.jsonl"
     store = EventStore(events, tree_root=tmp_path / "plans/xq-integrated-rebuild", root=tmp_path)
@@ -1210,9 +1210,9 @@ def test_completion_event_derives_completed_and_stale(tmp_path: Path) -> None:
 
 def test_legacy_completion_replay_is_marked_legacy_verified(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary)
     events = tmp_path / "task-events.jsonl"
     store = EventStore(events, tree_root=tmp_path / "plans/xq-integrated-rebuild", root=tmp_path)
@@ -1234,10 +1234,10 @@ def test_legacy_completion_replay_is_marked_legacy_verified(tmp_path: Path) -> N
 
 def test_runner_backed_completion_replay_is_marked_verified_runner_backed(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     command_entry = make_runner_command_entry(tmp_path, task)
     make_record(record, task, source, command_entry=command_entry, acceptance_items=make_full_gate_items())
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary, command_entry=command_entry)
     payload = completion_payload(record, command_summary)
     payload["command_capture"] = "runner-artifact-v1"
@@ -1262,9 +1262,9 @@ def test_runner_backed_completion_replay_is_marked_verified_runner_backed(tmp_pa
 
 def test_replay_rejects_tampered_completion_evidence_hash(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary)
     events = tmp_path / "task-events.jsonl"
     store = EventStore(events, tree_root=tmp_path / "plans/xq-integrated-rebuild", root=tmp_path)
@@ -1287,9 +1287,9 @@ def test_replay_rejects_tampered_completion_evidence_hash(tmp_path: Path) -> Non
 
 def test_replay_rejects_completion_source_hash_payload_mismatch(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary)
     payload = completion_payload(record, command_summary)
     payload["source_md_sha256"] = "b" * 64
@@ -1311,9 +1311,9 @@ def test_replay_rejects_completion_source_hash_payload_mismatch(tmp_path: Path) 
 
 def test_replay_revalidates_command_summary_against_evidence(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     write_json(
         command_summary,
         {
@@ -1415,9 +1415,9 @@ def test_reopen_blocked_task_returns_to_ready_without_erasing_block_event(tmp_pa
 
 def test_reopen_stale_completion_requires_new_claim_instead_of_counting_completed(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary)
     events = tmp_path / "task-events.jsonl"
     store = EventStore(events, tree_root=tmp_path / "plans/xq-integrated-rebuild", root=tmp_path)
@@ -1651,9 +1651,9 @@ def test_command_summary_must_have_content(tmp_path: Path) -> None:
 
 def test_command_summary_must_match_evidence_commands(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     make_record(record, task, source)
-    mismatched_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    mismatched_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     write_json(
         mismatched_summary,
         {
@@ -1726,10 +1726,10 @@ def test_command_summary_must_match_evidence_commands(tmp_path: Path) -> None:
 
 def test_record_complete_retries_release_without_duplicate_terminal_event(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     command_entry = make_runner_command_entry(tmp_path, task)
     make_record(record, task, source, command_entry=command_entry, acceptance_items=make_full_gate_items())
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary, command_entry=command_entry)
     appended: list[dict] = []
     released: list[tuple[str, str | None, str | None]] = []
@@ -1856,7 +1856,7 @@ def test_record_fail_retries_release_without_duplicate_terminal_event() -> None:
 def test_temp_end_to_end_claim_complete_replay_smoke(tmp_path: Path) -> None:
     task, source = make_task(tmp_path)
     task["source_md"] = str(source)
-    record = tmp_path / "<private-evidence-dir>/test-runs/task/evidence.json"
+    record = tmp_path / "private-evidence-dir/test-runs/task/evidence.json"
     command_entry = make_runner_command_entry(tmp_path, task, session_id="smoke")
     make_record(
         record,
@@ -1866,7 +1866,7 @@ def test_temp_end_to_end_claim_complete_replay_smoke(tmp_path: Path) -> None:
         acceptance_items=make_full_gate_items(),
         session_id="smoke",
     )
-    command_summary = tmp_path / "<private-evidence-dir>/test-runs/task/command-summary.json"
+    command_summary = tmp_path / "private-evidence-dir/test-runs/task/command-summary.json"
     make_command_summary(command_summary, command_entry=command_entry)
     events = tmp_path / "task-events.jsonl"
     locks = tmp_path / "task-locks"
@@ -2367,3 +2367,4 @@ if __name__ == "__main__":
     test_record_reopen_requires_known_blocking_task_and_appends_reopen_event()
     with tempfile.TemporaryDirectory() as tmp:
         test_temp_end_to_end_claim_complete_replay_smoke(Path(tmp) / "smoke")
+

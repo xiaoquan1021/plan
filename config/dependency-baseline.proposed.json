@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "contract_version": 1,
+  "verification_status": "proposed-not-build-verified",
+  "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
+  "dependencies": [
+    {
+      "name": "Qt6",
+      "suggested_version": "OPEN-DECISION",
+      "official_source": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "license": "OPEN-DECISION",
+      "compiler_abi": "OPEN-DECISION",
+      "build_options": {},
+      "role_in_xq": "desktop UI and event loop",
+      "allowed_in_public_api": false,
+      "runtime_packaging": "OPEN-DECISION",
+      "verification_status": "open-decision"
+    },
+    {
+      "name": "VTK",
+      "suggested_version": "OPEN-DECISION",
+      "official_source": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "license": "OPEN-DECISION",
+      "compiler_abi": "OPEN-DECISION",
+      "build_options": {},
+      "role_in_xq": "visualization and disposable rendering products",
+      "allowed_in_public_api": false,
+      "runtime_packaging": "OPEN-DECISION",
+      "verification_status": "open-decision"
+    },
+    {
+      "name": "ITK",
+      "suggested_version": "OPEN-DECISION",
+      "official_source": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "license": "OPEN-DECISION",
+      "compiler_abi": "OPEN-DECISION",
+      "build_options": {},
+      "role_in_xq": "medical image algorithms",
+      "allowed_in_public_api": false,
+      "runtime_packaging": "OPEN-DECISION",
+      "verification_status": "open-decision"
+    },
+    {
+      "name": "GDCM",
+      "suggested_version": "OPEN-DECISION",
+      "official_source": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "license": "OPEN-DECISION",
+      "compiler_abi": "OPEN-DECISION",
+      "build_options": {},
+      "role_in_xq": "DICOM pixel decode fallback",
+      "allowed_in_public_api": false,
+      "runtime_packaging": "OPEN-DECISION",
+      "verification_status": "open-decision"
+    },
+    {
+      "name": "DCMTK",
+      "suggested_version": "OPEN-DECISION",
+      "official_source": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "license": "OPEN-DECISION",
+      "compiler_abi": "OPEN-DECISION",
+      "build_options": {},
+      "role_in_xq": "DICOM metadata and series scanning",
+      "allowed_in_public_api": false,
+      "runtime_packaging": "OPEN-DECISION",
+      "verification_status": "open-decision"
+    }
+  ],
+  "rules": {
+    "proposed_baseline_is_not_implementation_lock": true,
+    "implementation_lock_must_live_in": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
+    "mismatch_requires_codex_a_escalation": true
+  }
+}

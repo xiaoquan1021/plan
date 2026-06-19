@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "fixtures": [
+    {
+      "fixture_id": "L1-MINIMAL-PROJECT",
+      "format": "xq-minimal-project",
+      "format_version": "OPEN-DECISION",
+      "visibility": "restricted",
+      "content_location_binding": "OPEN-DECISION",
+      "contains_sensitive_data": false,
+      "deidentification_status": "open-decision",
+      "input_sha256": "OPEN-DECISION",
+      "expected_result_binding": "OPEN-DECISION",
+      "expected_result_sha256": "OPEN-DECISION",
+      "approved_usage": "XQ-M2B once approved",
+      "owner": "Codex A"
+    }
+  ]
+}

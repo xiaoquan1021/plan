@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Codex B Task Gate Result",
+  "type": "object",
+  "required": ["schema_version", "task_id", "decision"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "task_id": { "type": "string" },
+    "decision": { "enum": ["accepted", "rework", "escalated", "rejected"] }
+  }
+}

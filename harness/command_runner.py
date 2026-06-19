@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
@@ -50,6 +51,12 @@ def default_command_summary_path(task_id: str, session_id: str) -> Path:
 def write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def executable_argv(argv: list[str]) -> list[str]:
+    if argv and argv[0] in {"python", "python3"}:
+        return [sys.executable, *argv[1:]]
+    return list(argv)
 
 
 def build_command_entry(
@@ -197,7 +204,7 @@ def run_harness_command(
 
     started_at = utc_now()
     completed = subprocess.run(
-        argv,
+        executable_argv(argv),
         cwd=str(cwd),
         text=True,
         encoding="utf-8",

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "bindings": {
+    "PLAN_WORKSPACE": {
+      "description": "Local checkout of the public XQ plan repository.",
+      "path": "set-in-config/path-bindings.local.json"
+    },
+    "IMPLEMENTATION_WORKSPACE": {
+      "description": "Local checkout/worktree for the integrated XQ rebuild implementation.",
+      "path": "set-in-config/path-bindings.local.json"
+    },
+    "LEGACY_EVIDENCE_ROOTS": {
+      "description": "Local roots used only as historical behavior/source evidence.",
+      "paths": []
+    },
+    "ACCEPTANCE_PROJECT": {
+      "description": "Private or de-identified project used for L2 acceptance.",
+      "path": null,
+      "decision_state": "open"
+    },
+    "PRIVATE_RUNTIME_LEDGER": {
+      "description": "Private append-only task event log or sanitized projection input.",
+      "path": null
+    },
+    "PRIVATE_COMPLETION_RECORDS": {
+      "description": "Private completion records or sanitized projection input.",
+      "path": null
+    },
+    "WORKSPACE_RECONCILIATION_REPORT": {
+      "description": "Private baseline/workspace reconciliation report.",
+      "path": null
+    }
+  }
+}

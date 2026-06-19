@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task_definitions": [
+    { "task_id": "PR-M0-001", "path": "ledger/task-definitions/PR-M0/PR-M0-001.yaml", "schema_version": 1 },
+    { "task_id": "PR-M1-001", "path": "ledger/task-definitions/PR-M1/PR-M1-001.yaml", "schema_version": 1 },
+    { "task_id": "PR-M2-001", "path": "ledger/task-definitions/PR-M2/PR-M2-001.yaml", "schema_version": 1 },
+    { "task_id": "PR-M3-001", "path": "ledger/task-definitions/PR-M3/PR-M3-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M0-001", "path": "ledger/task-definitions/XQ-M0/XQ-M0-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M1-001", "path": "ledger/task-definitions/XQ-M1/XQ-M1-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M2A-001", "path": "ledger/task-definitions/XQ-M2A/XQ-M2A-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M2B-001", "path": "ledger/task-definitions/XQ-M2B/XQ-M2B-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M3-001", "path": "ledger/task-definitions/XQ-M3/XQ-M3-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M4-001", "path": "ledger/task-definitions/XQ-M4/XQ-M4-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M5-001", "path": "ledger/task-definitions/XQ-M5/XQ-M5-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M6-001", "path": "ledger/task-definitions/XQ-M6/XQ-M6-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M7-001", "path": "ledger/task-definitions/XQ-M7/XQ-M7-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M8-001", "path": "ledger/task-definitions/XQ-M8/XQ-M8-001.yaml", "schema_version": 1 },
+    { "task_id": "XQ-M9-001", "path": "ledger/task-definitions/XQ-M9/XQ-M9-001.yaml", "schema_version": 1 }
+  ]
+}

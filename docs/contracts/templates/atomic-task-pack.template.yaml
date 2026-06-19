@@ -1,0 +1,24 @@
+schema_version: 1
+contract_version: 1
+task_id: XQ-M1-CORE-001
+epic_id: XQ-M1-CORE-DATA
+issuance_status: draft
+execution_ready: false
+baseline_requirement: XQ-M0 Repository Execution Readiness must provide base_commit, rollback point, and task worktree.
+base_commit: null
+rollback_point: null
+worktree_binding: null
+epic_contract_sha256: null
+task_pack_sha256: null
+dependency_contract_sha256: null
+implementation_dependency_lock_path: IMPLEMENTATION_WORKSPACE/dependencies.lock.json
+implementation_dependency_lock_sha256: null
+toolchain_manifest_sha256: null
+supersedes: []
+allowed_logical_scopes: []
+allowed_paths: []
+forbidden_actions: []
+commands: []
+machine_acceptance: []
+required_evidence: []
+stop_conditions: []

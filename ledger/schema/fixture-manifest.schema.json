@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Fixture Manifest",
+  "type": "object",
+  "required": ["schema_version", "fixtures"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fixture_id",
+          "format",
+          "format_version",
+          "visibility",
+          "content_location_binding",
+          "contains_sensitive_data",
+          "deidentification_status",
+          "input_sha256",
+          "expected_result_binding",
+          "expected_result_sha256",
+          "approved_usage",
+          "owner"
+        ],
+        "properties": {
+          "visibility": { "enum": ["public", "private", "restricted"] }
+        }
+      }
+    }
+  }
+}

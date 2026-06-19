@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "task_id": "PR-M2-001",
+  "title": "Ledger migration and deterministic projection",
+  "task_kind": "harness",
+  "plan_rewrite_milestone": "PR-M2",
+  "product_milestone": null,
+  "epic_id": "PR-M2-LEDGER-PROJECTION",
+  "dependencies": ["PR-M1-001"],
+  "source_contracts": [
+    "docs/contracts/harness-contract.md",
+    "docs/contracts/ledger-migration-policy.md",
+    "ledger/task-definitions/index.yaml"
+  ],
+  "source_contract_hashes": {},
+  "allowed_logical_scopes": ["PLAN_WORKSPACE"],
+  "forbidden_actions": ["edit snapshots by hand", "commit private runtime logs"],
+  "claimability_rules": ["task-definition schemas must pass"],
+  "machine_acceptance": ["generate_snapshots --check exits 0", "migration idempotency check exits 0"],
+  "required_evidence": ["generator output", "migration report"],
+  "blocked_reason": null,
+  "unblock_condition": null,
+  "owner": "Codex B",
+  "next_action": "run projection checks",
+  "supersedes": [],
+  "status": "ready-for-ledger-review",
+  "decision_state": "none"
+}

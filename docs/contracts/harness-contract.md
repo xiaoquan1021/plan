@@ -1,51 +1,79 @@
 # XQ Ledger Harness Contract
 
-This document describes the public contract for the XQ plan ledger harness.
+## Purpose
 
-## State Model
+Define how public task definitions, private runtime truth, and public snapshots interact for the XQ integrated rebuild plan.
 
-Tasks are selected from `ledger/snapshots/tasks.json`. Runtime events are append-only records in a private ledger event log when executing real work. Public snapshots omit raw event history and record artifacts.
+## Authoritative Definition Source
 
-Primary task states:
+Task definitions live under `ledger/task-definitions/` and are registered by `ledger/task-definitions/index.yaml`.
 
-- `not-executable-index`: navigation or index document, not claimable work.
-- `ready-for-ledger-review`: claimable task whose dependencies are satisfied.
-- `claimed`: task lease exists but execution has not completed.
-- `in-progress`: task has started under an active lease.
-- `completed`: task completed in the private ledger; public record artifacts are omitted.
-- `failed-retry-ready`: retryable failure that may be claimed again.
-- `blocked`: non-retryable block requiring repair or explicit reopen.
-- `stale-completion`: source changed after completion record and must be rerun privately.
-- `lease-expired`: claimed task whose lease has expired.
+Definitions store planning facts only: task identity, milestone, epic, dependencies, source contracts, allowed logical scopes, forbidden actions, claimability rules, machine acceptance, required evidence, decision metadata, and supersession.
 
-## Event Contract
+Definitions do not prove implementation completion.
 
-Private execution uses `task_claimed`, `task_started`, `task_heartbeat`, `task_released`, `task_completed`, `task_failed`, `task_blocked`, `task_reopened`, and `task_override` events. Each event is hash-chained and includes actor/session identity, task id, timestamp, and a typed payload.
+## Runtime Truth Source
 
-Completion events require:
+Real execution truth comes from private append-only event logs, completion records, command runner artifacts, lease records, workspace reconciliation reports, and hashes of source, contracts, task packs, gate results, and reviews.
 
-- completion record path and SHA-256
-- source Markdown SHA-256
-- command summary path and SHA-256
-- runner-backed command artifacts
-- coverage of every relevant `Test Plan` and `Acceptance` item
+Private runtime inputs are never committed directly to this public repository.
 
-## Preflight Gates
+## Public Projection
 
-`harness/ledger_task.py preflight` combines structural audit, event validation, dependency checks, lease state, task blocking states, and record validation. A hard gate prevents task claiming until repaired.
+Public snapshots combine:
 
-Hard gates include source-boundary violations, plan-kernel status pollution, actionable unsupported claims, deferred-owner gaps, execution-flow pollution, missing hardening sections, event errors, invalid record, dependency violations, and invalid leases.
+```text
+task definitions
++ sanitized private runtime projection
++ completion record projection
++ workspace reconciliation projection
+```
+
+When private inputs are absent, projection may show planning state and dependency claimability only. It must not synthesize new `completed` states.
+
+## Legal Task Runtime States
+
+- `not-executable-index`
+- `ready-for-ledger-review`
+- `claimed`
+- `in-progress`
+- `completed`
+- `failed-retry-ready`
+- `blocked`
+- `stale-completion`
+- `lease-expired`
+
+Do not add new runtime states without updating schemas, selector, preflight, summary generation, and tests.
+
+## Decision State
+
+Design choices use `decision_state`:
+
+```text
+none
+open
+proposed
+approved
+rejected
+superseded
+```
+
+Decision state is not task runtime state.
+
+## Deterministic Snapshot Generation
+
+`generated_at` is derived from the newest authoritative event time, then source commit time, then `SOURCE_DATE_EPOCH`. Wall-clock now is forbidden for committed snapshots.
+
+Generator output must use stable JSON key order, stable array ordering, UTF-8, LF newlines, repository-relative logical paths, and redacted private paths.
+
+## Snapshot Check
+
+`harness/generate_snapshots.py --check` regenerates into a temporary directory and compares without overwriting the repository. Differences must report the field/source that changed.
+
+## Milestone Status Rollup
+
+Milestone `contract_status`, `implementation_status`, and `acceptance_status` are generated rollups. Markdown and task definitions do not hand-maintain completed implementation or passed acceptance state.
 
 ## Command Capture
 
-Task commands must run through `harness/ledger_task.py run-command`. The command runner records argv, cwd, timestamps, exit code, stdout/stderr excerpts, output hashes, and a runner artifact hash. Completion cannot rely on handwritten command summaries.
-
-Negative `rg` assertions must exit 0 on success, for example:
-
-```bash
-bash -lc '! rg "forbidden pattern" plans ledger harness'
-```
-
-## Public Snapshot Boundary
-
-This repository keeps the planning and harness contracts public while excluding private record, private task-event history, command outputs, and session logs. Public task statuses are useful for context, but fresh private record is still required before making new completion claims.
+Implementation task commands must be captured through runner-backed artifacts before a task can be completed. Handwritten command summaries are not sufficient evidence.

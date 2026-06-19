@@ -1,0 +1,24 @@
+schema_version: 1
+task_id: XQ-M1-CORE-001
+task_pack_sha256: null
+base_commit: null
+result_commit: null
+changed_files: []
+allowed_path_check:
+  passed: false
+  violations: []
+workspace_clean_before: null
+workspace_clean_after: null
+commands_reexecuted: []
+exit_codes: []
+tests_observed: []
+test_integrity_check:
+  passed: false
+  notes: []
+forbidden_scan:
+  passed: false
+  findings: []
+result_artifact_hashes: []
+decision: escalated
+rework_reason: null
+escalation_reason: missing-result

@@ -27,6 +27,13 @@ ledger/task-runtime-summary.json
 ledger/tasks.json
 .local/
 
+# Local path/toolchain/private runtime bindings. These may contain machine
+# paths, private ledger locations, or protected data bindings.
+config/*.local.json
+ledger/private-runtime-projection/
+ledger/private-completion-records/
+ledger/private-workspace-reports/
+
 # Local editor/system files
 .DS_Store
 *.swp

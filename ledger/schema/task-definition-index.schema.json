@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Task Definition Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_definitions"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "task_definitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_id", "path", "schema_version"],
+        "properties": {
+          "task_id": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "schema_version": { "const": 1 }
+        }
+      }
+    }
+  }
+}

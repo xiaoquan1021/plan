@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Proposed Dependency Baseline",
+  "type": "object",
+  "required": ["schema_version", "contract_version", "dependencies", "rules"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "contract_version": { "type": "integer" },
+    "verification_status": { "type": "string" },
+    "implementation_dependency_lock_path": { "type": "string" },
+    "dependencies": { "type": "array" },
+    "rules": { "type": "object" }
+  }
+}

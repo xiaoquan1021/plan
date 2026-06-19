@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "task_id": "PR-M0-001",
+  "title": "Truth source and baseline design contracts",
+  "task_kind": "plan-contract",
+  "plan_rewrite_milestone": "PR-M0",
+  "product_milestone": null,
+  "epic_id": "PR-M0-CONTRACT-KERNEL",
+  "dependencies": [],
+  "source_contracts": [
+    "docs/contracts/source-of-truth-reconciliation.md",
+    "docs/adr/ADR-0001-rebuild-repository-strategy.md"
+  ],
+  "source_contract_hashes": {},
+  "allowed_logical_scopes": ["PLAN_WORKSPACE"],
+  "forbidden_actions": ["modify IMPLEMENTATION_WORKSPACE", "write private paths to public markdown"],
+  "claimability_rules": ["definitions-only projection may select this task"],
+  "machine_acceptance": ["path binding example validates", "toolchain binding example validates"],
+  "required_evidence": ["schema validation output", "snapshot check output"],
+  "blocked_reason": null,
+  "unblock_condition": null,
+  "owner": "Codex B",
+  "next_action": "validate PR-M0 contracts",
+  "supersedes": [],
+  "status": "ready-for-ledger-review",
+  "decision_state": "none"
+}

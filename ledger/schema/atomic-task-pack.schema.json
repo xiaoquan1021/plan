@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Atomic Task Pack",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract_version",
+    "task_id",
+    "epic_id",
+    "issuance_status",
+    "execution_ready",
+    "baseline_requirement"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "contract_version": { "type": "integer" },
+    "task_id": { "type": "string" },
+    "epic_id": { "type": "string" },
+    "issuance_status": { "enum": ["draft", "issued", "revoked", "stale"] },
+    "execution_ready": { "type": "boolean" },
+    "baseline_requirement": { "type": "string" }
+  }
+}

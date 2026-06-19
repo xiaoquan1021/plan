@@ -6,12 +6,12 @@ from __future__ import annotations
 import json
 import os
 import uuid
-import fcntl
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import file_locking as fcntl
 from ledger_models import DEFAULT_LEASE_SECONDS, LOCKS_DIR, parse_iso, safe_task_id, utc_now
 
 

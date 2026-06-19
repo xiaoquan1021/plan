@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "tools": {
+    "python": {
+      "command": "python",
+      "required": true
+    },
+    "git": {
+      "command": "git",
+      "required": true
+    },
+    "cmake": {
+      "command": "cmake",
+      "required": false
+    },
+    "ninja": {
+      "command": "ninja",
+      "required": false
+    },
+    "compiler": {
+      "command": null,
+      "required": false
+    },
+    "qt": {
+      "root": null,
+      "required": false
+    },
+    "dependency_roots": []
+  }
+}

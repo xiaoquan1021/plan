@@ -1,1184 +1,194 @@
 {
-  "schema_version": 1,
-  "dependency_phases": [
-    "00-governance",
-    "01-foundation",
-    "02-core-data",
-    "03-native-project-io",
-    "04-medical-image-io",
-    "05-workbench-visualization",
-    "06-workflow",
-    "07-domain-features",
-    "08-xq-zip-selection",
-    "09-acceptance-repair"
-  ],
-  "nodes": [
-    {
-      "id": "main-plan",
-      "source_md": "plans/2026-06-11-xq-lightweight-dependency-refactor-from-XQ-main-zip.md",
-      "status": "not-executable-index",
-      "phase": "zz-unknown",
-      "phase_index": 10,
-      "phase_dependencies": [],
-      "task_dependencies": []
-    },
-    {
-      "id": "execution-entry",
-      "source_md": "plans/xq-integrated-rebuild/00-execution-entry.md",
-      "status": "not-executable-index",
-      "phase": "zz-unknown",
-      "phase_index": 10,
-      "phase_dependencies": [],
-      "task_dependencies": []
-    },
-    {
-      "id": "00-governance-00-source-boundary-and-rules",
-      "source_md": "plans/xq-integrated-rebuild/00-governance/00-source-boundary-and-rules.md",
-      "status": "ready-for-ledger-review",
-      "phase": "00-governance",
-      "phase_index": 0,
-      "phase_dependencies": [],
-      "task_dependencies": []
-    },
-    {
-      "id": "00-governance-01-architecture-first-discipline",
-      "source_md": "plans/xq-integrated-rebuild/00-governance/01-architecture-first-discipline.md",
-      "status": "ready-for-ledger-review",
-      "phase": "00-governance",
-      "phase_index": 0,
-      "phase_dependencies": [],
-      "task_dependencies": [
-        "00-governance-00-source-boundary-and-rules"
-      ]
-    },
-    {
-      "id": "00-governance-02-document-repair-policy",
-      "source_md": "plans/xq-integrated-rebuild/00-governance/02-document-repair-policy.md",
-      "status": "ready-for-ledger-review",
-      "phase": "00-governance",
-      "phase_index": 0,
-      "phase_dependencies": [],
-      "task_dependencies": [
-        "00-governance-01-architecture-first-discipline"
-      ]
-    },
-    {
-      "id": "00-governance-03-child-document-hardening-standard",
-      "source_md": "plans/xq-integrated-rebuild/00-governance/03-child-document-hardening-standard.md",
-      "status": "ready-for-ledger-review",
-      "phase": "00-governance",
-      "phase_index": 0,
-      "phase_dependencies": [],
-      "task_dependencies": [
-        "00-governance-02-document-repair-policy"
-      ]
-    },
-    {
-      "id": "01-foundation-01-empty-project-skeleton",
-      "source_md": "plans/xq-integrated-rebuild/01-foundation/01-empty-project-skeleton.md",
-      "status": "ready-for-ledger-review",
-      "phase": "01-foundation",
-      "phase_index": 1,
-      "phase_dependencies": [
-        "00-governance"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "01-foundation-02-top-level-cmake",
-      "source_md": "plans/xq-integrated-rebuild/01-foundation/02-top-level-cmake.md",
-      "status": "ready-for-ledger-review",
-      "phase": "01-foundation",
-      "phase_index": 1,
-      "phase_dependencies": [
-        "00-governance"
-      ],
-      "task_dependencies": [
-        "01-foundation-01-empty-project-skeleton"
-      ]
-    },
-    {
-      "id": "01-foundation-03-superbuild-version-lock",
-      "source_md": "plans/xq-integrated-rebuild/01-foundation/03-superbuild-version-lock.md",
-      "status": "ready-for-ledger-review",
-      "phase": "01-foundation",
-      "phase_index": 1,
-      "phase_dependencies": [
-        "00-governance"
-      ],
-      "task_dependencies": [
-        "01-foundation-02-top-level-cmake"
-      ]
-    },
-    {
-      "id": "01-foundation-04-dependency-role-map",
-      "source_md": "plans/xq-integrated-rebuild/01-foundation/04-dependency-role-map.md",
-      "status": "ready-for-ledger-review",
-      "phase": "01-foundation",
-      "phase_index": 1,
-      "phase_dependencies": [
-        "00-governance"
-      ],
-      "task_dependencies": [
-        "01-foundation-03-superbuild-version-lock"
-      ]
-    },
-    {
-      "id": "02-core-data-01-xqproject-lifecycle",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/01-xqproject-lifecycle.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "02-core-data-02-xqscene-ownership",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/02-xqscene-ownership.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-01-xqproject-lifecycle"
-      ]
-    },
-    {
-      "id": "02-core-data-03-xqdatanode-and-metadata",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/03-xqdatanode-and-metadata.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-02-xqscene-ownership"
-      ]
-    },
-    {
-      "id": "02-core-data-04-xqimagevolume",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/04-xqimagevolume.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-03-xqdatanode-and-metadata"
-      ]
-    },
-    {
-      "id": "02-core-data-05-xqpath",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/05-xqpath.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-04-xqimagevolume"
-      ]
-    },
-    {
-      "id": "02-core-data-06-xqcontourgroup",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/06-xqcontourgroup.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-05-xqpath"
-      ]
-    },
-    {
-      "id": "02-core-data-07-xqsurfacemodel",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/07-xqsurfacemodel.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-06-xqcontourgroup"
-      ]
-    },
-    {
-      "id": "02-core-data-08-xqmesh",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/08-xqmesh.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-07-xqsurfacemodel"
-      ]
-    },
-    {
-      "id": "02-core-data-09-xqsimulationcase",
-      "source_md": "plans/xq-integrated-rebuild/02-core-data/09-xqsimulationcase.md",
-      "status": "ready-for-ledger-review",
-      "phase": "02-core-data",
-      "phase_index": 2,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation"
-      ],
-      "task_dependencies": [
-        "02-core-data-08-xqmesh"
-      ]
-    },
-    {
-      "id": "03-native-project-io-01-open-project-directory",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/01-open-project-directory.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "03-native-project-io-02-svproj-project-manifest",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/02-svproj-project-manifest.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-01-open-project-directory"
-      ]
-    },
-    {
-      "id": "03-native-project-io-03-pth-path-reader",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/03-pth-path-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-02-svproj-project-manifest"
-      ]
-    },
-    {
-      "id": "03-native-project-io-04-ctgr-contour-reader",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/04-ctgr-contour-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-03-pth-path-reader"
-      ]
-    },
-    {
-      "id": "03-native-project-io-05-mdl-vtp-model-reader",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/05-mdl-vtp-model-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-04-ctgr-contour-reader"
-      ]
-    },
-    {
-      "id": "03-native-project-io-06-msh-vtu-mesh-reader",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/06-msh-vtu-mesh-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-05-mdl-vtp-model-reader"
-      ]
-    },
-    {
-      "id": "03-native-project-io-07-sjb-simulation-reader",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/07-sjb-simulation-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-06-msh-vtu-mesh-reader"
-      ]
-    },
-    {
-      "id": "03-native-project-io-08-xq-native-save-format",
-      "source_md": "plans/xq-integrated-rebuild/03-native-project-io/08-xq-native-save-format.md",
-      "status": "ready-for-ledger-review",
-      "phase": "03-native-project-io",
-      "phase_index": 3,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data"
-      ],
-      "task_dependencies": [
-        "03-native-project-io-07-sjb-simulation-reader"
-      ]
-    },
-    {
-      "id": "04-medical-image-io-01-dicom-series-scanner",
-      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/01-dicom-series-scanner.md",
-      "status": "ready-for-ledger-review",
-      "phase": "04-medical-image-io",
-      "phase_index": 4,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "04-medical-image-io-02-dicom-pixel-decode",
-      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/02-dicom-pixel-decode.md",
-      "status": "ready-for-ledger-review",
-      "phase": "04-medical-image-io",
-      "phase_index": 4,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io"
-      ],
-      "task_dependencies": [
-        "04-medical-image-io-01-dicom-series-scanner"
-      ]
-    },
-    {
-      "id": "04-medical-image-io-03-dicom-private-tags",
-      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/03-dicom-private-tags.md",
-      "status": "ready-for-ledger-review",
-      "phase": "04-medical-image-io",
-      "phase_index": 4,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io"
-      ],
-      "task_dependencies": [
-        "04-medical-image-io-02-dicom-pixel-decode"
-      ]
-    },
-    {
-      "id": "04-medical-image-io-04-nifti-reader",
-      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/04-nifti-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "04-medical-image-io",
-      "phase_index": 4,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io"
-      ],
-      "task_dependencies": [
-        "04-medical-image-io-03-dicom-private-tags"
-      ]
-    },
-    {
-      "id": "04-medical-image-io-05-nrrd-metaimage-reader",
-      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/05-nrrd-metaimage-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "04-medical-image-io",
-      "phase_index": 4,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io"
-      ],
-      "task_dependencies": [
-        "04-medical-image-io-04-nifti-reader"
-      ]
-    },
-    {
-      "id": "04-medical-image-io-06-vti-minc-tiff-reader",
-      "source_md": "plans/xq-integrated-rebuild/04-medical-image-io/06-vti-minc-tiff-reader.md",
-      "status": "ready-for-ledger-review",
-      "phase": "04-medical-image-io",
-      "phase_index": 4,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io"
-      ],
-      "task_dependencies": [
-        "04-medical-image-io-05-nrrd-metaimage-reader"
-      ]
-    },
-    {
-      "id": "05-workbench-visualization-01-main-window-layout",
-      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/01-main-window-layout.md",
-      "status": "ready-for-ledger-review",
-      "phase": "05-workbench-visualization",
-      "phase_index": 5,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "05-workbench-visualization-02-project-tree",
-      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/02-project-tree.md",
-      "status": "ready-for-ledger-review",
-      "phase": "05-workbench-visualization",
-      "phase_index": 5,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io"
-      ],
-      "task_dependencies": [
-        "05-workbench-visualization-01-main-window-layout"
-      ]
-    },
-    {
-      "id": "05-workbench-visualization-03-mpr-viewers",
-      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/03-mpr-viewers.md",
-      "status": "ready-for-ledger-review",
-      "phase": "05-workbench-visualization",
-      "phase_index": 5,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io"
-      ],
-      "task_dependencies": [
-        "05-workbench-visualization-02-project-tree"
-      ]
-    },
-    {
-      "id": "05-workbench-visualization-04-3d-scene-viewer",
-      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/04-3d-scene-viewer.md",
-      "status": "ready-for-ledger-review",
-      "phase": "05-workbench-visualization",
-      "phase_index": 5,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io"
-      ],
-      "task_dependencies": [
-        "05-workbench-visualization-03-mpr-viewers"
-      ]
-    },
-    {
-      "id": "05-workbench-visualization-05-tool-panels",
-      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/05-tool-panels.md",
-      "status": "ready-for-ledger-review",
-      "phase": "05-workbench-visualization",
-      "phase_index": 5,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io"
-      ],
-      "task_dependencies": [
-        "05-workbench-visualization-04-3d-scene-viewer"
-      ]
-    },
-    {
-      "id": "05-workbench-visualization-06-four-pane-layout",
-      "source_md": "plans/xq-integrated-rebuild/05-workbench-visualization/06-four-pane-layout.md",
-      "status": "ready-for-ledger-review",
-      "phase": "05-workbench-visualization",
-      "phase_index": 5,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io"
-      ],
-      "task_dependencies": [
-        "05-workbench-visualization-05-tool-panels"
-      ]
-    },
-    {
-      "id": "06-workflow-01-workflow-state-machine",
-      "source_md": "plans/xq-integrated-rebuild/06-workflow/01-workflow-state-machine.md",
-      "status": "ready-for-ledger-review",
-      "phase": "06-workflow",
-      "phase_index": 6,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "06-workflow-02-stage-source-relations",
-      "source_md": "plans/xq-integrated-rebuild/06-workflow/02-stage-source-relations.md",
-      "status": "ready-for-ledger-review",
-      "phase": "06-workflow",
-      "phase_index": 6,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization"
-      ],
-      "task_dependencies": [
-        "06-workflow-01-workflow-state-machine"
-      ]
-    },
-    {
-      "id": "06-workflow-03-command-and-undo",
-      "source_md": "plans/xq-integrated-rebuild/06-workflow/03-command-and-undo.md",
-      "status": "ready-for-ledger-review",
-      "phase": "06-workflow",
-      "phase_index": 6,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization"
-      ],
-      "task_dependencies": [
-        "06-workflow-02-stage-source-relations"
-      ]
-    },
-    {
-      "id": "07-domain-features-01-path-planning",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/01-path-planning.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "07-domain-features-02-centerline-frames",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/02-centerline-frames.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-01-path-planning"
-      ]
-    },
-    {
-      "id": "07-domain-features-03-lumen-contour-editing",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/03-lumen-contour-editing.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-02-centerline-frames"
-      ]
-    },
-    {
-      "id": "07-domain-features-04-contour-lofting-inputs",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/04-contour-lofting-inputs.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-03-lumen-contour-editing"
-      ]
-    },
-    {
-      "id": "07-domain-features-05-3d-segmentation",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/05-3d-segmentation.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-04-contour-lofting-inputs"
-      ]
-    },
-    {
-      "id": "07-domain-features-06-model-lofting-and-capping",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/06-model-lofting-and-capping.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-05-3d-segmentation"
-      ]
-    },
-    {
-      "id": "07-domain-features-07-model-face-metadata",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/07-model-face-metadata.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-06-model-lofting-and-capping"
-      ]
-    },
-    {
-      "id": "07-domain-features-08-surface-mesh",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/08-surface-mesh.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-07-model-face-metadata"
-      ]
-    },
-    {
-      "id": "07-domain-features-09-volume-mesh",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/09-volume-mesh.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-08-surface-mesh"
-      ]
-    },
-    {
-      "id": "07-domain-features-10-mesh-boundary-transfer",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/10-mesh-boundary-transfer.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-09-volume-mesh"
-      ]
-    },
-    {
-      "id": "07-domain-features-11-simulation-boundary-conditions",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/11-simulation-boundary-conditions.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-10-mesh-boundary-transfer"
-      ]
-    },
-    {
-      "id": "07-domain-features-12-simulation-solver-export",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/12-simulation-solver-export.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-11-simulation-boundary-conditions"
-      ]
-    },
-    {
-      "id": "07-domain-features-13-rom-and-multiphysics",
-      "source_md": "plans/xq-integrated-rebuild/07-domain-features/13-rom-and-multiphysics.md",
-      "status": "ready-for-ledger-review",
-      "phase": "07-domain-features",
-      "phase_index": 7,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow"
-      ],
-      "task_dependencies": [
-        "07-domain-features-12-simulation-solver-export"
-      ]
-    },
-    {
-      "id": "08-xq-zip-selection-01-code-selection-rules",
-      "source_md": "plans/xq-integrated-rebuild/08-xq-zip-selection/01-code-selection-rules.md",
-      "status": "ready-for-ledger-review",
-      "phase": "08-xq-zip-selection",
-      "phase_index": 8,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow",
-        "07-domain-features"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "08-xq-zip-selection-02-code-rewrite-mapping",
-      "source_md": "plans/xq-integrated-rebuild/08-xq-zip-selection/02-code-rewrite-mapping.md",
-      "status": "ready-for-ledger-review",
-      "phase": "08-xq-zip-selection",
-      "phase_index": 8,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow",
-        "07-domain-features"
-      ],
-      "task_dependencies": [
-        "08-xq-zip-selection-01-code-selection-rules"
-      ]
-    },
-    {
-      "id": "09-acceptance-repair-01-0007-project-acceptance",
-      "source_md": "plans/xq-integrated-rebuild/09-acceptance-repair/01-0007-project-acceptance.md",
-      "status": "ready-for-ledger-review",
-      "phase": "09-acceptance-repair",
-      "phase_index": 9,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow",
-        "07-domain-features",
-        "08-xq-zip-selection"
-      ],
-      "task_dependencies": []
-    },
-    {
-      "id": "09-acceptance-repair-02-failure-routing",
-      "source_md": "plans/xq-integrated-rebuild/09-acceptance-repair/02-failure-routing.md",
-      "status": "ready-for-ledger-review",
-      "phase": "09-acceptance-repair",
-      "phase_index": 9,
-      "phase_dependencies": [
-        "00-governance",
-        "01-foundation",
-        "02-core-data",
-        "03-native-project-io",
-        "04-medical-image-io",
-        "05-workbench-visualization",
-        "06-workflow",
-        "07-domain-features",
-        "08-xq-zip-selection"
-      ],
-      "task_dependencies": [
-        "09-acceptance-repair-01-0007-project-acceptance"
-      ]
-    },
-    {
-      "id": "readme",
-      "source_md": "plans/xq-integrated-rebuild/README.md",
-      "status": "not-executable-index",
-      "phase": "zz-unknown",
-      "phase_index": 10,
-      "phase_dependencies": [],
-      "task_dependencies": []
-    }
-  ],
   "edges": [
     {
-      "from": "00-governance-00-source-boundary-and-rules",
-      "to": "00-governance-01-architecture-first-discipline",
-      "kind": "task"
+      "from": "PR-M0-001",
+      "kind": "task",
+      "to": "PR-M1-001"
     },
     {
-      "from": "00-governance-01-architecture-first-discipline",
-      "to": "00-governance-02-document-repair-policy",
-      "kind": "task"
+      "from": "PR-M1-001",
+      "kind": "task",
+      "to": "PR-M2-001"
     },
     {
-      "from": "00-governance-02-document-repair-policy",
-      "to": "00-governance-03-child-document-hardening-standard",
-      "kind": "task"
+      "from": "PR-M2-001",
+      "kind": "task",
+      "to": "PR-M3-001"
     },
     {
-      "from": "01-foundation-01-empty-project-skeleton",
-      "to": "01-foundation-02-top-level-cmake",
-      "kind": "task"
+      "from": "PR-M3-001",
+      "kind": "task",
+      "to": "XQ-M0-001"
     },
     {
-      "from": "01-foundation-02-top-level-cmake",
-      "to": "01-foundation-03-superbuild-version-lock",
-      "kind": "task"
+      "from": "XQ-M0-001",
+      "kind": "task",
+      "to": "XQ-M1-001"
     },
     {
-      "from": "01-foundation-03-superbuild-version-lock",
-      "to": "01-foundation-04-dependency-role-map",
-      "kind": "task"
+      "from": "XQ-M1-001",
+      "kind": "task",
+      "to": "XQ-M2A-001"
     },
     {
-      "from": "02-core-data-01-xqproject-lifecycle",
-      "to": "02-core-data-02-xqscene-ownership",
-      "kind": "task"
+      "from": "XQ-M2A-001",
+      "kind": "task",
+      "to": "XQ-M2B-001"
     },
     {
-      "from": "02-core-data-02-xqscene-ownership",
-      "to": "02-core-data-03-xqdatanode-and-metadata",
-      "kind": "task"
+      "from": "XQ-M2B-001",
+      "kind": "task",
+      "to": "XQ-M3-001"
     },
     {
-      "from": "02-core-data-03-xqdatanode-and-metadata",
-      "to": "02-core-data-04-xqimagevolume",
-      "kind": "task"
+      "from": "XQ-M2B-001",
+      "kind": "task",
+      "to": "XQ-M4-001"
     },
     {
-      "from": "02-core-data-04-xqimagevolume",
-      "to": "02-core-data-05-xqpath",
-      "kind": "task"
+      "from": "XQ-M3-001",
+      "kind": "task",
+      "to": "XQ-M5-001"
     },
     {
-      "from": "02-core-data-05-xqpath",
-      "to": "02-core-data-06-xqcontourgroup",
-      "kind": "task"
+      "from": "XQ-M4-001",
+      "kind": "task",
+      "to": "XQ-M5-001"
     },
     {
-      "from": "02-core-data-06-xqcontourgroup",
-      "to": "02-core-data-07-xqsurfacemodel",
-      "kind": "task"
+      "from": "XQ-M5-001",
+      "kind": "task",
+      "to": "XQ-M6-001"
     },
     {
-      "from": "02-core-data-07-xqsurfacemodel",
-      "to": "02-core-data-08-xqmesh",
-      "kind": "task"
+      "from": "XQ-M6-001",
+      "kind": "task",
+      "to": "XQ-M7-001"
     },
     {
-      "from": "02-core-data-08-xqmesh",
-      "to": "02-core-data-09-xqsimulationcase",
-      "kind": "task"
+      "from": "XQ-M7-001",
+      "kind": "task",
+      "to": "XQ-M8-001"
     },
     {
-      "from": "03-native-project-io-01-open-project-directory",
-      "to": "03-native-project-io-02-svproj-project-manifest",
-      "kind": "task"
+      "from": "XQ-M8-001",
+      "kind": "task",
+      "to": "XQ-M9-001"
+    }
+  ],
+  "metadata": {
+    "generated_at": "1970-01-01T00:00:00+00:00",
+    "generator": "harness/generate_snapshots.py",
+    "generator_version": 1,
+    "projection_mode": "definitions-only",
+    "schema_version": 1,
+    "source_hash": "ed21cca1b9341243878befa78f9532fe2d4e74d6787fedfeaed612d9bbf0da9e"
+  },
+  "nodes": [
+    {
+      "epic_id": "PR-M0-CONTRACT-KERNEL",
+      "id": "PR-M0-001",
+      "plan_rewrite_milestone": "PR-M0",
+      "product_milestone": null,
+      "status": "ready-for-ledger-review"
     },
     {
-      "from": "03-native-project-io-02-svproj-project-manifest",
-      "to": "03-native-project-io-03-pth-path-reader",
-      "kind": "task"
+      "epic_id": "PR-M1-CONTRACT-KERNEL",
+      "id": "PR-M1-001",
+      "plan_rewrite_milestone": "PR-M1",
+      "product_milestone": null,
+      "status": "ready-for-ledger-review"
     },
     {
-      "from": "03-native-project-io-03-pth-path-reader",
-      "to": "03-native-project-io-04-ctgr-contour-reader",
-      "kind": "task"
+      "epic_id": "PR-M2-LEDGER-PROJECTION",
+      "id": "PR-M2-001",
+      "plan_rewrite_milestone": "PR-M2",
+      "product_milestone": null,
+      "status": "ready-for-ledger-review"
     },
     {
-      "from": "03-native-project-io-04-ctgr-contour-reader",
-      "to": "03-native-project-io-05-mdl-vtp-model-reader",
-      "kind": "task"
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "PR-M3-001",
+      "plan_rewrite_milestone": "PR-M3",
+      "product_milestone": "XQ-M1",
+      "status": "ready-for-ledger-review"
     },
     {
-      "from": "03-native-project-io-05-mdl-vtp-model-reader",
-      "to": "03-native-project-io-06-msh-vtu-mesh-reader",
-      "kind": "task"
+      "epic_id": "XQ-M0-BASELINE",
+      "id": "XQ-M0-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M0",
+      "status": "blocked"
     },
     {
-      "from": "03-native-project-io-06-msh-vtu-mesh-reader",
-      "to": "03-native-project-io-07-sjb-simulation-reader",
-      "kind": "task"
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "XQ-M1-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "status": "blocked"
     },
     {
-      "from": "03-native-project-io-07-sjb-simulation-reader",
-      "to": "03-native-project-io-08-xq-native-save-format",
-      "kind": "task"
+      "epic_id": "XQ-M2A-SYNTHETIC-SLICE",
+      "id": "XQ-M2A-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M2A",
+      "status": "blocked"
     },
     {
-      "from": "04-medical-image-io-01-dicom-series-scanner",
-      "to": "04-medical-image-io-02-dicom-pixel-decode",
-      "kind": "task"
+      "epic_id": "XQ-M2B-FIXTURE-SLICE",
+      "id": "XQ-M2B-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M2B",
+      "status": "blocked"
     },
     {
-      "from": "04-medical-image-io-02-dicom-pixel-decode",
-      "to": "04-medical-image-io-03-dicom-private-tags",
-      "kind": "task"
+      "epic_id": "XQ-M3-IMAGE-VISUALIZATION",
+      "id": "XQ-M3-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M3",
+      "status": "blocked"
     },
     {
-      "from": "04-medical-image-io-03-dicom-private-tags",
-      "to": "04-medical-image-io-04-nifti-reader",
-      "kind": "task"
+      "epic_id": "XQ-M4-PATH-CONTOUR",
+      "id": "XQ-M4-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M4",
+      "status": "blocked"
     },
     {
-      "from": "04-medical-image-io-04-nifti-reader",
-      "to": "04-medical-image-io-05-nrrd-metaimage-reader",
-      "kind": "task"
+      "epic_id": "XQ-M5-SEGMENTATION-SURFACE",
+      "id": "XQ-M5-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M5",
+      "status": "blocked"
     },
     {
-      "from": "04-medical-image-io-05-nrrd-metaimage-reader",
-      "to": "04-medical-image-io-06-vti-minc-tiff-reader",
-      "kind": "task"
+      "epic_id": "XQ-M6-MESH",
+      "id": "XQ-M6-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M6",
+      "status": "blocked"
     },
     {
-      "from": "05-workbench-visualization-01-main-window-layout",
-      "to": "05-workbench-visualization-02-project-tree",
-      "kind": "task"
+      "epic_id": "XQ-M7-SIMULATION-PREP",
+      "id": "XQ-M7-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M7",
+      "status": "blocked"
     },
     {
-      "from": "05-workbench-visualization-02-project-tree",
-      "to": "05-workbench-visualization-03-mpr-viewers",
-      "kind": "task"
+      "epic_id": "XQ-M8-NATIVE-SAVE",
+      "id": "XQ-M8-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M8",
+      "status": "blocked"
     },
     {
-      "from": "05-workbench-visualization-03-mpr-viewers",
-      "to": "05-workbench-visualization-04-3d-scene-viewer",
-      "kind": "task"
-    },
-    {
-      "from": "05-workbench-visualization-04-3d-scene-viewer",
-      "to": "05-workbench-visualization-05-tool-panels",
-      "kind": "task"
-    },
-    {
-      "from": "05-workbench-visualization-05-tool-panels",
-      "to": "05-workbench-visualization-06-four-pane-layout",
-      "kind": "task"
-    },
-    {
-      "from": "06-workflow-01-workflow-state-machine",
-      "to": "06-workflow-02-stage-source-relations",
-      "kind": "task"
-    },
-    {
-      "from": "06-workflow-02-stage-source-relations",
-      "to": "06-workflow-03-command-and-undo",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-01-path-planning",
-      "to": "07-domain-features-02-centerline-frames",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-02-centerline-frames",
-      "to": "07-domain-features-03-lumen-contour-editing",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-03-lumen-contour-editing",
-      "to": "07-domain-features-04-contour-lofting-inputs",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-04-contour-lofting-inputs",
-      "to": "07-domain-features-05-3d-segmentation",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-05-3d-segmentation",
-      "to": "07-domain-features-06-model-lofting-and-capping",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-06-model-lofting-and-capping",
-      "to": "07-domain-features-07-model-face-metadata",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-07-model-face-metadata",
-      "to": "07-domain-features-08-surface-mesh",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-08-surface-mesh",
-      "to": "07-domain-features-09-volume-mesh",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-09-volume-mesh",
-      "to": "07-domain-features-10-mesh-boundary-transfer",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-10-mesh-boundary-transfer",
-      "to": "07-domain-features-11-simulation-boundary-conditions",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-11-simulation-boundary-conditions",
-      "to": "07-domain-features-12-simulation-solver-export",
-      "kind": "task"
-    },
-    {
-      "from": "07-domain-features-12-simulation-solver-export",
-      "to": "07-domain-features-13-rom-and-multiphysics",
-      "kind": "task"
-    },
-    {
-      "from": "08-xq-zip-selection-01-code-selection-rules",
-      "to": "08-xq-zip-selection-02-code-rewrite-mapping",
-      "kind": "task"
-    },
-    {
-      "from": "09-acceptance-repair-01-0007-project-acceptance",
-      "to": "09-acceptance-repair-02-failure-routing",
-      "kind": "task"
+      "epic_id": "XQ-M9-FINAL-ACCEPTANCE",
+      "id": "XQ-M9-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M9",
+      "status": "blocked"
     }
   ]
 }

@@ -5,11 +5,11 @@ from __future__ import annotations
 
 import json
 import uuid
-import fcntl
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
+import file_locking as fcntl
 from command_summary_validator import validate_command_summary_file, validate_command_summary_matches_evidence
 from evidence_validator import CompletionRecordError, validate_completion_record
 from ledger_models import (

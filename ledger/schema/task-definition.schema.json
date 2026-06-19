@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Task Definition",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "task_id",
+    "title",
+    "task_kind",
+    "plan_rewrite_milestone",
+    "product_milestone",
+    "epic_id",
+    "dependencies",
+    "source_contracts",
+    "source_contract_hashes",
+    "allowed_logical_scopes",
+    "forbidden_actions",
+    "claimability_rules",
+    "machine_acceptance",
+    "required_evidence",
+    "owner",
+    "next_action",
+    "supersedes"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "task_kind": { "type": "string", "minLength": 1 },
+    "plan_rewrite_milestone": { "type": ["string", "null"] },
+    "product_milestone": { "type": ["string", "null"] },
+    "epic_id": { "type": ["string", "null"] },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "source_contracts": { "type": "array", "items": { "type": "string" } },
+    "source_contract_hashes": { "type": "object" },
+    "allowed_logical_scopes": { "type": "array", "items": { "type": "string" } },
+    "forbidden_actions": { "type": "array", "items": { "type": "string" } },
+    "claimability_rules": { "type": "array", "items": { "type": "string" } },
+    "machine_acceptance": { "type": "array", "items": { "type": "string" } },
+    "required_evidence": { "type": "array", "items": { "type": "string" } },
+    "blocked_reason": { "type": ["string", "null"] },
+    "unblock_condition": { "type": ["string", "null"] },
+    "owner": { "type": "string", "minLength": 1 },
+    "next_action": { "type": "string", "minLength": 1 },
+    "supersedes": { "type": "array", "items": { "type": "string" } },
+    "status": {
+      "enum": [
+        "not-executable-index",
+        "ready-for-ledger-review",
+        "claimed",
+        "in-progress",
+        "completed",
+        "failed-retry-ready",
+        "blocked",
+        "stale-completion",
+        "lease-expired"
+      ]
+    },
+    "decision_state": {
+      "enum": ["none", "open", "proposed", "approved", "rejected", "superseded"]
+    }
+  }
+}

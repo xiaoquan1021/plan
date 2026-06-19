@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "migration_id": "0001-task-definition-migration",
+  "description": "Map legacy snapshot tasks into PR/XQ milestone task-definition model without inheriting implementation completion.",
+  "mappings": [
+    {
+      "old_task_id": "*",
+      "new_task_id": "manual-reconciliation-required",
+      "status_rule": "documentation-completion-does-not-imply-implementation-completion",
+      "superseded_by": []
+    }
+  ]
+}

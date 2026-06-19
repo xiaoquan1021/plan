@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "contract_version": 1,
+  "epic_id": "XQ-M1-CORE-DATA",
+  "title": "Core Data Authority",
+  "decision_state": "approved",
+  "approved_by": "Codex A contract readiness pass",
+  "base_commit": null,
+  "dependency_contract_sha256": null,
+  "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
+  "implementation_dependency_lock_sha256": null,
+  "toolchain_manifest_sha256": null,
+  "supersedes": [],
+  "required_outcomes": [
+    "XQProject owns project lifecycle and exactly one XQScene.",
+    "XQScene owns scene nodes and source/derived relations.",
+    "XQDataNode owns stable ID, domain type, display metadata, diagnostics, provenance, and XQ-owned payload handle.",
+    "Core public APIs do not expose MITK, BlueBerry, CTK, VTK, ITK, GDCM, DCMTK, OCCT, MMG, or SWIG-generated types."
+  ],
+  "architecture_constraints": [
+    "Core does not depend on UI, renderer, codec, DICOM dataset, plugin framework, or external object graph ownership.",
+    "Coordinates, units, transforms, stale propagation, and diagnostics follow docs/contracts/core-data-semantics.md."
+  ],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src/core",
+    "IMPLEMENTATION_WORKSPACE/tests/core"
+  ],
+  "forbidden_actions": [
+    "modify PLAN_WORKSPACE during implementation",
+    "add MITK, BlueBerry, CTK, plugin framework, or SWIG dependency"
+  ],
+  "acceptance_levels": [
+    "L0"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result",
+    "L0 core tests"
+  ],
+  "stale_triggers": [
+    "contract_sha_changed",
+    "base_commit_changed",
+    "dependency_lock_changed",
+    "toolchain_changed"
+  ]
+}

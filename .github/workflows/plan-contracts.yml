@@ -1,0 +1,32 @@
+name: plan-contracts
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  public-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Harness unit tests
+        run: python -m pytest harness/tests
+      - name: Python syntax check
+        run: python -m py_compile harness/*.py
+      - name: Schema validation
+        run: python harness/validate_schema.py
+      - name: Task graph validation
+        run: python harness/validate_task_graph.py
+      - name: Deterministic snapshot check
+        env:
+          SOURCE_DATE_EPOCH: "0"
+        run: python harness/generate_snapshots.py --definitions-only --check
+      - name: Migration idempotency check
+        run: python harness/migrate_legacy_ledger.py --check
+      - name: Example toolchain preflight
+        run: python harness/preflight_environment.py --bindings config/toolchain-bindings.example.json
+      - name: Public contract scans
+        run: python harness/validate_public_contracts.py

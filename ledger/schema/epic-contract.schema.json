@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Epic Contract",
+  "type": "object",
+  "required": ["schema_version", "contract_version", "epic_id", "title", "decision_state"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "contract_version": { "type": "integer" },
+    "epic_id": { "type": "string" },
+    "decision_state": { "enum": ["none", "open", "proposed", "approved", "rejected", "superseded"] }
+  }
+}

@@ -1,84 +1,34 @@
 # XQ Integrated Rebuild Plan Tree
 
-## Start Here
+This tree is subordinate to the contract kernel under `docs/contracts/`.
 
-Execution entry:
+## Current Planning Model
 
-- [00-execution-entry.md](00-execution-entry.md)
+Phase A establishes the contract kernel:
 
-This README no longer mirrors authoritative runtime-position text. The authoritative task state, plan-position policy, audit counts, claims, and deferred boundaries live in:
+- PR-M0 Truth Source And Baseline Design
+- PR-M1 Contract Kernel
+- PR-M2 Ledger Migration And Projection
+- PR-M3 First Epic Contract Readiness
 
-- [audit ledger README](../../ledger/README.md)
-- [tasks.json](../../ledger/snapshots/tasks.json)
-- [source inventory](../../ledger/source-inventory.md)
+Phase B hardens child plans only when their Epic is about to begin.
 
-Do not resume implementation from historical batch summaries or test-count text. Pick repair or implementation work only from `ledger/snapshots/tasks.json` after ledger reconciliation.
+## Product Milestones
 
-## Purpose
+- XQ-M0 Repository Execution Readiness
+- XQ-M1 Core Data Authority
+- XQ-M2A Synthetic Project Slice
+- XQ-M2B Fixture-backed Project Slice
+- XQ-M3 Image And Visualization Slice
+- XQ-M4 Path And Contour Slice
+- XQ-M5 Segmentation And Surface Model Slice
+- XQ-M6 Mesh Slice
+- XQ-M7 Simulation Preparation Slice
+- XQ-M8 Native Save/Reopen And Migration
+- XQ-M9 Real Project Final Acceptance
 
-This directory stores the detailed implementation plan for rebuilding XQ as an integrated medical imaging, vascular modeling, meshing, and simulation-preparation application.
+## Child Plan Rule
 
-Each `.md` file owns exactly one layer or small feature. If a feature fails during implementation, revise the owning file first, then continue. Do not move feature-specific detail into the main plan.
+Historical child plans remain useful evidence but do not override approved ADRs, product scope, target architecture, core data semantics, dependency, fixture, privacy, Epic Contract, or Atomic Task Pack documents.
 
-All child planning documents for this rebuild live in this dedicated folder tree:
-
-```text
-plans/xq-integrated-rebuild/
-```
-
-Do not create rebuild planning notes under `<xq-implementation-workspace>`. That path is an active refactor workspace and may only be used later as an implementation target after the user explicitly chooses the target directory.
-
-## Source Boundary
-
-- XQ record source: `<xq-source-archive>`, extracted as `<xq-source-extract>`.
-- Default blank implementation root: `<xq-rebuild-workspace>`.
-- Active XQ workspace: `<xq-implementation-workspace>`, future implementation target only after explicit user decision.
-- Real acceptance project: `<acceptance-project>`.
-- SimVascular role: functional and project-format reference, not source-code migration source.
-
-## Execution Principle
-
-Architecture first, runtime later. Future source code must start from `<xq-rebuild-workspace>` unless this plan is explicitly updated before source changes begin. Before the first complete version, partial code may be incomplete or temporarily unable to run. The unacceptable failure is architectural drift: plugin-style workbench, dual scene ownership, temporary adapters that become permanent, or business code depending directly on external library object models.
-
-## Document Rules
-
-Each child document must stand on its own for its layer or small feature. Before source changes start for that area, the document must define:
-
-- purpose
-- inputs
-- outputs
-- rules
-- step plan
-- acceptance checks
-- failure repair route
-
-Document completion means the planning structure exists and covers the topic. It does not mean source code exists, builds, runs, or passes runtime acceptance.
-
-## Folder Map
-
-| Folder | Responsibility |
-| --- | --- |
-| `00-execution-entry.md` | Execution entry and ledger pointer. |
-| `00-governance` | Source boundary, architecture discipline, repair policy. |
-| `01-foundation` | Empty project skeleton, top-level CMake, dependency superbuild. |
-| `02-core-data` | XQ-owned project, scene, node, and domain payload types. |
-| `03-native-project-io` | Native loading of SimVascular-style project files and XQ save format. |
-| `04-medical-image-io` | DICOM and common medical image formats. |
-| `05-workbench-visualization` | Integrated Qt workbench, four-pane layout, and VTK visualization. |
-| `06-workflow` | Workflow state, source relations, command and undo model. |
-| `07-domain-features` | Path, contour, segmentation, modeling, meshing, simulation, ROM, multiphysics. |
-| `08-xq-zip-selection` | How to select/rewrite code from `<xq-source-extract>`. |
-| `09-acceptance-repair` | Final acceptance and failure routing. |
-
-## Hardening Before Source Changes
-
-Use the planning hardening order in [00-execution-entry.md](00-execution-entry.md) before source changes start. Source changes are allowed only after the owning child document defines exact files, interfaces, commands, tests, acceptance checks, and repair route for that layer or feature.
-
-## Repair Rule
-
-When implementation reveals a wrong assumption:
-
-1. Identify the smallest owning `.md`.
-2. Update that `.md`.
-3. If the update changes another layer's contract, update only the directly affected upstream/downstream `.md`.
-4. Leave the main plan as an index unless the document tree itself changes.
+Do not use old child-plan checkmarks as implementation completion.

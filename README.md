@@ -1,36 +1,56 @@
-# XQ Integrated Rebuild Public Plan Snapshot
+# XQ Integrated Rebuild Plan
 
-This repository is a public planning and automation snapshot for the XQ integrated rebuild: an integrated medical imaging, vascular modeling, meshing, and simulation-preparation application.
+This repository is the public contract, task-definition, and projection system for the XQ integrated rebuild.
 
-Start here:
+## Start Here
 
 - [Execution entry](plans/xq-integrated-rebuild/00-execution-entry.md)
-- [Plan tree README](plans/xq-integrated-rebuild/README.md)
+- [Normative precedence](docs/contracts/normative-precedence.md)
 - [Harness contract](docs/contracts/harness-contract.md)
-- [Ledger executor workflow](docs/skills/xq-ledger-executor.md)
+- [Source reconciliation](docs/contracts/source-of-truth-reconciliation.md)
+- [Agent orchestration](docs/contracts/agent-orchestration-contract.md)
 - [Public state summary](ledger/snapshots/public-state-summary.json)
 
-## What Is Included
+## Public Contents
 
-- Public plan Markdown for the integrated rebuild.
-- Ledger and harness source code used to enforce task selection, preflight checks, command capture, and record validation.
-- JSON schemas for task events and completion record.
-- Sanitized task and state snapshots with counts and task selection fields.
-- Public contract and workflow documentation.
+- Normative contracts for scope, architecture, data semantics, dependencies, fixtures, privacy, Git/worktree use, and Agent responsibilities.
+- Authoritative public task definitions under `ledger/task-definitions/`.
+- Public schemas under `ledger/schema/`.
+- Deterministic public snapshots under `ledger/snapshots/`.
+- Harness scripts used to validate schemas, task graph, migrations, environment bindings, and snapshot generation.
 
-## What Is Not Included
+## Private Contents Not Stored Here
 
-Private source archives, private acceptance datasets, raw command artifacts, task event history, execution records, session logs, and record JSON are intentionally not included. Placeholder paths such as `<xq-source-archive>`, `<xq-rebuild-workspace>`, `<acceptance-project>`, and `<private-evidence-dir>` must be configured in a private working environment before running a full implementation ledger.
+Private task event logs, completion records, command artifacts, workspace reconciliation reports, local absolute paths, and medical data are intentionally excluded.
 
-## Public Snapshot Notes
+Local-only bindings belong in ignored files:
 
-The published task statuses are a sanitized derived snapshot. They preserve planning context, but the private runner-backed artifacts that originally justified completion claims remain private. Treat this repository as a clean public planning system, not as a complete audit record archive.
-
-## Local Harness Smoke Checks
-
-```bash
-python3 -m pytest harness/tests
-python3 -m py_compile harness/*.py
+```text
+config/path-bindings.local.json
+config/toolchain-bindings.local.json
 ```
 
-A full `harness/ledger_task.py preflight` run needs a private record/event setup if you want completion provenance checks beyond this public snapshot.
+## Snapshot Rule
+
+`ledger/snapshots/*` is generated from:
+
+```text
+task definitions
++ sanitized private runtime projection
++ completion record projection
++ workspace reconciliation projection
+```
+
+Do not edit snapshots by hand.
+
+## Public CI Equivalent
+
+```bash
+python -m pytest harness/tests
+python -m py_compile harness/*.py
+python harness/validate_schema.py
+python harness/validate_task_graph.py
+python harness/generate_snapshots.py --definitions-only --check
+python harness/migrate_legacy_ledger.py --check
+python harness/preflight_environment.py --bindings config/toolchain-bindings.example.json
+```
