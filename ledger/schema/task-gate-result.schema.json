@@ -2,10 +2,88 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "XQ Codex B Task Gate Result",
   "type": "object",
-  "required": ["schema_version", "task_id", "decision"],
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "task_pack_sha256",
+    "epic_contract_sha256",
+    "base_commit",
+    "result_commit",
+    "changed_files",
+    "allowed_path_check",
+    "workspace_clean_before",
+    "workspace_clean_after",
+    "commands_reexecuted",
+    "exit_codes",
+    "tests_observed",
+    "test_integrity_check",
+    "forbidden_scan",
+    "result_artifact_hashes",
+    "decision",
+    "rework_reason",
+    "escalation_reason"
+  ],
   "properties": {
     "schema_version": { "const": 1 },
-    "task_id": { "type": "string" },
-    "decision": { "enum": ["accepted", "rework", "escalated", "rejected"] }
-  }
+    "task_id": { "type": "string", "minLength": 1 },
+    "task_pack_sha256": { "type": ["string", "null"] },
+    "epic_contract_sha256": { "type": ["string", "null"] },
+    "base_commit": { "type": ["string", "null"] },
+    "result_commit": { "type": ["string", "null"] },
+    "changed_files": { "type": "array", "items": { "type": "string" } },
+    "allowed_path_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "violations"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "violations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "workspace_clean_before": { "type": ["boolean", "null"] },
+    "workspace_clean_after": { "type": ["boolean", "null"] },
+    "commands_reexecuted": { "type": "array", "items": { "type": "string" } },
+    "exit_codes": { "type": "array", "items": { "type": "integer" } },
+    "tests_observed": { "type": "array", "items": { "type": "string" } },
+    "test_integrity_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "notes"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "forbidden_scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "findings"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "findings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "result_artifact_hashes": { "type": "array", "items": { "type": "string" } },
+    "decision": { "enum": ["accepted", "rework", "escalated", "rejected"] },
+    "rework_reason": { "type": ["string", "null"] },
+    "escalation_reason": { "type": ["string", "null"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "accepted" } } },
+      "then": {
+        "properties": {
+          "task_pack_sha256": { "type": "string", "minLength": 64 },
+          "epic_contract_sha256": { "type": "string", "minLength": 64 },
+          "base_commit": { "type": "string", "minLength": 7 },
+          "result_commit": { "type": "string", "minLength": 7 },
+          "changed_files": { "type": "array", "minItems": 1 },
+          "commands_reexecuted": { "type": "array", "minItems": 1 },
+          "exit_codes": { "type": "array", "minItems": 1 },
+          "result_artifact_hashes": { "type": "array", "minItems": 1 }
+        }
+      }
+    }
+  ]
 }

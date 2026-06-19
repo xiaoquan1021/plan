@@ -1,6 +1,7 @@
 schema_version: 1
 task_id: XQ-M1-CORE-001
 task_pack_sha256: null
+epic_contract_sha256: null
 base_commit: null
 result_commit: null
 changed_files: []

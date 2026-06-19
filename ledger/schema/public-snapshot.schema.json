@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Public Snapshot",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["metadata"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["schema_version", "generator", "generator_version", "generated_at", "source_hash", "projection_mode"],
+      "properties": {
+        "schema_version": { "const": 1 },
+        "generator": { "type": "string" },
+        "generator_version": { "type": "integer" },
+        "generated_at": { "type": "string" },
+        "source_hash": { "type": "string" },
+        "projection_mode": { "enum": ["definitions-only", "full"] }
+      }
+    }
+  }
+}

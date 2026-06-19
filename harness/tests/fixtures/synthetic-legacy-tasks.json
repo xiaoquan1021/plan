@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "snapshot_type": "synthetic-legacy-public-task-selection"
+  },
+  "tasks": [
+    {
+      "id": "00-governance-00-source-boundary-and-rules",
+      "source_md": "plans/xq-integrated-rebuild/00-governance/00-source-boundary-and-rules.md",
+      "status": "completed"
+    },
+    {
+      "id": "02-core-data-01-xqproject-lifecycle",
+      "source_md": "plans/xq-integrated-rebuild/02-core-data/01-xqproject-lifecycle.md",
+      "status": "completed"
+    },
+    {
+      "id": "unknown-legacy-task",
+      "source_md": "plans/xq-integrated-rebuild/unknown.md",
+      "status": "completed"
+    }
+  ]
+}

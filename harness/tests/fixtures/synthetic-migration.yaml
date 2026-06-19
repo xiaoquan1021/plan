@@ -1,0 +1,25 @@
+schema_version: 1
+migration_id: synthetic-migration
+description: Synthetic public migration fixture for CI idempotency tests.
+legacy_input: harness/tests/fixtures/synthetic-legacy-tasks.json
+rules:
+  legacy_completed_inherits_implementation_completion: false
+  original_events_are_not_modified: true
+  original_completion_records_are_not_modified: true
+mappings:
+  - old_task_id: 00-governance-*
+    old_source: plans/xq-integrated-rebuild/00-governance
+    new_task_ids: [PR-M1-001]
+    new_milestone: PR-M1
+    new_epic: PR-M1-CONTRACT-KERNEL
+    status_rule: requires-private-reconciliation
+    superseded_by: docs/contracts/normative-precedence.md
+    reason: synthetic governance mapping
+  - old_task_id: 02-core-data-*
+    old_source: plans/xq-integrated-rebuild/02-core-data
+    new_task_ids: [XQ-M1-CORE-001]
+    new_milestone: XQ-M1
+    new_epic: XQ-M1-CORE-DATA
+    status_rule: stale-completion
+    superseded_by: docs/contracts/epics/XQ-M1-core-data.epic.yaml
+    reason: synthetic core mapping

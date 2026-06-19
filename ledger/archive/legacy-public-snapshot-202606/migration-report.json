@@ -1,0 +1,1053 @@
+{
+  "historical_only_count": 20,
+  "input_hash": "72a09bb7da7580c816bf720f405ae9a5d9a9613626204286a74a91b8897048c4",
+  "legacy_completed_inherited_as_implementation_completed": false,
+  "legacy_input": "ledger\\archive\\legacy-public-snapshot-202606\\tasks.json",
+  "mapped_count": 0,
+  "migrated_tasks": [
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "PR-M1-CONTRACT-KERNEL",
+      "new_milestone": "PR-M1",
+      "new_task_ids": [
+        "PR-M0-001",
+        "PR-M1-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/00-governance/00-source-boundary-and-rules.md",
+      "old_status": "completed",
+      "old_task_id": "00-governance-00-source-boundary-and-rules",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/normative-precedence.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "PR-M1-CONTRACT-KERNEL",
+      "new_milestone": "PR-M1",
+      "new_task_ids": [
+        "PR-M0-001",
+        "PR-M1-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/00-governance/01-architecture-first-discipline.md",
+      "old_status": "completed",
+      "old_task_id": "00-governance-01-architecture-first-discipline",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/normative-precedence.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "PR-M1-CONTRACT-KERNEL",
+      "new_milestone": "PR-M1",
+      "new_task_ids": [
+        "PR-M0-001",
+        "PR-M1-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/00-governance/02-document-repair-policy.md",
+      "old_status": "completed",
+      "old_task_id": "00-governance-02-document-repair-policy",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/normative-precedence.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "PR-M1-CONTRACT-KERNEL",
+      "new_milestone": "PR-M1",
+      "new_task_ids": [
+        "PR-M0-001",
+        "PR-M1-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/00-governance/03-child-document-hardening-standard.md",
+      "old_status": "completed",
+      "old_task_id": "00-governance-03-child-document-hardening-standard",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/normative-precedence.md"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M0-BASELINE",
+      "new_milestone": "XQ-M0",
+      "new_task_ids": [
+        "XQ-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/01-foundation/01-empty-project-skeleton.md",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-01-empty-project-skeleton",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/git-worktree-policy.md"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M0-BASELINE",
+      "new_milestone": "XQ-M0",
+      "new_task_ids": [
+        "XQ-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/01-foundation/02-top-level-cmake.md",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-02-top-level-cmake",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/git-worktree-policy.md"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M0-BASELINE",
+      "new_milestone": "XQ-M0",
+      "new_task_ids": [
+        "XQ-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/01-foundation/03-superbuild-version-lock.md",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-03-superbuild-version-lock",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/git-worktree-policy.md"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M0-BASELINE",
+      "new_milestone": "XQ-M0",
+      "new_task_ids": [
+        "XQ-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/01-foundation/04-dependency-role-map.md",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-04-dependency-role-map",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/git-worktree-policy.md"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/01-xqproject-lifecycle.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-01-xqproject-lifecycle",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/02-xqscene-ownership.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-02-xqscene-ownership",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/03-xqdatanode-and-metadata.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-03-xqdatanode-and-metadata",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/04-xqimagevolume.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-04-xqimagevolume",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/05-xqpath.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-05-xqpath",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/06-xqcontourgroup.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-06-xqcontourgroup",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/07-xqsurfacemodel.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-07-xqsurfacemodel",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/08-xqmesh.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-08-xqmesh",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "stale-completion",
+      "new_epic": "XQ-M1-CORE-DATA",
+      "new_milestone": "XQ-M1",
+      "new_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/02-core-data/09-xqsimulationcase.md",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-09-xqsimulationcase",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/epics/XQ-M1-core-data.epic.yaml"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/01-open-project-directory.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-01-open-project-directory",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/02-svproj-project-manifest.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-02-svproj-project-manifest",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/03-pth-path-reader.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-03-pth-path-reader",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/04-ctgr-contour-reader.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-04-ctgr-contour-reader",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/05-mdl-vtp-model-reader.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-05-mdl-vtp-model-reader",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/06-msh-vtu-mesh-reader.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-06-msh-vtu-mesh-reader",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/07-sjb-simulation-reader.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-07-sjb-simulation-reader",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M2B-FIXTURE-SLICE",
+      "new_milestone": "XQ-M2B",
+      "new_task_ids": [
+        "XQ-M2B-001",
+        "XQ-M8-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/03-native-project-io/08-xq-native-save-format.md",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-08-xq-native-save-format",
+      "reason": "Legacy completed is historical and requires runner-backed private reconciliation before implementation credit.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/04-medical-image-io/01-dicom-series-scanner.md",
+      "old_status": "blocked",
+      "old_task_id": "04-medical-image-io-01-dicom-series-scanner",
+      "reason": "Image IO requires approved dependency baseline and fixture evidence.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/04-medical-image-io/02-dicom-pixel-decode.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "04-medical-image-io-02-dicom-pixel-decode",
+      "reason": "Image IO requires approved dependency baseline and fixture evidence.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/04-medical-image-io/03-dicom-private-tags.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "04-medical-image-io-03-dicom-private-tags",
+      "reason": "Image IO requires approved dependency baseline and fixture evidence.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/04-medical-image-io/04-nifti-reader.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "04-medical-image-io-04-nifti-reader",
+      "reason": "Image IO requires approved dependency baseline and fixture evidence.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/04-medical-image-io/05-nrrd-metaimage-reader.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "04-medical-image-io-05-nrrd-metaimage-reader",
+      "reason": "Image IO requires approved dependency baseline and fixture evidence.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/04-medical-image-io/06-vti-minc-tiff-reader.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "04-medical-image-io-06-vti-minc-tiff-reader",
+      "reason": "Image IO requires approved dependency baseline and fixture evidence.",
+      "superseded_by": "docs/contracts/format-fixture-policy.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M2A-001",
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/05-workbench-visualization/01-main-window-layout.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "05-workbench-visualization-01-main-window-layout",
+      "reason": "UI/viewer claims must be tied to L0/L1 acceptance.",
+      "superseded_by": "docs/contracts/minimum-vertical-slice.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M2A-001",
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/05-workbench-visualization/02-project-tree.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "05-workbench-visualization-02-project-tree",
+      "reason": "UI/viewer claims must be tied to L0/L1 acceptance.",
+      "superseded_by": "docs/contracts/minimum-vertical-slice.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M2A-001",
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/05-workbench-visualization/03-mpr-viewers.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "05-workbench-visualization-03-mpr-viewers",
+      "reason": "UI/viewer claims must be tied to L0/L1 acceptance.",
+      "superseded_by": "docs/contracts/minimum-vertical-slice.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M2A-001",
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/05-workbench-visualization/04-3d-scene-viewer.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "05-workbench-visualization-04-3d-scene-viewer",
+      "reason": "UI/viewer claims must be tied to L0/L1 acceptance.",
+      "superseded_by": "docs/contracts/minimum-vertical-slice.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M2A-001",
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/05-workbench-visualization/05-tool-panels.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "05-workbench-visualization-05-tool-panels",
+      "reason": "UI/viewer claims must be tied to L0/L1 acceptance.",
+      "superseded_by": "docs/contracts/minimum-vertical-slice.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M3-IMAGE-VISUALIZATION",
+      "new_milestone": "XQ-M3",
+      "new_task_ids": [
+        "XQ-M2A-001",
+        "XQ-M3-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/05-workbench-visualization/06-four-pane-layout.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "05-workbench-visualization-06-four-pane-layout",
+      "reason": "UI/viewer claims must be tied to L0/L1 acceptance.",
+      "superseded_by": "docs/contracts/minimum-vertical-slice.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/06-workflow/01-workflow-state-machine.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "06-workflow-01-workflow-state-machine",
+      "reason": "Workflow/undo is Should scope and does not block first Core Data work.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/06-workflow/02-stage-source-relations.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "06-workflow-02-stage-source-relations",
+      "reason": "Workflow/undo is Should scope and does not block first Core Data work.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/06-workflow/03-command-and-undo.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "06-workflow-03-command-and-undo",
+      "reason": "Workflow/undo is Should scope and does not block first Core Data work.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/01-path-planning.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-01-path-planning",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/02-centerline-frames.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-02-centerline-frames",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/03-lumen-contour-editing.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-03-lumen-contour-editing",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/04-contour-lofting-inputs.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-04-contour-lofting-inputs",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/05-3d-segmentation.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-05-3d-segmentation",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/06-model-lofting-and-capping.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-06-model-lofting-and-capping",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/07-model-face-metadata.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-07-model-face-metadata",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/08-surface-mesh.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-08-surface-mesh",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/09-volume-mesh.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-09-volume-mesh",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/10-mesh-boundary-transfer.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-10-mesh-boundary-transfer",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/11-simulation-boundary-conditions.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-11-simulation-boundary-conditions",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/12-simulation-solver-export.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-12-simulation-solver-export",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "XQ-M4-PATH-CONTOUR",
+      "new_milestone": "XQ-M4",
+      "new_task_ids": [
+        "XQ-M4-001",
+        "XQ-M5-001",
+        "XQ-M6-001",
+        "XQ-M7-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/07-domain-features/13-rom-and-multiphysics.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "07-domain-features-13-rom-and-multiphysics",
+      "reason": "Domain expansion is phased and not inherited as current completion.",
+      "superseded_by": "docs/contracts/legacy-to-rebuild-capability-matrix.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "PR-M0-CONTRACT-KERNEL",
+      "new_milestone": "PR-M0",
+      "new_task_ids": [
+        "PR-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/08-xq-zip-selection/01-code-selection-rules.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "08-xq-zip-selection-01-code-selection-rules",
+      "reason": "Legacy evidence policy is now expressed through source-of-truth reconciliation.",
+      "superseded_by": "docs/contracts/source-of-truth-reconciliation.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "PR-M0-CONTRACT-KERNEL",
+      "new_milestone": "PR-M0",
+      "new_task_ids": [
+        "PR-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/08-xq-zip-selection/02-code-rewrite-mapping.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "08-xq-zip-selection-02-code-rewrite-mapping",
+      "reason": "Legacy evidence policy is now expressed through source-of-truth reconciliation.",
+      "superseded_by": "docs/contracts/source-of-truth-reconciliation.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M9-FINAL-ACCEPTANCE",
+      "new_milestone": "XQ-M9",
+      "new_task_ids": [
+        "XQ-M9-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/09-acceptance-repair/01-0007-project-acceptance.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "09-acceptance-repair-01-0007-project-acceptance",
+      "reason": "Final acceptance depends on L2 evidence that is not currently approved.",
+      "superseded_by": "docs/contracts/final-acceptance-contract.md"
+    },
+    {
+      "classification": "requires-private-reconciliation",
+      "new_epic": "XQ-M9-FINAL-ACCEPTANCE",
+      "new_milestone": "XQ-M9",
+      "new_task_ids": [
+        "XQ-M9-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/09-acceptance-repair/02-failure-routing.md",
+      "old_status": "ready-for-ledger-review",
+      "old_task_id": "09-acceptance-repair-02-failure-routing",
+      "reason": "Final acceptance depends on L2 evidence that is not currently approved.",
+      "superseded_by": "docs/contracts/final-acceptance-contract.md"
+    },
+    {
+      "classification": "superseded",
+      "new_epic": "PR-M2-LEDGER-PROJECTION",
+      "new_milestone": "PR-M2",
+      "new_task_ids": [
+        "PR-M2-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/00-execution-entry.md",
+      "old_status": "not-executable-index",
+      "old_task_id": "execution-entry",
+      "reason": "Execution entry is now derived from task definitions and projections.",
+      "superseded_by": "ledger/task-definitions/index.yaml"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "PR-M0-CONTRACT-KERNEL",
+      "new_milestone": "PR-M0",
+      "new_task_ids": [
+        "PR-M0-001"
+      ],
+      "old_source": "plans/2026-06-11-xq-lightweight-dependency-refactor-from-XQ-main-zip.md",
+      "old_status": "not-executable-index",
+      "old_task_id": "main-plan",
+      "reason": "Main narrative plan is superseded by contract kernel sources.",
+      "superseded_by": "docs/contracts/product-scope-v1.md"
+    },
+    {
+      "classification": "historical-only",
+      "new_epic": "PR-M0-CONTRACT-KERNEL",
+      "new_milestone": "PR-M0",
+      "new_task_ids": [
+        "PR-M0-001"
+      ],
+      "old_source": "plans/xq-integrated-rebuild/README.md",
+      "old_status": "not-executable-index",
+      "old_task_id": "readme",
+      "reason": "README remains orientation only, not runtime truth.",
+      "superseded_by": "docs/contracts/normative-precedence.md"
+    }
+  ],
+  "migration_definition": "ledger\\migrations\\0001-task-definition-migration.yaml",
+  "migration_definition_hash": "c03e0846f4f0cbd079d6499cbe488d578aa3c26faecf89169757f7e0cb5173d1",
+  "migration_id": "0001-task-definition-migration",
+  "output_hash": "325b7970178a2bde78d33b08d6b6df6f84889086610bedbe754681023bddf405",
+  "requires_private_reconciliation_count": 26,
+  "schema_version": 1,
+  "stale_completion_count": 13,
+  "status_change_reasons": [
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "00-governance-00-source-boundary-and-rules",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "00-governance-01-architecture-first-discipline",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "00-governance-02-document-repair-policy",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "00-governance-03-child-document-hardening-standard",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-01-empty-project-skeleton",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-02-top-level-cmake",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-03-superbuild-version-lock",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "01-foundation-04-dependency-role-map",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-01-xqproject-lifecycle",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-02-xqscene-ownership",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-03-xqdatanode-and-metadata",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-04-xqimagevolume",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-05-xqpath",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-06-xqcontourgroup",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-07-xqsurfacemodel",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-08-xqmesh",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "stale-completion",
+      "old_status": "completed",
+      "old_task_id": "02-core-data-09-xqsimulationcase",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-01-open-project-directory",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-02-svproj-project-manifest",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-03-pth-path-reader",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-04-ctgr-contour-reader",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-05-mdl-vtp-model-reader",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-06-msh-vtu-mesh-reader",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-07-sjb-simulation-reader",
+      "reason": "legacy completed does not inherit implementation completed"
+    },
+    {
+      "current_interpretation": "requires-private-reconciliation",
+      "old_status": "completed",
+      "old_task_id": "03-native-project-io-08-xq-native-save-format",
+      "reason": "legacy completed does not inherit implementation completed"
+    }
+  ],
+  "superseded_count": 1,
+  "unmapped_count": 0,
+  "unmapped_tasks": []
+}

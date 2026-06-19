@@ -2,11 +2,55 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "XQ Epic Contract",
   "type": "object",
-  "required": ["schema_version", "contract_version", "epic_id", "title", "decision_state"],
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "epic_id",
+    "title",
+    "decision_state",
+    "approval_record",
+    "base_commit",
+    "dependency_contract_sha256",
+    "implementation_dependency_lock_path",
+    "implementation_dependency_lock_sha256",
+    "toolchain_manifest_sha256",
+    "supersedes",
+    "required_outcomes",
+    "architecture_constraints",
+    "allowed_logical_scopes",
+    "forbidden_actions",
+    "acceptance_levels",
+    "required_evidence",
+    "stale_triggers"
+  ],
   "properties": {
     "schema_version": { "const": 1 },
-    "contract_version": { "type": "integer" },
-    "epic_id": { "type": "string" },
-    "decision_state": { "enum": ["none", "open", "proposed", "approved", "rejected", "superseded"] }
+    "contract_version": { "type": "integer", "minimum": 1 },
+    "epic_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "decision_state": { "enum": ["none", "open", "proposed", "approved", "rejected", "superseded"] },
+    "approval_record": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["record_type", "record_sha256"],
+      "properties": {
+        "record_type": { "enum": ["codex-a-epic-contract-approval", "codex-a-epic-review", "none"] },
+        "record_sha256": { "type": ["string", "null"] }
+      }
+    },
+    "base_commit": { "type": ["string", "null"] },
+    "dependency_contract_sha256": { "type": ["string", "null"] },
+    "implementation_dependency_lock_path": { "type": "string" },
+    "implementation_dependency_lock_sha256": { "type": ["string", "null"] },
+    "toolchain_manifest_sha256": { "type": ["string", "null"] },
+    "supersedes": { "type": "array", "items": { "type": "string" } },
+    "required_outcomes": { "type": "array", "items": { "type": "string" } },
+    "architecture_constraints": { "type": "array", "items": { "type": "string" } },
+    "allowed_logical_scopes": { "type": "array", "items": { "type": "string" } },
+    "forbidden_actions": { "type": "array", "items": { "type": "string" } },
+    "acceptance_levels": { "type": "array", "items": { "type": "string" } },
+    "required_evidence": { "type": "array", "items": { "type": "string" } },
+    "stale_triggers": { "type": "array", "items": { "type": "string" } }
   }
 }

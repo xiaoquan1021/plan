@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Sanitized Runtime Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "events"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event_id", "task_id", "event_type", "event_time"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "task_id": { "type": "string" },
+          "event_type": {
+            "enum": [
+              "task_claimed",
+              "task_started",
+              "task_failed",
+              "task_blocked",
+              "task_reopened"
+            ]
+          },
+          "event_time": { "type": "string" },
+          "status": {
+            "enum": [
+              "ready-for-ledger-review",
+              "claimed",
+              "in-progress",
+              "failed-retry-ready",
+              "blocked",
+              "stale-completion",
+              "lease-expired"
+            ]
+          },
+          "payload": { "type": "object" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Workspace Reconciliation Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "workspace_state", "base_commit", "implementation_dependency_lock_sha256", "toolchain_manifest_sha256"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "workspace_state": { "type": "string" },
+    "base_commit": { "type": ["string", "null"] },
+    "implementation_dependency_lock_sha256": { "type": ["string", "null"] },
+    "dependency_lock_sha256": { "type": ["string", "null"] },
+    "toolchain_manifest_sha256": { "type": ["string", "null"] }
+  }
+}

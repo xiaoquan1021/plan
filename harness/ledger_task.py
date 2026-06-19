@@ -183,26 +183,28 @@ def load_preflight_audit_summary(audit_stdout: str) -> dict[str, Any] | None:
 def preflight_allows_claim(summary: dict[str, Any]) -> bool:
     gate_summary = summary.get("audit_gate_summary", {})
     hard_gates = gate_summary.get("hard_blocking_gates", {}) if isinstance(gate_summary, dict) else {}
-    task_blocking = gate_summary.get("task_blocking_states", {}) if isinstance(gate_summary, dict) else {}
     hard_count = sum(int(value) for value in hard_gates.values()) if isinstance(hard_gates, dict) else 0
-    task_blocking_count = sum(int(value) for value in task_blocking.values()) if isinstance(task_blocking, dict) else 0
     return (
         int(summary.get("audit_exit_code", 1)) == 0
         and bool(summary.get("event_valid")) is True
         and int(summary.get("dependency_violations", 0)) == 0
         and hard_count == 0
-        and task_blocking_count == 0
     )
 
 
 def run_preflight_gate() -> dict[str, Any]:
     audit = subprocess.run(
-        [sys.executable, str(TOOLS_DIR / "audit_xq_zip_analysis.py")],
+        [sys.executable, str(TOOLS_DIR / "preflight_plan.py"), "--public"],
         cwd=str(ROOT),
         text=True,
         capture_output=True,
     )
-    audit_summary = load_preflight_audit_summary(audit.stdout)
+    audit_summary = {
+        "gate_summary": {
+            "hard_blocking_gates": {"public_plan_preflight": 0 if audit.returncode == 0 else 1},
+            "task_blocking_states": {},
+        }
+    }
     summary = build_preflight_summary(audit.returncode, audit_summary)
     return {
         "ok": preflight_allows_claim(summary),

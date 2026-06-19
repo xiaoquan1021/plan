@@ -1,109 +1,110 @@
 {
   "counts": {
     "status_counts": {
-      "blocked": 11,
+      "blocked": 16,
       "ready-for-ledger-review": 4
     },
-    "tasks": 15
+    "tasks": 20
   },
   "metadata": {
-    "generated_at": "1970-01-01T00:00:00+00:00",
+    "generated_at": "2026-06-19T23:17:55+08:00",
     "generator": "harness/generate_snapshots.py",
-    "generator_version": 1,
+    "generator_version": 2,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "ed21cca1b9341243878befa78f9532fe2d4e74d6787fedfeaed612d9bbf0da9e"
+    "source_hash": "e33d423dcda27c00bfd4a83558bf1504daee022022a917e71d346a82dcee6f69",
+    "task_definition_hash": "c63b664fb3711bc23c95bce5bcc93449e330ec5c9565ed9707b94358253ed467"
   },
   "milestones": {
     "PR-M0": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "not-started",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "PR-M1": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "not-started",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "PR-M2": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "not-started",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "PR-M3": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "not-started",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M0": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M1": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M2A": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M2B": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M3": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M4": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M5": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M6": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M7": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M8": {
       "acceptance_status": "not-run",
       "contract_status": "draft",
       "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "status_source": "generated from task definitions and runtime projection"
     },
     "XQ-M9": {
-      "acceptance_status": "not-run",
+      "acceptance_status": "blocked",
       "contract_status": "draft",
-      "implementation_status": "blocked",
-      "status_source": "definitions-only projection"
+      "implementation_status": "not-started",
+      "status_source": "generated from task definitions and runtime projection"
     }
   }
 }

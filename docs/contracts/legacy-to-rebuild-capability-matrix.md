@@ -1,0 +1,21 @@
+# Legacy To Rebuild Capability Matrix
+
+This matrix prevents loss of observable XQ behavior while keeping the rebuild architecture owned by `XQProject`, `XQScene`, and `XQDataNode`. Legacy plugin wiring is evidence only; it is not a target architecture.
+
+| legacy capability | legacy evidence source | observable behavior | V1 disposition | new XQ-owned capability | owning product milestone | owning Epic | acceptance level | fixture/evidence | notes |
+|---|---|---|---|---|---|---|---|---|---|
+| project open | `LEGACY_EVIDENCE_ROOTS` / XQ1 project behavior | Open a project directory and discover project data. | Must | Project reader creates one `XQProject` and one `XQScene`. | XQ-M2B | XQ-M2B-FIXTURE-SLICE | L1 | L1 fixture manifest plus `expected-scene.json` | L0 uses synthetic reader first. |
+| image | XQ1 image loading behavior | Load medical image data and expose geometry. | Must | XQ-owned image payload with index/physical/world semantics. | XQ-M3 | XQ-M3-IMAGE-VISUALIZATION | L1/L2 | image fixture and final project | External libraries may decode but not own business graph. |
+| path | XQ1 path workflow | Load and edit centerline/path points. | Must | `XQDataNode` path payload and relation to source image. | XQ-M4 | XQ-M4-PATH-CONTOUR | L1/L2 | `.pth` fixture | Coordinates follow core data semantics. |
+| contour | XQ1 contour/segmentation behavior | Load contour groups tied to path frames. | Must | XQ-owned contour group payload with plane/frame relation. | XQ-M4 | XQ-M4-PATH-CONTOUR | L1/L2 | `.ctgr` fixture | Reader acceptance compares canonical output. |
+| segmentation | XQ1 segmentation workflow | Create/load segmentation masks. | Should | XQ-owned segmentation mask payload and stale propagation. | XQ-M5 | XQ-M5-SEGMENTATION-SURFACE | L2 | final project or later L1 extension | Not required for first vertical slice. |
+| surface model | XQ1 model behavior | Load/display derived surface model. | Should | XQ-owned surface model payload with source relation. | XQ-M5 | XQ-M5-SEGMENTATION-SURFACE | L2 | `.mdl/.vtp` fixture | VTK data remains internal. |
+| mesh | XQ1 mesh behavior | Load/display surface and volume mesh. | Should | XQ-owned mesh payload and boundary metadata. | XQ-M6 | XQ-M6-MESH | L2 | `.msh/.vtu` fixture | Mesh is not source of business graph. |
+| simulation case | XQ1 simulation setup | Store solver preparation metadata and boundary conditions. | Should | `XQSimulationCase` payload for pre-solver setup. | XQ-M7 | XQ-M7-SIMULATION-PREP | L2 | `.sjb` fixture | Solver execution is outside V1 unless approved. |
+| project tree | XQ1 workbench tree | Show project data hierarchy and selection. | Must | Qt model/view backed by `XQScene`. | XQ-M2A/XQ-M2B | XQ-M2A-SYNTHETIC-SLICE | L0/L1 | synthetic scene and fixture scene | UI must not own domain nodes. |
+| viewer | XQ1 viewers | Show at least one usable data viewer. | Must | Viewer consumes `XQScene` node payload through adapters. | XQ-M3 | XQ-M3-IMAGE-VISUALIZATION | L1/L2 | image fixture | First viewer can be image-focused. |
+| diagnostics | XQ1 error reporting and logs | Report load/validation issues. | Must | Structured diagnostics attached to project, scene, and nodes. | XQ-M1/XQ-M2A | XQ-M1-CORE-DATA | L0 | synthetic diagnostics tests | Logs must follow privacy policy. |
+| save/reopen | XQ1 project persistence | Save project state and reopen consistently. | Must | Native versioned save format with migration policy. | XQ-M8 | XQ-M8-NATIVE-SAVE | L0/L2 | synthetic round trip, final project | L0 validates core format shape before real formats. |
+| workflow/undo | XQ1 user operations | Mutating operations can be controlled and reverted. | Should | Command layer over XQ-owned scene changes. | XQ-M4+ | XQ-M4-PATH-CONTOUR | L0/L2 | synthetic command tests | Not a prerequisite for Core Data identity. |
+| Python bindings | legacy SWIG/build references | Optional scripting/bindings. | Later | Future bindings only by ADR. | Later | OPEN-DECISION | Later | none | Bindings cannot own state or second object graph. |
+| ROM/multiphysics | legacy/simulation references | Advanced solver workflows. | Later | Deferred product capability. | Later | OPEN-DECISION | Later | none | Do not block V1 integrated rebuild. |

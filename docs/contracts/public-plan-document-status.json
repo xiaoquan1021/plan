@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "default_status": {
+    "document_status": "historical",
+    "active_for_execution": false,
+    "superseded_by": "docs/contracts/normative-precedence.md"
+  },
+  "active_documents": [
+    "plans/xq-integrated-rebuild/README.md",
+    "plans/xq-integrated-rebuild/00-execution-entry.md"
+  ],
+  "historical_roots": [
+    "plans/xq-integrated-rebuild/00-governance",
+    "plans/xq-integrated-rebuild/01-foundation",
+    "plans/xq-integrated-rebuild/02-core-data",
+    "plans/xq-integrated-rebuild/03-native-project-io",
+    "plans/xq-integrated-rebuild/04-medical-image-io",
+    "plans/xq-integrated-rebuild/05-workbench-visualization",
+    "plans/xq-integrated-rebuild/06-workflow",
+    "plans/xq-integrated-rebuild/07-domain-features",
+    "plans/xq-integrated-rebuild/08-xq-zip-selection",
+    "plans/xq-integrated-rebuild/09-acceptance-repair",
+    "plans/2026-06-11-xq-lightweight-dependency-refactor-from-XQ-main-zip.md"
+  ],
+  "historical_reason": "Superseded by the Phase A contract kernel and task definition ledger. Historical child plans may preserve old placeholders and execution notes, but they are not normative inputs for current claimability or task packs.",
+  "current_normative_inputs": [
+    "docs/adr/ADR-0001-rebuild-repository-strategy.md",
+    "docs/contracts/*.md",
+    "docs/contracts/epics/*.yaml",
+    "docs/contracts/task-packs/*.yaml",
+    "ledger/task-definitions/**/*.yaml",
+    "ledger/schema/*.json",
+    "config/*.json"
+  ]
+}

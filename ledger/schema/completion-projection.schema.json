@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Sanitized Completion Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_results", "gate_results", "epic_reviews"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "task_results": { "type": "array", "items": { "$ref": "task-result.schema.json" } },
+    "gate_results": { "type": "array", "items": { "$ref": "task-gate-result.schema.json" } },
+    "epic_reviews": { "type": "array", "items": { "$ref": "epic-review.schema.json" } }
+  }
+}

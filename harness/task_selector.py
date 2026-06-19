@@ -19,8 +19,9 @@ from ledger_models import (
 )
 
 
-BLOCKING_STATES = {STATUS_BLOCKED, STATUS_LEASE_EXPIRED, STATUS_STALE_COMPLETION}
 CLAIMABLE_STATES = {STATUS_FAILED_RETRY_READY, STATUS_READY}
+TERMINAL_OK_STATES = {STATUS_COMPLETED}
+TASK_LOCAL_BLOCKING_STATES = {STATUS_BLOCKED, STATUS_LEASE_EXPIRED, STATUS_STALE_COMPLETION}
 
 
 def phase_index(phase: str) -> int:
@@ -74,6 +75,14 @@ def completed_task_ids(tasks: list[dict[str, Any]]) -> set[str]:
     }
 
 
+def accepted_task_ids(tasks: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(task.get("id"))
+        for task in tasks
+        if task.get("id") and task.get("status") in TERMINAL_OK_STATES
+    }
+
+
 def previous_phases_done(task: dict[str, Any], tasks: list[dict[str, Any]]) -> bool:
     phase = task_phase(task)
     index = phase_index(phase)
@@ -92,12 +101,36 @@ def previous_phases_done(task: dict[str, Any], tasks: list[dict[str, Any]]) -> b
 
 
 def task_dependencies_done(task: dict[str, Any], tasks: list[dict[str, Any]]) -> bool:
-    completed = completed_task_ids(tasks)
+    completed = accepted_task_ids(tasks)
     return all(dependency_id in completed for dependency_id in task_dependencies(task))
 
 
 def dependencies_done(task: dict[str, Any], tasks: list[dict[str, Any]]) -> bool:
-    return previous_phases_done(task, tasks) and task_dependencies_done(task, tasks)
+    # The new contract model uses explicit task dependencies. Legacy phase
+    # ordering is kept in graph metadata but must not globally block unrelated
+    # plan-rewrite tasks.
+    return task_dependencies_done(task, tasks)
+
+
+def task_local_blockers(task: dict[str, Any], tasks: list[dict[str, Any]]) -> list[str]:
+    blockers: list[str] = []
+    by_id = {str(item.get("id")): item for item in tasks if item.get("id")}
+    for dependency_id in task_dependencies(task):
+        dependency = by_id.get(dependency_id)
+        if dependency is None:
+            blockers.append(f"missing dependency {dependency_id}")
+        elif dependency.get("status") in TASK_LOCAL_BLOCKING_STATES:
+            blockers.append(f"dependency {dependency_id} is {dependency.get('status')}")
+        elif dependency.get("status") not in TERMINAL_OK_STATES:
+            blockers.append(f"dependency {dependency_id} is not completed")
+    if task.get("decision_state") in {"open", "proposed"} and task.get("task_kind") not in {"plan-contract", "harness"}:
+        blockers.append(f"decision_state is {task.get('decision_state')}")
+    if task.get("task_kind") in {"implementation", "implementation-readiness", "acceptance"}:
+        if not task.get("task_pack_issued", False) and "Task Pack must be issued" in task.get("claimability_rules", []):
+            blockers.append("task pack is not issued")
+        if task.get("execution_ready") is False:
+            blockers.append("execution_ready is false")
+    return blockers
 
 
 def dependency_violations(tasks: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -128,28 +161,24 @@ def dependency_violations(tasks: list[dict[str, Any]]) -> list[dict[str, str]]:
 
 def explain_selection(tasks: list[dict[str, Any]]) -> dict[str, Any]:
     counts = Counter(str(task.get("status")) for task in tasks)
-    blocking = [task for task in tasks if task.get("status") in BLOCKING_STATES]
-    if blocking:
-        return {
-            "selected": None,
-            "reason": "task-blocking-state-present",
-            "blocking_tasks": [
-                {"id": task.get("id"), "status": task.get("status")}
-                for task in blocking
-            ],
-            "status_counts": dict(sorted(counts.items())),
-        }
-
+    skipped: list[dict[str, Any]] = []
     claimable = [
         task
         for task in tasks
         if task.get("status") in CLAIMABLE_STATES
         and dependencies_done(task, tasks)
+        and not task_local_blockers(task, tasks)
     ]
+    for task in tasks:
+        if task.get("status") in CLAIMABLE_STATES and task not in claimable:
+            blockers = task_local_blockers(task, tasks)
+            if blockers or not dependencies_done(task, tasks):
+                skipped.append({"id": task.get("id"), "blockers": blockers or ["dependencies incomplete"]})
     if not claimable:
         return {
             "selected": None,
             "reason": "no-claimable-task-after-dependencies",
+            "skipped_tasks": skipped,
             "status_counts": dict(sorted(counts.items())),
         }
     selected = sorted(claimable, key=task_sort_key)[0]

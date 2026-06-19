@@ -1,0 +1,29 @@
+{
+  "extraction_commands": [
+    "git show 59bf3d2:ledger/snapshots/tasks.json",
+    "git show 59bf3d2:ledger/snapshots/public-state-summary.json",
+    "git show 59bf3d2:ledger/snapshots/task-runtime-summary.json"
+  ],
+  "files": [
+    {
+      "archive_path": "ledger/archive/legacy-public-snapshot-202606/tasks.json",
+      "sha256": "c63db260314f0ed54123e5428aabe11bedc24a3e1d790de1d6c08c6b7174dc1b",
+      "source_path": "ledger/snapshots/tasks.json"
+    },
+    {
+      "archive_path": "ledger/archive/legacy-public-snapshot-202606/public-state-summary.json",
+      "sha256": "da1f3ac60eb3aa010af4c77f7c64c142230e16805fc972dccf4cb4b6ff799dd5",
+      "source_path": "ledger/snapshots/public-state-summary.json"
+    },
+    {
+      "archive_path": "ledger/archive/legacy-public-snapshot-202606/task-runtime-summary.json",
+      "sha256": "a322b82719b498347de426fef0e0815d1af44ed5a8929ae61a18766326e5d38b",
+      "source_path": "ledger/snapshots/task-runtime-summary.json"
+    }
+  ],
+  "historical_only": true,
+  "not_current_runtime_truth": true,
+  "schema_version": 1,
+  "source_commit": "59bf3d2",
+  "source_commit_description": "Initial public XQ plan snapshot"
+}

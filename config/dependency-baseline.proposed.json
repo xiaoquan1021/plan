@@ -1,78 +1,313 @@
 {
-  "schema_version": 1,
-  "contract_version": 1,
-  "verification_status": "proposed-not-build-verified",
-  "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
+  "contract_version": 2,
   "dependencies": [
     {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
       "name": "Qt6",
-      "suggested_version": "OPEN-DECISION",
       "official_source": "OPEN-DECISION",
-      "sha256": "OPEN-DECISION",
-      "license": "OPEN-DECISION",
-      "compiler_abi": "OPEN-DECISION",
-      "build_options": {},
-      "role_in_xq": "desktop UI and event loop",
-      "allowed_in_public_api": false,
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "desktop UI, widgets, application event loop",
       "runtime_packaging": "OPEN-DECISION",
-      "verification_status": "open-decision"
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
     },
     {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
       "name": "VTK",
-      "suggested_version": "OPEN-DECISION",
       "official_source": "OPEN-DECISION",
-      "sha256": "OPEN-DECISION",
-      "license": "OPEN-DECISION",
-      "compiler_abi": "OPEN-DECISION",
-      "build_options": {},
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
       "role_in_xq": "visualization and disposable rendering products",
-      "allowed_in_public_api": false,
       "runtime_packaging": "OPEN-DECISION",
-      "verification_status": "open-decision"
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
     },
     {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
       "name": "ITK",
-      "suggested_version": "OPEN-DECISION",
       "official_source": "OPEN-DECISION",
-      "sha256": "OPEN-DECISION",
-      "license": "OPEN-DECISION",
-      "compiler_abi": "OPEN-DECISION",
-      "build_options": {},
-      "role_in_xq": "medical image algorithms",
-      "allowed_in_public_api": false,
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "medical image algorithms and image processing internals",
       "runtime_packaging": "OPEN-DECISION",
-      "verification_status": "open-decision"
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
     },
     {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
       "name": "GDCM",
-      "suggested_version": "OPEN-DECISION",
       "official_source": "OPEN-DECISION",
-      "sha256": "OPEN-DECISION",
-      "license": "OPEN-DECISION",
-      "compiler_abi": "OPEN-DECISION",
-      "build_options": {},
-      "role_in_xq": "DICOM pixel decode fallback",
-      "allowed_in_public_api": false,
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "DICOM pixel decode fallback and medical image codec support",
       "runtime_packaging": "OPEN-DECISION",
-      "verification_status": "open-decision"
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
     },
     {
-      "name": "DCMTK",
-      "suggested_version": "OPEN-DECISION",
-      "official_source": "OPEN-DECISION",
-      "sha256": "OPEN-DECISION",
-      "license": "OPEN-DECISION",
-      "compiler_abi": "OPEN-DECISION",
-      "build_options": {},
-      "role_in_xq": "DICOM metadata and series scanning",
       "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
+      "name": "DCMTK",
+      "official_source": "OPEN-DECISION",
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "DICOM metadata, series scanning, and tag access",
       "runtime_packaging": "OPEN-DECISION",
-      "verification_status": "open-decision"
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
+    },
+    {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
+      "name": "TinyXML2",
+      "official_source": "OPEN-DECISION",
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "small XML project/legacy format parsing where needed",
+      "runtime_packaging": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
+    },
+    {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
+      "name": "HDF5",
+      "official_source": "OPEN-DECISION",
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "structured binary data support if required by accepted formats",
+      "runtime_packaging": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
+    },
+    {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
+      "name": "FreeType",
+      "official_source": "OPEN-DECISION",
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "text rendering dependency when pulled by visualization stack",
+      "runtime_packaging": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
+    },
+    {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
+      "name": "OCCT",
+      "official_source": "OPEN-DECISION",
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "geometry/modeling kernel only if required for accepted model operations",
+      "runtime_packaging": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
+    },
+    {
+      "allowed_in_public_api": false,
+      "alternatives": [
+        "OPEN-DECISION"
+      ],
+      "build_options": {},
+      "compatibility_constraints": [
+        "Must match XQ-M0 toolchain decision",
+        "Must not expose third-party object graph in XQ public API"
+      ],
+      "compiler_abi": "OPEN-DECISION",
+      "expected_decision_milestone": "XQ-M0",
+      "license": "OPEN-DECISION",
+      "licensing_status": "OPEN-DECISION",
+      "name": "MMG",
+      "official_source": "OPEN-DECISION",
+      "owner": "Codex A",
+      "required_evidence": [
+        "official release source",
+        "license text",
+        "SHA256",
+        "compiler/ABI compatibility evidence",
+        "configure/build evidence before implementation lock"
+      ],
+      "role_in_xq": "mesh generation/remeshing only if required by XQ-M6/XQ-M7",
+      "runtime_packaging": "OPEN-DECISION",
+      "sha256": "OPEN-DECISION",
+      "suggested_version": "OPEN-DECISION",
+      "verification_status": "open-decision-not-build-verified"
     }
   ],
+  "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
   "rules": {
-    "proposed_baseline_is_not_implementation_lock": true,
     "implementation_lock_must_live_in": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
-    "mismatch_requires_codex_a_escalation": true
-  }
+    "mismatch_requires_codex_a_escalation": true,
+    "proposed_baseline_is_not_implementation_lock": true
+  },
+  "schema_version": 1,
+  "verification_status": "proposed-not-build-verified"
 }

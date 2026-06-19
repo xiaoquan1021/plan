@@ -722,7 +722,7 @@ def test_claim_next_stops_before_selection_when_preflight_fails() -> None:
     assert calls["runtime"] == 0
 
 
-def test_preflight_disallows_claim_when_task_blocking_state_exists() -> None:
+def test_preflight_allows_claim_when_only_task_local_blocking_state_exists() -> None:
     allowed = ledger_task.preflight_allows_claim(
         {
             "audit_exit_code": 0,
@@ -735,7 +735,7 @@ def test_preflight_disallows_claim_when_task_blocking_state_exists() -> None:
         }
     )
 
-    assert allowed is False
+    assert allowed is True
 
 
 def test_claim_next_keeps_lease_when_rollback_release_event_fails() -> None:
@@ -1926,16 +1926,44 @@ def test_temp_end_to_end_claim_complete_replay_smoke(tmp_path: Path) -> None:
     assert manager.summarize()["active_leases"] == []
 
 
-def test_selection_stops_on_blocking_state() -> None:
+def test_unrelated_blocked_task_does_not_block_ready_task() -> None:
     tasks = [
         {"id": "a", "source_md": "plans/xq-integrated-rebuild/00-governance/a.md", "status": "blocked"},
-        {"id": "b", "source_md": "plans/xq-integrated-rebuild/01-foundation/b.md", "status": "ready-for-ledger-review"},
+        {"id": "b", "source_md": "plans/xq-integrated-rebuild/00-governance/b.md", "status": "ready-for-ledger-review"},
+    ]
+
+    explanation = explain_selection(tasks)
+
+    assert explanation["selected"]["id"] == "b"
+
+
+def test_blocked_dependency_blocks_downstream() -> None:
+    tasks = [
+        {"id": "a", "source_md": "plans/xq-integrated-rebuild/00-governance/a.md", "status": "blocked"},
+        {
+            "id": "b",
+            "source_md": "plans/xq-integrated-rebuild/00-governance/b.md",
+            "status": "ready-for-ledger-review",
+            "task_dependencies": ["a"],
+        },
     ]
 
     explanation = explain_selection(tasks)
 
     assert explanation["selected"] is None
-    assert explanation["reason"] == "task-blocking-state-present"
+    assert explanation["reason"] == "no-claimable-task-after-dependencies"
+    assert explanation["skipped_tasks"][0]["id"] == "b"
+
+
+def test_pr_task_selectable_while_xq_m0_blocked() -> None:
+    tasks = [
+        {"id": "XQ-M0-001", "task_kind": "implementation-readiness", "status": "blocked"},
+        {"id": "PR-M0-001", "task_kind": "plan-contract", "status": "ready-for-ledger-review"},
+    ]
+
+    explanation = explain_selection(tasks)
+
+    assert explanation["selected"]["id"] == "PR-M0-001"
 
 
 def test_selection_prefers_failed_retry_before_ready() -> None:
@@ -2273,7 +2301,9 @@ if __name__ == "__main__":
     import tempfile
 
     test_empty_event_log_preserves_baseline_counts()
-    test_selection_stops_on_blocking_state()
+    test_unrelated_blocked_task_does_not_block_ready_task()
+    test_blocked_dependency_blocks_downstream()
+    test_pr_task_selectable_while_xq_m0_blocked()
     test_selection_prefers_failed_retry_before_ready()
     test_task_level_dependencies_block_selection_within_phase()
     test_task_graph_contains_task_dependencies()
@@ -2297,7 +2327,7 @@ if __name__ == "__main__":
     with tempfile.TemporaryDirectory() as tmp:
         test_fenced_test_plan_command_accepts_equivalent_runner_argv(Path(tmp) / "fenced-runner-match")
     test_claim_next_stops_before_selection_when_preflight_fails()
-    test_preflight_disallows_claim_when_task_blocking_state_exists()
+    test_preflight_allows_claim_when_only_task_local_blocking_state_exists()
     test_claim_next_keeps_lease_when_rollback_release_event_fails()
     with tempfile.TemporaryDirectory() as tmp:
         test_record_complete_requires_active_lease_for_actor_and_session(Path(tmp) / "complete-lease")

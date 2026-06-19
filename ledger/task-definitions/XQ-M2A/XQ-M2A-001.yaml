@@ -6,7 +6,7 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M2A",
   "epic_id": "XQ-M2A-SYNTHETIC-SLICE",
-  "dependencies": ["XQ-M1-001"],
+  "dependencies": ["XQ-M1-CORE-006"],
   "source_contracts": ["docs/contracts/minimum-vertical-slice.md"],
   "source_contract_hashes": {},
   "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src", "IMPLEMENTATION_WORKSPACE/tests"],

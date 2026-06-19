@@ -5,7 +5,7 @@
   "epic_id": "XQ-M1-CORE-DATA",
   "issuance_status": "draft",
   "execution_ready": false,
-  "baseline_requirement": "XQ-M0 Repository Execution Readiness must provide base_commit, rollback point, and task worktree before this pack can be issued.",
+  "baseline_requirement": "XQ-M0 must provide base_commit, rollback point, task worktree, toolchain binding, and dependency lock strategy before issue.",
   "base_commit": null,
   "rollback_point": null,
   "worktree_binding": null,
@@ -16,38 +16,11 @@
   "implementation_dependency_lock_sha256": null,
   "toolchain_manifest_sha256": null,
   "supersedes": [],
-  "allowed_logical_scopes": [
-    "IMPLEMENTATION_WORKSPACE/src/core",
-    "IMPLEMENTATION_WORKSPACE/tests/core"
-  ],
-  "allowed_paths": [
-    "IMPLEMENTATION_WORKSPACE/src/core",
-    "IMPLEMENTATION_WORKSPACE/tests/core"
-  ],
-  "forbidden_actions": [
-    "modify PLAN_WORKSPACE",
-    "modify legacy Code tree",
-    "add MITK/BlueBerry/CTK/SWIG dependency",
-    "change acceptance conditions"
-  ],
-  "commands": [
-    {
-      "command": "L0 core test command after XQ-M0 chooses toolchain binding",
-      "required": true
-    }
-  ],
-  "machine_acceptance": [
-    "XQProject, XQScene, and XQDataNode L0 tests pass.",
-    "forbidden architecture scan finds no MITK/BlueBerry/CTK/SWIG ownership in new core."
-  ],
-  "required_evidence": [
-    "Task Result",
-    "Codex B Gate Result"
-  ],
-  "stop_conditions": [
-    "base_commit unavailable",
-    "required path outside allowed scope",
-    "new dependency required",
-    "architecture decision required"
-  ]
+  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src/core", "IMPLEMENTATION_WORKSPACE/tests/core"],
+  "allowed_paths": ["IMPLEMENTATION_WORKSPACE/src/core", "IMPLEMENTATION_WORKSPACE/tests/core"],
+  "forbidden_actions": ["modify PLAN_WORKSPACE", "modify legacy Code tree", "add dependency", "change acceptance conditions", "implement unrelated refactor"],
+  "commands": [{"command": "COMMAND-REQ-XQ-M1-L0-CORE after XQ-M0 binds real toolchain", "required": true}],
+  "machine_acceptance": ["NodeId can be created, compared, serialized in L0 synthetic tests.", "XQDataNode has stable identity fields without external library public types."],
+  "required_evidence": ["Task Result", "Codex B Gate Result", "L0 synthetic core identity test output"],
+  "stop_conditions": ["base_commit unavailable", "requires file outside allowed scope", "new architecture decision required", "new dependency required"]
 }

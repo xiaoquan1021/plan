@@ -2,11 +2,37 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "XQ Task Result",
   "type": "object",
-  "required": ["schema_version", "task_id", "task_pack_sha256", "changed_files", "commands_run"],
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "task_pack_sha256",
+    "epic_contract_sha256",
+    "base_commit",
+    "result_commit",
+    "changed_files",
+    "commands_run",
+    "test_results",
+    "artifacts",
+    "unresolved_issues",
+    "decision_request"
+  ],
   "properties": {
     "schema_version": { "const": 1 },
-    "task_id": { "type": "string" },
-    "changed_files": { "type": "array" },
-    "commands_run": { "type": "array" }
+    "task_id": { "type": "string", "minLength": 1 },
+    "task_pack_sha256": { "type": ["string", "null"] },
+    "epic_contract_sha256": { "type": ["string", "null"] },
+    "base_commit": { "type": ["string", "null"] },
+    "result_commit": { "type": ["string", "null"] },
+    "changed_files": { "type": "array", "items": { "type": "string" } },
+    "commands_run": { "type": "array", "items": { "type": "string" } },
+    "test_results": { "type": "array", "items": { "type": "string" } },
+    "artifacts": { "type": "array", "items": { "type": "string" } },
+    "unresolved_issues": { "type": "array", "items": { "type": "string" } },
+    "decision_request": { "enum": ["gate-required", "blocked", "escalation-required"] },
+    "decision": { "enum": ["completed", "gate-required", "ready-for-gate", "passed"] },
+    "overall_status": { "enum": ["passed", "completed", "failed", "blocked"] },
+    "dependency_lock_sha256": { "type": ["string", "null"] },
+    "toolchain_manifest_sha256": { "type": ["string", "null"] }
   }
 }

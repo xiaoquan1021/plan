@@ -2,10 +2,50 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "XQ Codex A Epic Review",
   "type": "object",
-  "required": ["schema_version", "epic_id", "decision"],
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "epic_id",
+    "epic_contract_sha256",
+    "review_base_commit",
+    "review_head_commit",
+    "required_outcomes",
+    "architecture_constraints",
+    "acceptance_evidence",
+    "cross_task_integration_findings",
+    "unresolved_risks",
+    "contract_defects",
+    "decision",
+    "required_repairs"
+  ],
   "properties": {
     "schema_version": { "const": 1 },
-    "epic_id": { "type": "string" },
-    "decision": { "enum": ["accepted", "repair-required", "contract-defect", "blocked"] }
-  }
+    "epic_id": { "type": "string", "minLength": 1 },
+    "epic_contract_sha256": { "type": ["string", "null"] },
+    "review_base_commit": { "type": ["string", "null"] },
+    "review_head_commit": { "type": ["string", "null"] },
+    "required_outcomes": { "type": "array", "items": { "type": "string" } },
+    "architecture_constraints": { "type": "array", "items": { "type": "string" } },
+    "acceptance_evidence": { "type": "array", "items": { "type": "string" } },
+    "cross_task_integration_findings": { "type": "array", "items": { "type": "string" } },
+    "unresolved_risks": { "type": "array", "items": { "type": "string" } },
+    "contract_defects": { "type": "array", "items": { "type": "string" } },
+    "decision": { "enum": ["accepted", "repair-required", "contract-defect", "blocked"] },
+    "required_repairs": { "type": "array", "items": { "type": "string" } }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "accepted" } } },
+      "then": {
+        "properties": {
+          "epic_contract_sha256": { "type": "string", "minLength": 64 },
+          "review_base_commit": { "type": "string", "minLength": 7 },
+          "review_head_commit": { "type": "string", "minLength": 7 },
+          "required_outcomes": { "type": "array", "minItems": 1 },
+          "architecture_constraints": { "type": "array", "minItems": 1 },
+          "acceptance_evidence": { "type": "array", "minItems": 1 }
+        }
+      }
+    }
+  ]
 }

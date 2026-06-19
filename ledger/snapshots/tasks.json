@@ -1,19 +1,28 @@
 {
   "metadata": {
-    "generated_at": "1970-01-01T00:00:00+00:00",
+    "generated_at": "2026-06-19T23:17:55+08:00",
     "generator": "harness/generate_snapshots.py",
-    "generator_version": 1,
+    "generator_version": 2,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "ed21cca1b9341243878befa78f9532fe2d4e74d6787fedfeaed612d9bbf0da9e"
+    "source_hash": "e33d423dcda27c00bfd4a83558bf1504daee022022a917e71d346a82dcee6f69",
+    "task_definition_hash": "c63b664fb3711bc23c95bce5bcc93449e330ec5c9565ed9707b94358253ed467"
   },
   "tasks": [
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "PLAN_WORKSPACE"
+      ],
       "blocked_reason": null,
+      "claimability_rules": [
+        "definitions-only projection may select this task"
+      ],
       "decision_state": "none",
       "epic_id": "PR-M0-CONTRACT-KERNEL",
       "evidence_status": "definitions-only",
       "id": "PR-M0-001",
+      "implementation_evidence": "none",
       "next_action": "validate PR-M0 contracts",
       "owner": "Codex B",
       "plan_rewrite_milestone": "PR-M0",
@@ -22,11 +31,14 @@
         "schema validation output",
         "snapshot check output"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/source-of-truth-reconciliation.md",
         "docs/adr/ADR-0001-rebuild-repository-strategy.md"
       ],
       "source_md": "docs/contracts/source-of-truth-reconciliation.md",
+      "stale_reasons": [],
       "status": "ready-for-ledger-review",
       "supersedes": [],
       "task_dependencies": [],
@@ -37,11 +49,19 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "PLAN_WORKSPACE"
+      ],
       "blocked_reason": null,
+      "claimability_rules": [
+        "PR-M0 contracts must exist"
+      ],
       "decision_state": "none",
       "epic_id": "PR-M1-CONTRACT-KERNEL",
       "evidence_status": "definitions-only",
       "id": "PR-M1-001",
+      "implementation_evidence": "none",
       "next_action": "validate contract kernel",
       "owner": "Codex B",
       "plan_rewrite_milestone": "PR-M1",
@@ -49,6 +69,8 @@
       "required_evidence": [
         "schema validation output"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/product-scope-v1.md",
         "docs/contracts/target-architecture.md",
@@ -58,6 +80,7 @@
         "docs/contracts/git-worktree-policy.md"
       ],
       "source_md": "docs/contracts/product-scope-v1.md",
+      "stale_reasons": [],
       "status": "ready-for-ledger-review",
       "supersedes": [],
       "task_dependencies": [
@@ -70,11 +93,19 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "PLAN_WORKSPACE"
+      ],
       "blocked_reason": null,
+      "claimability_rules": [
+        "task-definition schemas must pass"
+      ],
       "decision_state": "none",
       "epic_id": "PR-M2-LEDGER-PROJECTION",
       "evidence_status": "definitions-only",
       "id": "PR-M2-001",
+      "implementation_evidence": "none",
       "next_action": "run projection checks",
       "owner": "Codex B",
       "plan_rewrite_milestone": "PR-M2",
@@ -83,12 +114,15 @@
         "generator output",
         "migration report"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/harness-contract.md",
         "docs/contracts/ledger-migration-policy.md",
         "ledger/task-definitions/index.yaml"
       ],
       "source_md": "docs/contracts/harness-contract.md",
+      "stale_reasons": [],
       "status": "ready-for-ledger-review",
       "supersedes": [],
       "task_dependencies": [
@@ -101,11 +135,19 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "PLAN_WORKSPACE"
+      ],
       "blocked_reason": null,
+      "claimability_rules": [
+        "schema validates draft task pack"
+      ],
       "decision_state": "proposed",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
       "id": "PR-M3-001",
+      "implementation_evidence": "none",
       "next_action": "approve or revise Core Data Epic Contract",
       "owner": "Codex A",
       "plan_rewrite_milestone": "PR-M3",
@@ -113,6 +155,8 @@
       "required_evidence": [
         "schema validation output"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/core-data-semantics.md",
         "docs/contracts/templates/epic-contract.template.yaml",
@@ -121,6 +165,7 @@
         "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"
       ],
       "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
       "status": "ready-for-ledger-review",
       "supersedes": [],
       "task_dependencies": [
@@ -133,11 +178,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE"
+      ],
       "blocked_reason": "IMPLEMENTATION_WORKSPACE has not been baseline-frozen in this plan rewrite pass",
+      "claimability_rules": [
+        "repository strategy ADR approved",
+        "baseline report exists"
+      ],
       "decision_state": "open",
       "epic_id": "XQ-M0-BASELINE",
       "evidence_status": "definitions-only",
       "id": "XQ-M0-001",
+      "implementation_evidence": "none",
       "next_action": "resolve baseline strategy after plan rewrite",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -145,11 +199,14 @@
       "required_evidence": [
         "WORKSPACE_RECONCILIATION_REPORT"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/git-worktree-policy.md",
         "docs/adr/ADR-0001-rebuild-repository-strategy.md"
       ],
       "source_md": "docs/contracts/git-worktree-policy.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -162,11 +219,21 @@
       "workspace_state": "not-projected"
     },
     {
-      "blocked_reason": "XQ-M0 execution readiness is not complete",
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src/core",
+        "IMPLEMENTATION_WORKSPACE/tests/core"
+      ],
+      "blocked_reason": "XQ-M0 execution readiness is not complete and task pack is draft",
+      "claimability_rules": [
+        "Task Pack must be issued",
+        "execution_ready must be true"
+      ],
       "decision_state": "proposed",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
-      "id": "XQ-M1-001",
+      "id": "XQ-M1-CORE-001",
+      "implementation_evidence": "none",
       "next_action": "wait for XQ-M0",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -175,28 +242,270 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/core-data-semantics.md",
-        "docs/contracts/target-architecture.md"
+        "docs/contracts/target-architecture.md",
+        "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"
       ],
       "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
       "status": "blocked",
-      "supersedes": [],
+      "supersedes": [
+        "02-core-data-03-xqdatanode-and-metadata"
+      ],
       "task_dependencies": [
         "XQ-M0-001"
       ],
-      "task_id": "XQ-M1-001",
+      "task_id": "XQ-M1-CORE-001",
       "task_kind": "implementation",
-      "title": "Core Data Authority implementation task draft",
-      "unblock_condition": "XQ-M0 produces stable base_commit and issued task pack",
+      "title": "NodeId and minimal XQDataNode identity",
+      "unblock_condition": "XQ-M0 issues this task pack with real base_commit and worktree",
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src/core",
+        "IMPLEMENTATION_WORKSPACE/tests/core"
+      ],
+      "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
+      "claimability_rules": [
+        "Task Pack must be issued",
+        "execution_ready must be true"
+      ],
+      "decision_state": "proposed",
+      "epic_id": "XQ-M1-CORE-DATA",
+      "evidence_status": "definitions-only",
+      "id": "XQ-M1-CORE-002",
+      "implementation_evidence": "none",
+      "next_action": "wait for XQ-M1-CORE-001",
+      "owner": "Codex B",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "required_evidence": [
+        "Task Result",
+        "Codex B Gate Result"
+      ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
+      "source_contracts": [
+        "docs/contracts/core-data-semantics.md",
+        "docs/contracts/task-packs/XQ-M1-CORE-002.draft.yaml"
+      ],
+      "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
+      "status": "blocked",
+      "supersedes": [
+        "02-core-data-02-xqscene-ownership"
+      ],
+      "task_dependencies": [
+        "XQ-M1-CORE-001"
+      ],
+      "task_id": "XQ-M1-CORE-002",
+      "task_kind": "implementation",
+      "title": "XQScene insert/find",
+      "unblock_condition": "XQ-M1-CORE-001 accepted and task pack issued",
+      "workspace_state": "not-projected"
+    },
+    {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src/core",
+        "IMPLEMENTATION_WORKSPACE/tests/core"
+      ],
+      "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
+      "claimability_rules": [
+        "Task Pack must be issued",
+        "execution_ready must be true"
+      ],
+      "decision_state": "proposed",
+      "epic_id": "XQ-M1-CORE-DATA",
+      "evidence_status": "definitions-only",
+      "id": "XQ-M1-CORE-003",
+      "implementation_evidence": "none",
+      "next_action": "wait for XQ-M1-CORE-002",
+      "owner": "Codex B",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "required_evidence": [
+        "Task Result",
+        "Codex B Gate Result"
+      ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
+      "source_contracts": [
+        "docs/contracts/core-data-semantics.md",
+        "docs/contracts/task-packs/XQ-M1-CORE-003.draft.yaml"
+      ],
+      "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
+      "status": "blocked",
+      "supersedes": [
+        "02-core-data-02-xqscene-ownership"
+      ],
+      "task_dependencies": [
+        "XQ-M1-CORE-002"
+      ],
+      "task_id": "XQ-M1-CORE-003",
+      "task_kind": "implementation",
+      "title": "XQScene remove and relation cleanup",
+      "unblock_condition": "XQ-M1-CORE-002 accepted and task pack issued",
+      "workspace_state": "not-projected"
+    },
+    {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src/core",
+        "IMPLEMENTATION_WORKSPACE/tests/core"
+      ],
+      "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
+      "claimability_rules": [
+        "Task Pack must be issued",
+        "execution_ready must be true"
+      ],
+      "decision_state": "proposed",
+      "epic_id": "XQ-M1-CORE-DATA",
+      "evidence_status": "definitions-only",
+      "id": "XQ-M1-CORE-004",
+      "implementation_evidence": "none",
+      "next_action": "wait for XQ-M1-CORE-003",
+      "owner": "Codex B",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "required_evidence": [
+        "Task Result",
+        "Codex B Gate Result"
+      ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
+      "source_contracts": [
+        "docs/contracts/core-data-semantics.md",
+        "docs/contracts/task-packs/XQ-M1-CORE-004.draft.yaml"
+      ],
+      "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
+      "status": "blocked",
+      "supersedes": [
+        "02-core-data-02-xqscene-ownership",
+        "06-workflow-02-stage-source-relations"
+      ],
+      "task_dependencies": [
+        "XQ-M1-CORE-003"
+      ],
+      "task_id": "XQ-M1-CORE-004",
+      "task_kind": "implementation",
+      "title": "Source/derived relation and stale propagation",
+      "unblock_condition": "XQ-M1-CORE-003 accepted and task pack issued",
+      "workspace_state": "not-projected"
+    },
+    {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src/core",
+        "IMPLEMENTATION_WORKSPACE/tests/core"
+      ],
+      "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
+      "claimability_rules": [
+        "Task Pack must be issued",
+        "execution_ready must be true"
+      ],
+      "decision_state": "proposed",
+      "epic_id": "XQ-M1-CORE-DATA",
+      "evidence_status": "definitions-only",
+      "id": "XQ-M1-CORE-005",
+      "implementation_evidence": "none",
+      "next_action": "wait for XQ-M1-CORE-004",
+      "owner": "Codex B",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "required_evidence": [
+        "Task Result",
+        "Codex B Gate Result"
+      ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
+      "source_contracts": [
+        "docs/contracts/core-data-semantics.md",
+        "docs/contracts/task-packs/XQ-M1-CORE-005.draft.yaml"
+      ],
+      "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
+      "status": "blocked",
+      "supersedes": [
+        "02-core-data-01-xqproject-lifecycle"
+      ],
+      "task_dependencies": [
+        "XQ-M1-CORE-004"
+      ],
+      "task_id": "XQ-M1-CORE-005",
+      "task_kind": "implementation",
+      "title": "XQProject lifecycle and unique XQScene",
+      "unblock_condition": "XQ-M1-CORE-004 accepted and task pack issued",
+      "workspace_state": "not-projected"
+    },
+    {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src/core",
+        "IMPLEMENTATION_WORKSPACE/tests/core"
+      ],
+      "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
+      "claimability_rules": [
+        "Task Pack must be issued",
+        "execution_ready must be true"
+      ],
+      "decision_state": "proposed",
+      "epic_id": "XQ-M1-CORE-DATA",
+      "evidence_status": "definitions-only",
+      "id": "XQ-M1-CORE-006",
+      "implementation_evidence": "none",
+      "next_action": "wait for XQ-M1-CORE-005",
+      "owner": "Codex B",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "required_evidence": [
+        "Task Result",
+        "Codex B Gate Result"
+      ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
+      "source_contracts": [
+        "docs/contracts/core-data-semantics.md",
+        "docs/contracts/acceptance-data-policy.md",
+        "docs/contracts/task-packs/XQ-M1-CORE-006.draft.yaml"
+      ],
+      "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
+      "status": "blocked",
+      "supersedes": [
+        "02-core-data-03-xqdatanode-and-metadata"
+      ],
+      "task_dependencies": [
+        "XQ-M1-CORE-005"
+      ],
+      "task_id": "XQ-M1-CORE-006",
+      "task_kind": "implementation",
+      "title": "Diagnostics and provenance",
+      "unblock_condition": "XQ-M1-CORE-005 accepted and task pack issued",
+      "workspace_state": "not-projected"
+    },
+    {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "XQ-M1 is not complete",
+      "claimability_rules": [
+        "XQ-M1 gate accepted"
+      ],
       "decision_state": "none",
       "epic_id": "XQ-M2A-SYNTHETIC-SLICE",
       "evidence_status": "definitions-only",
       "id": "XQ-M2A-001",
+      "implementation_evidence": "none",
       "next_action": "wait for Core Data Authority",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -205,14 +514,17 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/minimum-vertical-slice.md"
       ],
       "source_md": "docs/contracts/minimum-vertical-slice.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
-        "XQ-M1-001"
+        "XQ-M1-CORE-006"
       ],
       "task_id": "XQ-M2A-001",
       "task_kind": "implementation",
@@ -221,11 +533,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "no approved L1 fixture",
+      "claimability_rules": [
+        "approved L1 fixture exists"
+      ],
       "decision_state": "open",
       "epic_id": "XQ-M2B-FIXTURE-SLICE",
       "evidence_status": "definitions-only",
       "id": "XQ-M2B-001",
+      "implementation_evidence": "none",
       "next_action": "resolve L1 fixture strategy",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -235,11 +556,14 @@
         "fixture checksum",
         "Task Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/format-fixture-policy.md",
         "ledger/fixtures/fixture-manifest.json"
       ],
       "source_md": "docs/contracts/format-fixture-policy.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -252,11 +576,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "XQ-M2B is not complete",
+      "claimability_rules": [
+        "XQ-M2B accepted"
+      ],
       "decision_state": "none",
       "epic_id": "XQ-M3-IMAGE-VISUALIZATION",
       "evidence_status": "definitions-only",
       "id": "XQ-M3-001",
+      "implementation_evidence": "none",
       "next_action": "wait for XQ-M2B",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -265,10 +598,13 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/minimum-vertical-slice.md"
       ],
       "source_md": "docs/contracts/minimum-vertical-slice.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -281,11 +617,21 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "XQ-M2B is not complete and coordinate decisions remain open",
+      "claimability_rules": [
+        "XQ-M2B accepted",
+        "path/contour semantics approved"
+      ],
       "decision_state": "open",
       "epic_id": "XQ-M4-PATH-CONTOUR",
       "evidence_status": "definitions-only",
       "id": "XQ-M4-001",
+      "implementation_evidence": "none",
       "next_action": "approve path and contour semantics",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -294,11 +640,14 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/core-data-semantics.md",
         "docs/contracts/format-fixture-policy.md"
       ],
       "source_md": "docs/contracts/core-data-semantics.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -311,11 +660,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "upstream slices are not complete",
+      "claimability_rules": [
+        "image and path/contour slices accepted"
+      ],
       "decision_state": "none",
       "epic_id": "XQ-M5-SEGMENTATION-SURFACE",
       "evidence_status": "definitions-only",
       "id": "XQ-M5-001",
+      "implementation_evidence": "none",
       "next_action": "wait for upstream slices",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -324,10 +682,13 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/target-architecture.md"
       ],
       "source_md": "docs/contracts/target-architecture.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -341,11 +702,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "XQ-M5 is not complete",
+      "claimability_rules": [
+        "XQ-M5 accepted"
+      ],
       "decision_state": "none",
       "epic_id": "XQ-M6-MESH",
       "evidence_status": "definitions-only",
       "id": "XQ-M6-001",
+      "implementation_evidence": "none",
       "next_action": "wait for XQ-M5",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -354,11 +724,14 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/target-architecture.md",
         "docs/contracts/format-fixture-policy.md"
       ],
       "source_md": "docs/contracts/target-architecture.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -371,11 +744,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "XQ-M6 is not complete",
+      "claimability_rules": [
+        "XQ-M6 accepted"
+      ],
       "decision_state": "none",
       "epic_id": "XQ-M7-SIMULATION-PREP",
       "evidence_status": "definitions-only",
       "id": "XQ-M7-001",
+      "implementation_evidence": "none",
       "next_action": "wait for XQ-M6",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -384,10 +766,13 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/product-scope-v1.md"
       ],
       "source_md": "docs/contracts/product-scope-v1.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -400,11 +785,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE/src",
+        "IMPLEMENTATION_WORKSPACE/tests"
+      ],
       "blocked_reason": "XQ-M7 is not complete",
+      "claimability_rules": [
+        "XQ-M7 accepted"
+      ],
       "decision_state": "none",
       "epic_id": "XQ-M8-NATIVE-SAVE",
       "evidence_status": "definitions-only",
       "id": "XQ-M8-001",
+      "implementation_evidence": "none",
       "next_action": "wait for XQ-M7",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -413,10 +807,13 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/project-format-version-policy.md"
       ],
       "source_md": "docs/contracts/project-format-version-policy.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [
@@ -429,11 +826,20 @@
       "workspace_state": "not-projected"
     },
     {
+      "acceptance_evidence": "none",
+      "allowed_logical_scopes": [
+        "IMPLEMENTATION_WORKSPACE",
+        "ACCEPTANCE_PROJECT"
+      ],
       "blocked_reason": "L2 real full acceptance project is not approved",
+      "claimability_rules": [
+        "approved L2 real project binding exists"
+      ],
       "decision_state": "open",
       "epic_id": "XQ-M9-FINAL-ACCEPTANCE",
       "evidence_status": "definitions-only",
       "id": "XQ-M9-001",
+      "implementation_evidence": "none",
       "next_action": "find or approve real acceptance project",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -443,11 +849,14 @@
         "checksums",
         "performance evidence"
       ],
+      "runtime_projection": "none",
+      "source_contract_hashes": {},
       "source_contracts": [
         "docs/contracts/final-acceptance-contract.md",
         "docs/contracts/acceptance-data-policy.md"
       ],
       "source_md": "docs/contracts/final-acceptance-contract.md",
+      "stale_reasons": [],
       "status": "blocked",
       "supersedes": [],
       "task_dependencies": [

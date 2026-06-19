@@ -23,10 +23,35 @@
     {
       "from": "XQ-M0-001",
       "kind": "task",
-      "to": "XQ-M1-001"
+      "to": "XQ-M1-CORE-001"
     },
     {
-      "from": "XQ-M1-001",
+      "from": "XQ-M1-CORE-001",
+      "kind": "task",
+      "to": "XQ-M1-CORE-002"
+    },
+    {
+      "from": "XQ-M1-CORE-002",
+      "kind": "task",
+      "to": "XQ-M1-CORE-003"
+    },
+    {
+      "from": "XQ-M1-CORE-003",
+      "kind": "task",
+      "to": "XQ-M1-CORE-004"
+    },
+    {
+      "from": "XQ-M1-CORE-004",
+      "kind": "task",
+      "to": "XQ-M1-CORE-005"
+    },
+    {
+      "from": "XQ-M1-CORE-005",
+      "kind": "task",
+      "to": "XQ-M1-CORE-006"
+    },
+    {
+      "from": "XQ-M1-CORE-006",
       "kind": "task",
       "to": "XQ-M2A-001"
     },
@@ -77,12 +102,13 @@
     }
   ],
   "metadata": {
-    "generated_at": "1970-01-01T00:00:00+00:00",
+    "generated_at": "2026-06-19T23:17:55+08:00",
     "generator": "harness/generate_snapshots.py",
-    "generator_version": 1,
+    "generator_version": 2,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "ed21cca1b9341243878befa78f9532fe2d4e74d6787fedfeaed612d9bbf0da9e"
+    "source_hash": "e33d423dcda27c00bfd4a83558bf1504daee022022a917e71d346a82dcee6f69",
+    "task_definition_hash": "c63b664fb3711bc23c95bce5bcc93449e330ec5c9565ed9707b94358253ed467"
   },
   "nodes": [
     {
@@ -122,7 +148,42 @@
     },
     {
       "epic_id": "XQ-M1-CORE-DATA",
-      "id": "XQ-M1-001",
+      "id": "XQ-M1-CORE-001",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "status": "blocked"
+    },
+    {
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "XQ-M1-CORE-002",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "status": "blocked"
+    },
+    {
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "XQ-M1-CORE-003",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "status": "blocked"
+    },
+    {
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "XQ-M1-CORE-004",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "status": "blocked"
+    },
+    {
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "XQ-M1-CORE-005",
+      "plan_rewrite_milestone": null,
+      "product_milestone": "XQ-M1",
+      "status": "blocked"
+    },
+    {
+      "epic_id": "XQ-M1-CORE-DATA",
+      "id": "XQ-M1-CORE-006",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "status": "blocked"

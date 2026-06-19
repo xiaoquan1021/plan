@@ -3,8 +3,11 @@
   "contract_version": 1,
   "epic_id": "XQ-M1-CORE-DATA",
   "title": "Core Data Authority",
-  "decision_state": "approved",
-  "approved_by": "Codex A contract readiness pass",
+  "decision_state": "proposed",
+  "approval_record": {
+    "record_type": "none",
+    "record_sha256": null
+  },
   "base_commit": null,
   "dependency_contract_sha256": null,
   "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",

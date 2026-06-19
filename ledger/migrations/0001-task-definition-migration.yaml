@@ -1,13 +1,113 @@
-{
-  "schema_version": 1,
-  "migration_id": "0001-task-definition-migration",
-  "description": "Map legacy snapshot tasks into PR/XQ milestone task-definition model without inheriting implementation completion.",
-  "mappings": [
-    {
-      "old_task_id": "*",
-      "new_task_id": "manual-reconciliation-required",
-      "status_rule": "documentation-completion-does-not-imply-implementation-completion",
-      "superseded_by": []
-    }
-  ]
-}
+schema_version: 1
+migration_id: 0001-task-definition-migration
+description: Map the historical public snapshot from 59bf3d2 into the PR/XQ task-definition model without inheriting implementation completion.
+legacy_input: ledger/archive/legacy-public-snapshot-202606/tasks.json
+rules:
+  legacy_completed_inherits_implementation_completion: false
+  original_events_are_not_modified: true
+  original_completion_records_are_not_modified: true
+mappings:
+  - old_task_id: main-plan
+    old_source: plans/2026-06-11-xq-lightweight-dependency-refactor-from-XQ-main-zip.md
+    new_task_ids: [PR-M0-001]
+    new_milestone: PR-M0
+    new_epic: PR-M0-CONTRACT-KERNEL
+    status_rule: historical-only
+    superseded_by: docs/contracts/product-scope-v1.md
+    reason: Main narrative plan is superseded by contract kernel sources.
+  - old_task_id: execution-entry
+    old_source: plans/xq-integrated-rebuild/00-execution-entry.md
+    new_task_ids: [PR-M2-001]
+    new_milestone: PR-M2
+    new_epic: PR-M2-LEDGER-PROJECTION
+    status_rule: superseded
+    superseded_by: ledger/task-definitions/index.yaml
+    reason: Execution entry is now derived from task definitions and projections.
+  - old_task_id: readme
+    old_source: plans/xq-integrated-rebuild/README.md
+    new_task_ids: [PR-M0-001]
+    new_milestone: PR-M0
+    new_epic: PR-M0-CONTRACT-KERNEL
+    status_rule: historical-only
+    superseded_by: docs/contracts/normative-precedence.md
+    reason: README remains orientation only, not runtime truth.
+  - old_task_id: 00-governance-*
+    old_source: plans/xq-integrated-rebuild/00-governance
+    new_task_ids: [PR-M0-001, PR-M1-001]
+    new_milestone: PR-M1
+    new_epic: PR-M1-CONTRACT-KERNEL
+    status_rule: requires-private-reconciliation
+    superseded_by: docs/contracts/normative-precedence.md
+    reason: Governance documents may prove planning work but not implementation completion.
+  - old_task_id: 01-foundation-*
+    old_source: plans/xq-integrated-rebuild/01-foundation
+    new_task_ids: [XQ-M0-001]
+    new_milestone: XQ-M0
+    new_epic: XQ-M0-BASELINE
+    status_rule: stale-completion
+    superseded_by: docs/contracts/git-worktree-policy.md
+    reason: Foundation implementation claims require baseline reconciliation and cannot be inherited.
+  - old_task_id: 02-core-data-*
+    old_source: plans/xq-integrated-rebuild/02-core-data
+    new_task_ids: [XQ-M1-CORE-001, XQ-M1-CORE-002, XQ-M1-CORE-003, XQ-M1-CORE-004, XQ-M1-CORE-005, XQ-M1-CORE-006]
+    new_milestone: XQ-M1
+    new_epic: XQ-M1-CORE-DATA
+    status_rule: stale-completion
+    superseded_by: docs/contracts/epics/XQ-M1-core-data.epic.yaml
+    reason: Core Data implementation must be reissued through draft task packs after XQ-M0.
+  - old_task_id: 03-native-project-io-*
+    old_source: plans/xq-integrated-rebuild/03-native-project-io
+    new_task_ids: [XQ-M2B-001, XQ-M8-001]
+    new_milestone: XQ-M2B
+    new_epic: XQ-M2B-FIXTURE-SLICE
+    status_rule: requires-private-reconciliation
+    superseded_by: docs/contracts/format-fixture-policy.md
+    reason: Reader work needs fixture-backed canonical acceptance before implementation credit.
+  - old_task_id: 04-medical-image-io-*
+    old_source: plans/xq-integrated-rebuild/04-medical-image-io
+    new_task_ids: [XQ-M3-001]
+    new_milestone: XQ-M3
+    new_epic: XQ-M3-IMAGE-VISUALIZATION
+    status_rule: requires-private-reconciliation
+    superseded_by: docs/contracts/format-fixture-policy.md
+    reason: Image IO requires approved dependency baseline and fixture evidence.
+  - old_task_id: 05-workbench-visualization-*
+    old_source: plans/xq-integrated-rebuild/05-workbench-visualization
+    new_task_ids: [XQ-M2A-001, XQ-M3-001]
+    new_milestone: XQ-M3
+    new_epic: XQ-M3-IMAGE-VISUALIZATION
+    status_rule: requires-private-reconciliation
+    superseded_by: docs/contracts/minimum-vertical-slice.md
+    reason: UI/viewer claims must be tied to L0/L1 acceptance.
+  - old_task_id: 06-workflow-*
+    old_source: plans/xq-integrated-rebuild/06-workflow
+    new_task_ids: [XQ-M4-001]
+    new_milestone: XQ-M4
+    new_epic: XQ-M4-PATH-CONTOUR
+    status_rule: historical-only
+    superseded_by: docs/contracts/legacy-to-rebuild-capability-matrix.md
+    reason: Workflow/undo is Should scope and does not block first Core Data work.
+  - old_task_id: 07-domain-features-*
+    old_source: plans/xq-integrated-rebuild/07-domain-features
+    new_task_ids: [XQ-M4-001, XQ-M5-001, XQ-M6-001, XQ-M7-001]
+    new_milestone: XQ-M4
+    new_epic: XQ-M4-PATH-CONTOUR
+    status_rule: historical-only
+    superseded_by: docs/contracts/legacy-to-rebuild-capability-matrix.md
+    reason: Domain expansion is phased and not inherited as current completion.
+  - old_task_id: 08-xq-zip-selection-*
+    old_source: plans/xq-integrated-rebuild/08-xq-zip-selection
+    new_task_ids: [PR-M0-001]
+    new_milestone: PR-M0
+    new_epic: PR-M0-CONTRACT-KERNEL
+    status_rule: historical-only
+    superseded_by: docs/contracts/source-of-truth-reconciliation.md
+    reason: Legacy evidence policy is now expressed through source-of-truth reconciliation.
+  - old_task_id: 09-acceptance-repair-*
+    old_source: plans/xq-integrated-rebuild/09-acceptance-repair
+    new_task_ids: [XQ-M9-001]
+    new_milestone: XQ-M9
+    new_epic: XQ-M9-FINAL-ACCEPTANCE
+    status_rule: requires-private-reconciliation
+    superseded_by: docs/contracts/final-acceptance-contract.md
+    reason: Final acceptance depends on L2 evidence that is not currently approved.
