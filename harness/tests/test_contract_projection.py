@@ -282,6 +282,8 @@ def test_migration_uses_synthetic_legacy_input_and_is_deterministic(tmp_path: Pa
     first = migrate_legacy_ledger.build_report(legacy, definition)
     second = migrate_legacy_ledger.build_report(legacy, definition)
     assert first == second
+    assert first["legacy_input"] == "harness/tests/fixtures/synthetic-legacy-tasks.json"
+    assert first["migration_definition"] == "harness/tests/fixtures/synthetic-migration.yaml"
     assert first["unmapped_count"] == 1
     assert first["stale_completion_count"] == 1
     assert first["requires_private_reconciliation_count"] == 1
