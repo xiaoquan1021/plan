@@ -27,8 +27,8 @@
   "properties": {
     "schema_version": { "const": 1 },
     "task_id": { "type": "string", "minLength": 1 },
-    "task_pack_sha256": { "type": ["string", "null"] },
-    "epic_contract_sha256": { "type": ["string", "null"] },
+    "task_pack_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "epic_contract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
     "base_commit": { "type": ["string", "null"] },
     "result_commit": { "type": ["string", "null"] },
     "changed_files": { "type": "array", "items": { "type": "string" } },
@@ -64,10 +64,14 @@
         "findings": { "type": "array", "items": { "type": "string" } }
       }
     },
-    "result_artifact_hashes": { "type": "array", "items": { "type": "string" } },
+    "result_artifact_hashes": { "type": "array", "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
     "decision": { "enum": ["accepted", "rework", "escalated", "rejected"] },
     "rework_reason": { "type": ["string", "null"] },
-    "escalation_reason": { "type": ["string", "null"] }
+    "escalation_reason": { "type": ["string", "null"] },
+    "dependency_contract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "implementation_dependency_lock_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "dependency_lock_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "toolchain_manifest_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" }
   },
   "allOf": [
     {
@@ -79,9 +83,32 @@
           "base_commit": { "type": "string", "minLength": 7 },
           "result_commit": { "type": "string", "minLength": 7 },
           "changed_files": { "type": "array", "minItems": 1 },
+          "allowed_path_check": {
+            "type": "object",
+            "properties": {
+              "passed": { "const": true },
+              "violations": { "type": "array", "maxItems": 0 }
+            }
+          },
+          "workspace_clean_before": { "const": true },
+          "workspace_clean_after": { "const": true },
           "commands_reexecuted": { "type": "array", "minItems": 1 },
-          "exit_codes": { "type": "array", "minItems": 1 },
-          "result_artifact_hashes": { "type": "array", "minItems": 1 }
+          "exit_codes": { "type": "array", "minItems": 1, "items": { "const": 0 } },
+          "tests_observed": { "type": "array", "minItems": 1 },
+          "test_integrity_check": {
+            "type": "object",
+            "properties": { "passed": { "const": true } }
+          },
+          "forbidden_scan": {
+            "type": "object",
+            "properties": {
+              "passed": { "const": true },
+              "findings": { "type": "array", "maxItems": 0 }
+            }
+          },
+          "result_artifact_hashes": { "type": "array", "minItems": 1 },
+          "rework_reason": { "type": "null" },
+          "escalation_reason": { "type": "null" }
         }
       }
     }

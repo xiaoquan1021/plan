@@ -12,16 +12,31 @@
     "docs/adr/ADR-0001-rebuild-repository-strategy.md"
   ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["PLAN_WORKSPACE"],
-  "forbidden_actions": ["modify IMPLEMENTATION_WORKSPACE", "write private paths to public markdown"],
-  "claimability_rules": ["definitions-only projection may select this task"],
-  "machine_acceptance": ["path binding example validates", "toolchain binding example validates"],
-  "required_evidence": ["schema validation output", "snapshot check output"],
+  "allowed_logical_scopes": [
+    "PLAN_WORKSPACE"
+  ],
+  "forbidden_actions": [
+    "modify IMPLEMENTATION_WORKSPACE",
+    "write private paths to public markdown"
+  ],
+  "claimability_rules": [
+    "definitions-only projection may select this task"
+  ],
+  "machine_acceptance": [
+    "path binding example validates",
+    "toolchain binding example validates"
+  ],
+  "required_evidence": [
+    "schema validation output",
+    "snapshot check output"
+  ],
   "blocked_reason": null,
   "unblock_condition": null,
   "owner": "Codex B",
   "next_action": "validate PR-M0 contracts",
   "supersedes": [],
   "status": "ready-for-ledger-review",
-  "decision_state": "none"
+  "decision_state": "none",
+  "required_for_epic": false,
+  "task_pack_path": null
 }

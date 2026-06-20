@@ -6,19 +6,45 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M1",
   "epic_id": "XQ-M1-CORE-DATA",
-  "dependencies": ["XQ-M0-001"],
-  "source_contracts": ["docs/contracts/core-data-semantics.md", "docs/contracts/target-architecture.md", "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"],
+  "dependencies": [
+    "XQ-M0-001"
+  ],
+  "source_contracts": [
+    "docs/contracts/core-data-semantics.md",
+    "docs/contracts/target-architecture.md",
+    "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src/core", "IMPLEMENTATION_WORKSPACE/tests/core"],
-  "forbidden_actions": ["modify PLAN_WORKSPACE", "add dependency", "touch legacy Code tree", "broaden task scope"],
-  "claimability_rules": ["Task Pack must be issued", "execution_ready must be true"],
-  "machine_acceptance": ["NodeId and XQDataNode identity L0 checks pass"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src/core",
+    "IMPLEMENTATION_WORKSPACE/tests/core"
+  ],
+  "forbidden_actions": [
+    "modify PLAN_WORKSPACE",
+    "add dependency",
+    "touch legacy Code tree",
+    "broaden task scope"
+  ],
+  "claimability_rules": [
+    "Task Pack must be issued",
+    "execution_ready must be true"
+  ],
+  "machine_acceptance": [
+    "NodeId and XQDataNode identity L0 checks pass"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "XQ-M0 execution readiness is not complete and task pack is draft",
   "unblock_condition": "XQ-M0 issues this task pack with real base_commit and worktree",
   "owner": "Codex B",
   "next_action": "wait for XQ-M0",
-  "supersedes": ["02-core-data-03-xqdatanode-and-metadata"],
+  "supersedes": [
+    "02-core-data-03-xqdatanode-and-metadata"
+  ],
   "status": "blocked",
-  "decision_state": "proposed"
+  "decision_state": "proposed",
+  "required_for_epic": true,
+  "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"
 }

@@ -6,19 +6,38 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M7",
   "epic_id": "XQ-M7-SIMULATION-PREP",
-  "dependencies": ["XQ-M6-001"],
-  "source_contracts": ["docs/contracts/product-scope-v1.md"],
+  "dependencies": [
+    "XQ-M6-001"
+  ],
+  "source_contracts": [
+    "docs/contracts/product-scope-v1.md"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src", "IMPLEMENTATION_WORKSPACE/tests"],
-  "forbidden_actions": ["run solver as acceptance", "require Python binding"],
-  "claimability_rules": ["XQ-M6 accepted"],
-  "machine_acceptance": ["simulation case canonical result comparison passes"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src",
+    "IMPLEMENTATION_WORKSPACE/tests"
+  ],
+  "forbidden_actions": [
+    "run solver as acceptance",
+    "require Python binding"
+  ],
+  "claimability_rules": [
+    "XQ-M6 accepted"
+  ],
+  "machine_acceptance": [
+    "simulation case canonical result comparison passes"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "XQ-M6 is not complete",
   "unblock_condition": "mesh slice accepted",
   "owner": "Codex B",
   "next_action": "wait for XQ-M6",
   "supersedes": [],
   "status": "blocked",
-  "decision_state": "none"
+  "decision_state": "none",
+  "required_for_epic": true,
+  "task_pack_path": null
 }

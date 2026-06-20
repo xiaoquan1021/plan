@@ -34,6 +34,8 @@
     "product_milestone": { "type": ["string", "null"] },
     "epic_id": { "type": ["string", "null"] },
     "dependencies": { "type": "array", "items": { "type": "string" } },
+    "task_pack_path": { "type": ["string", "null"] },
+    "required_for_epic": { "type": "boolean" },
     "source_contracts": { "type": "array", "items": { "type": "string" } },
     "source_contract_hashes": { "type": "object" },
     "allowed_logical_scopes": { "type": "array", "items": { "type": "string" } },
@@ -66,5 +68,11 @@
     "contract_sha256": { "type": ["string", "null"] },
     "dependency_lock_sha256": { "type": ["string", "null"] },
     "toolchain_manifest_sha256": { "type": ["string", "null"] }
-  }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "task_kind": { "enum": ["implementation", "implementation-readiness", "acceptance"] } } },
+      "then": { "required": ["task_pack_path"] }
+    }
+  ]
 }

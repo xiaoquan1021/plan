@@ -6,19 +6,40 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M4",
   "epic_id": "XQ-M4-PATH-CONTOUR",
-  "dependencies": ["XQ-M2B-001"],
-  "source_contracts": ["docs/contracts/core-data-semantics.md", "docs/contracts/format-fixture-policy.md"],
+  "dependencies": [
+    "XQ-M2B-001"
+  ],
+  "source_contracts": [
+    "docs/contracts/core-data-semantics.md",
+    "docs/contracts/format-fixture-policy.md"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src", "IMPLEMENTATION_WORKSPACE/tests"],
-  "forbidden_actions": ["guess coordinate frame", "commit sensitive fixture data"],
-  "claimability_rules": ["XQ-M2B accepted", "path/contour semantics approved"],
-  "machine_acceptance": ["path and contour golden result comparison passes"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src",
+    "IMPLEMENTATION_WORKSPACE/tests"
+  ],
+  "forbidden_actions": [
+    "guess coordinate frame",
+    "commit sensitive fixture data"
+  ],
+  "claimability_rules": [
+    "XQ-M2B accepted",
+    "path/contour semantics approved"
+  ],
+  "machine_acceptance": [
+    "path and contour golden result comparison passes"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "XQ-M2B is not complete and coordinate decisions remain open",
   "unblock_condition": "fixture-backed slice and coordinate semantics approved",
   "owner": "Codex A",
   "next_action": "approve path and contour semantics",
   "supersedes": [],
   "status": "blocked",
-  "decision_state": "open"
+  "decision_state": "open",
+  "required_for_epic": true,
+  "task_pack_path": null
 }

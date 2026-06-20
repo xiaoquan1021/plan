@@ -6,19 +6,38 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M2A",
   "epic_id": "XQ-M2A-SYNTHETIC-SLICE",
-  "dependencies": ["XQ-M1-CORE-006"],
-  "source_contracts": ["docs/contracts/minimum-vertical-slice.md"],
+  "dependencies": [
+    "XQ-M1-CORE-006"
+  ],
+  "source_contracts": [
+    "docs/contracts/minimum-vertical-slice.md"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src", "IMPLEMENTATION_WORKSPACE/tests"],
-  "forbidden_actions": ["require L1 fixture", "claim real format coverage"],
-  "claimability_rules": ["XQ-M1 gate accepted"],
-  "machine_acceptance": ["L0 save/close/reopen test passes"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src",
+    "IMPLEMENTATION_WORKSPACE/tests"
+  ],
+  "forbidden_actions": [
+    "require L1 fixture",
+    "claim real format coverage"
+  ],
+  "claimability_rules": [
+    "XQ-M1 gate accepted"
+  ],
+  "machine_acceptance": [
+    "L0 save/close/reopen test passes"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "XQ-M1 is not complete",
   "unblock_condition": "XQ-M1 implementation gate accepted",
   "owner": "Codex B",
   "next_action": "wait for Core Data Authority",
   "supersedes": [],
   "status": "blocked",
-  "decision_state": "none"
+  "decision_state": "none",
+  "required_for_epic": true,
+  "task_pack_path": null
 }

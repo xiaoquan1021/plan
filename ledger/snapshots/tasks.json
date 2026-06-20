@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "generated_at": "2026-06-19T23:17:55+08:00",
+    "generated_at": "1970-01-01T00:00:00+00:00",
     "generator": "harness/generate_snapshots.py",
-    "generator_version": 2,
+    "generator_version": 3,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "e33d423dcda27c00bfd4a83558bf1504daee022022a917e71d346a82dcee6f69",
-    "task_definition_hash": "c63b664fb3711bc23c95bce5bcc93449e330ec5c9565ed9707b94358253ed467"
+    "source_hash": "140e4b9d3e458c5fc9ce780fee489c9a12859a74c79139b933b8ca34a51e8742",
+    "task_definition_hash": "0293c23a19ebe8241cc0c9d56197c00b3b9d192a10d9da1757665c658de8c56f"
   },
   "tasks": [
     {
@@ -14,15 +14,28 @@
       "allowed_logical_scopes": [
         "PLAN_WORKSPACE"
       ],
+      "base_commit": null,
       "blocked_reason": null,
       "claimability_rules": [
         "definitions-only projection may select this task"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "PR-M0-CONTRACT-KERNEL",
       "evidence_status": "definitions-only",
+      "execution_ready": null,
       "id": "PR-M0-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "validate PR-M0 contracts",
       "owner": "Codex B",
       "plan_rewrite_milestone": "PR-M0",
@@ -31,6 +44,8 @@
         "schema validation output",
         "snapshot check output"
       ],
+      "required_for_epic": false,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -44,24 +59,42 @@
       "task_dependencies": [],
       "task_id": "PR-M0-001",
       "task_kind": "plan-contract",
+      "task_pack_hash_valid": null,
+      "task_pack_path": null,
+      "task_pack_schema_valid": null,
       "title": "Truth source and baseline design contracts",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": null,
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
       "allowed_logical_scopes": [
         "PLAN_WORKSPACE"
       ],
+      "base_commit": null,
       "blocked_reason": null,
       "claimability_rules": [
         "PR-M0 contracts must exist"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "PR-M1-CONTRACT-KERNEL",
       "evidence_status": "definitions-only",
+      "execution_ready": null,
       "id": "PR-M1-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "validate contract kernel",
       "owner": "Codex B",
       "plan_rewrite_milestone": "PR-M1",
@@ -69,6 +102,8 @@
       "required_evidence": [
         "schema validation output"
       ],
+      "required_for_epic": false,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -88,24 +123,42 @@
       ],
       "task_id": "PR-M1-001",
       "task_kind": "plan-contract",
+      "task_pack_hash_valid": null,
+      "task_pack_path": null,
+      "task_pack_schema_valid": null,
       "title": "Contract kernel policies and templates",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": null,
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
       "allowed_logical_scopes": [
         "PLAN_WORKSPACE"
       ],
+      "base_commit": null,
       "blocked_reason": null,
       "claimability_rules": [
         "task-definition schemas must pass"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "PR-M2-LEDGER-PROJECTION",
       "evidence_status": "definitions-only",
+      "execution_ready": null,
       "id": "PR-M2-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "run projection checks",
       "owner": "Codex B",
       "plan_rewrite_milestone": "PR-M2",
@@ -114,6 +167,8 @@
         "generator output",
         "migration report"
       ],
+      "required_for_epic": false,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -130,24 +185,42 @@
       ],
       "task_id": "PR-M2-001",
       "task_kind": "harness",
+      "task_pack_hash_valid": null,
+      "task_pack_path": null,
+      "task_pack_schema_valid": null,
       "title": "Ledger migration and deterministic projection",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": null,
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
       "allowed_logical_scopes": [
         "PLAN_WORKSPACE"
       ],
+      "base_commit": null,
       "blocked_reason": null,
       "claimability_rules": [
         "schema validates draft task pack"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": null,
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": null,
       "id": "PR-M3-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "approve or revise Core Data Epic Contract",
       "owner": "Codex A",
       "plan_rewrite_milestone": "PR-M3",
@@ -155,6 +228,8 @@
       "required_evidence": [
         "schema validation output"
       ],
+      "required_for_epic": false,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -173,25 +248,43 @@
       ],
       "task_id": "PR-M3-001",
       "task_kind": "contract-readiness",
+      "task_pack_hash_valid": null,
+      "task_pack_path": null,
+      "task_pack_schema_valid": null,
       "title": "First Core Data epic contract readiness",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": null,
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
       "allowed_logical_scopes": [
         "IMPLEMENTATION_WORKSPACE"
       ],
+      "base_commit": null,
       "blocked_reason": "IMPLEMENTATION_WORKSPACE has not been baseline-frozen in this plan rewrite pass",
       "claimability_rules": [
         "repository strategy ADR approved",
         "baseline report exists"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "open",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M0-BASELINE",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M0-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "resolve baseline strategy after plan rewrite",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -199,6 +292,8 @@
       "required_evidence": [
         "WORKSPACE_RECONCILIATION_REPORT"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -214,9 +309,14 @@
       ],
       "task_id": "XQ-M0-001",
       "task_kind": "implementation-readiness",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Repository execution readiness baseline",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "Codex A/user approves baseline strategy and produces workspace reconciliation report",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -224,16 +324,29 @@
         "IMPLEMENTATION_WORKSPACE/src/core",
         "IMPLEMENTATION_WORKSPACE/tests/core"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M0 execution readiness is not complete and task pack is draft",
       "claimability_rules": [
         "Task Pack must be issued",
         "execution_ready must be true"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": "64aba6cd902818a5cdad695eebe03e2d26f7488b49c09ad4f47735d0bd909435",
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M1-CORE-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": "draft",
       "next_action": "wait for XQ-M0",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -242,6 +355,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -260,9 +375,14 @@
       ],
       "task_id": "XQ-M1-CORE-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": true,
+      "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml",
+      "task_pack_schema_valid": true,
       "title": "NodeId and minimal XQDataNode identity",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M0 issues this task pack with real base_commit and worktree",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -270,16 +390,29 @@
         "IMPLEMENTATION_WORKSPACE/src/core",
         "IMPLEMENTATION_WORKSPACE/tests/core"
       ],
+      "base_commit": null,
       "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
       "claimability_rules": [
         "Task Pack must be issued",
         "execution_ready must be true"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": "804e77bbb824a1b96deb5bae537e4d2a70c23a9d5d4e34a0d5995a9b6dc42f09",
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M1-CORE-002",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-001",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -288,6 +421,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -305,9 +440,14 @@
       ],
       "task_id": "XQ-M1-CORE-002",
       "task_kind": "implementation",
+      "task_pack_hash_valid": true,
+      "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-002.draft.yaml",
+      "task_pack_schema_valid": true,
       "title": "XQScene insert/find",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M1-CORE-001 accepted and task pack issued",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -315,16 +455,29 @@
         "IMPLEMENTATION_WORKSPACE/src/core",
         "IMPLEMENTATION_WORKSPACE/tests/core"
       ],
+      "base_commit": null,
       "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
       "claimability_rules": [
         "Task Pack must be issued",
         "execution_ready must be true"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": "97d3d9a94ee788e232cb11bbe9f2d1ec1cc6d0f9ee116e515ed8187c8810e3ea",
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M1-CORE-003",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-002",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -333,6 +486,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -350,9 +505,14 @@
       ],
       "task_id": "XQ-M1-CORE-003",
       "task_kind": "implementation",
+      "task_pack_hash_valid": true,
+      "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-003.draft.yaml",
+      "task_pack_schema_valid": true,
       "title": "XQScene remove and relation cleanup",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M1-CORE-002 accepted and task pack issued",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -360,16 +520,29 @@
         "IMPLEMENTATION_WORKSPACE/src/core",
         "IMPLEMENTATION_WORKSPACE/tests/core"
       ],
+      "base_commit": null,
       "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
       "claimability_rules": [
         "Task Pack must be issued",
         "execution_ready must be true"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": "2bea3c940d5e99d5282a509e3f955f39c4414f132126a8f8cf5b06a6e5b1ad9d",
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M1-CORE-004",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-003",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -378,6 +551,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -396,9 +571,14 @@
       ],
       "task_id": "XQ-M1-CORE-004",
       "task_kind": "implementation",
+      "task_pack_hash_valid": true,
+      "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-004.draft.yaml",
+      "task_pack_schema_valid": true,
       "title": "Source/derived relation and stale propagation",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M1-CORE-003 accepted and task pack issued",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -406,16 +586,29 @@
         "IMPLEMENTATION_WORKSPACE/src/core",
         "IMPLEMENTATION_WORKSPACE/tests/core"
       ],
+      "base_commit": null,
       "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
       "claimability_rules": [
         "Task Pack must be issued",
         "execution_ready must be true"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": "fc133f13b88c03459cf098794e8449e9b08e76337d27cd439ab4dcbdc587e8e6",
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M1-CORE-005",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-004",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -424,6 +617,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -441,9 +636,14 @@
       ],
       "task_id": "XQ-M1-CORE-005",
       "task_kind": "implementation",
+      "task_pack_hash_valid": true,
+      "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-005.draft.yaml",
+      "task_pack_schema_valid": true,
       "title": "XQProject lifecycle and unique XQScene",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M1-CORE-004 accepted and task pack issued",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -451,16 +651,29 @@
         "IMPLEMENTATION_WORKSPACE/src/core",
         "IMPLEMENTATION_WORKSPACE/tests/core"
       ],
+      "base_commit": null,
       "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
       "claimability_rules": [
         "Task Pack must be issued",
         "execution_ready must be true"
       ],
+      "computed_epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "computed_task_pack_sha256": "c1820678996b638dc09e1618fc3b795e85c1f3209faa308a5115a3294bd49e52",
       "decision_state": "proposed",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "proposed",
+      "epic_contract_path": "docs/contracts/epics/XQ-M1-core-data.epic.yaml",
+      "epic_contract_sha256": "0c57a1978afeca9d7b45e21d5dc22401cf5bcd21d2a02e41ca97c417eef7b834",
+      "epic_contract_status": "draft",
       "epic_id": "XQ-M1-CORE-DATA",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M1-CORE-006",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-005",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -469,6 +682,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -487,9 +702,14 @@
       ],
       "task_id": "XQ-M1-CORE-006",
       "task_kind": "implementation",
+      "task_pack_hash_valid": true,
+      "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-006.draft.yaml",
+      "task_pack_schema_valid": true,
       "title": "Diagnostics and provenance",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M1-CORE-005 accepted and task pack issued",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -497,15 +717,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M1 is not complete",
       "claimability_rules": [
         "XQ-M1 gate accepted"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M2A-SYNTHETIC-SLICE",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M2A-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "wait for Core Data Authority",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -514,6 +747,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -528,9 +763,14 @@
       ],
       "task_id": "XQ-M2A-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Synthetic project slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M1 implementation gate accepted",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -538,15 +778,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "no approved L1 fixture",
       "claimability_rules": [
         "approved L1 fixture exists"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "open",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M2B-FIXTURE-SLICE",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M2B-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "resolve L1 fixture strategy",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -556,6 +809,8 @@
         "fixture checksum",
         "Task Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -571,9 +826,14 @@
       ],
       "task_id": "XQ-M2B-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Fixture-backed project slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "L1 fixture decision approved and fixture available",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -581,15 +841,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M2B is not complete",
       "claimability_rules": [
         "XQ-M2B accepted"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M3-IMAGE-VISUALIZATION",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M3-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "wait for XQ-M2B",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -598,6 +871,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -612,9 +887,14 @@
       ],
       "task_id": "XQ-M3-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Image and visualization slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "fixture-backed project slice accepted",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -622,16 +902,29 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M2B is not complete and coordinate decisions remain open",
       "claimability_rules": [
         "XQ-M2B accepted",
         "path/contour semantics approved"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "open",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M4-PATH-CONTOUR",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M4-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "approve path and contour semantics",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -640,6 +933,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -655,9 +950,14 @@
       ],
       "task_id": "XQ-M4-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Path and contour slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "fixture-backed slice and coordinate semantics approved",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -665,15 +965,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "upstream slices are not complete",
       "claimability_rules": [
         "image and path/contour slices accepted"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M5-SEGMENTATION-SURFACE",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M5-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "wait for upstream slices",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -682,6 +995,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -697,9 +1012,14 @@
       ],
       "task_id": "XQ-M5-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Segmentation and surface model slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "XQ-M3 and XQ-M4 accepted",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -707,15 +1027,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M5 is not complete",
       "claimability_rules": [
         "XQ-M5 accepted"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M6-MESH",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M6-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "wait for XQ-M5",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -724,6 +1057,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -739,9 +1074,14 @@
       ],
       "task_id": "XQ-M6-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Mesh slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "segmentation/surface slice accepted",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -749,15 +1089,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M6 is not complete",
       "claimability_rules": [
         "XQ-M6 accepted"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M7-SIMULATION-PREP",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M7-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "wait for XQ-M6",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -766,6 +1119,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -780,9 +1135,14 @@
       ],
       "task_id": "XQ-M7-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Simulation preparation slice",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "mesh slice accepted",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -790,15 +1150,28 @@
         "IMPLEMENTATION_WORKSPACE/src",
         "IMPLEMENTATION_WORKSPACE/tests"
       ],
+      "base_commit": null,
       "blocked_reason": "XQ-M7 is not complete",
       "claimability_rules": [
         "XQ-M7 accepted"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "none",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M8-NATIVE-SAVE",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M8-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "wait for XQ-M7",
       "owner": "Codex B",
       "plan_rewrite_milestone": null,
@@ -807,6 +1180,8 @@
         "Task Result",
         "Codex B Gate Result"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -821,9 +1196,14 @@
       ],
       "task_id": "XQ-M8-001",
       "task_kind": "implementation",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Native save/reopen and migration",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "simulation preparation slice accepted",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     },
     {
       "acceptance_evidence": "none",
@@ -831,15 +1211,28 @@
         "IMPLEMENTATION_WORKSPACE",
         "ACCEPTANCE_PROJECT"
       ],
+      "base_commit": null,
       "blocked_reason": "L2 real full acceptance project is not approved",
       "claimability_rules": [
         "approved L2 real project binding exists"
       ],
+      "computed_epic_contract_sha256": null,
+      "computed_task_pack_sha256": null,
       "decision_state": "open",
+      "declared_task_pack_sha256": null,
+      "dependency_contract_sha256": null,
+      "dependency_lock_sha256": null,
+      "epic_contract_decision_state": "none",
+      "epic_contract_path": null,
+      "epic_contract_sha256": null,
+      "epic_contract_status": "not-started",
       "epic_id": "XQ-M9-FINAL-ACCEPTANCE",
       "evidence_status": "definitions-only",
+      "execution_ready": false,
       "id": "XQ-M9-001",
+      "implementation_dependency_lock_sha256": null,
       "implementation_evidence": "none",
+      "issuance_status": null,
       "next_action": "find or approve real acceptance project",
       "owner": "Codex A",
       "plan_rewrite_milestone": null,
@@ -849,6 +1242,8 @@
         "checksums",
         "performance evidence"
       ],
+      "required_for_epic": true,
+      "rollback_point": null,
       "runtime_projection": "none",
       "source_contract_hashes": {},
       "source_contracts": [
@@ -864,9 +1259,14 @@
       ],
       "task_id": "XQ-M9-001",
       "task_kind": "acceptance",
+      "task_pack_hash_valid": false,
+      "task_pack_path": null,
+      "task_pack_schema_valid": false,
       "title": "Real project final acceptance",
+      "toolchain_manifest_sha256": null,
       "unblock_condition": "ACCEPTANCE_PROJECT binding approved with privacy policy",
-      "workspace_state": "not-projected"
+      "workspace_state": "not-projected",
+      "worktree_binding": null
     }
   ]
 }

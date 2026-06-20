@@ -6,19 +6,38 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M6",
   "epic_id": "XQ-M6-MESH",
-  "dependencies": ["XQ-M5-001"],
-  "source_contracts": ["docs/contracts/target-architecture.md", "docs/contracts/format-fixture-policy.md"],
+  "dependencies": [
+    "XQ-M5-001"
+  ],
+  "source_contracts": [
+    "docs/contracts/target-architecture.md",
+    "docs/contracts/format-fixture-policy.md"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src", "IMPLEMENTATION_WORKSPACE/tests"],
-  "forbidden_actions": ["expose MMG or VTK mesh objects public API"],
-  "claimability_rules": ["XQ-M5 accepted"],
-  "machine_acceptance": ["mesh golden result comparison passes"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src",
+    "IMPLEMENTATION_WORKSPACE/tests"
+  ],
+  "forbidden_actions": [
+    "expose MMG or VTK mesh objects public API"
+  ],
+  "claimability_rules": [
+    "XQ-M5 accepted"
+  ],
+  "machine_acceptance": [
+    "mesh golden result comparison passes"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "XQ-M5 is not complete",
   "unblock_condition": "segmentation/surface slice accepted",
   "owner": "Codex B",
   "next_action": "wait for XQ-M5",
   "supersedes": [],
   "status": "blocked",
-  "decision_state": "none"
+  "decision_state": "none",
+  "required_for_epic": true,
+  "task_pack_path": null
 }

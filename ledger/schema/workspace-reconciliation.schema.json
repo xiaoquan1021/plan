@@ -8,8 +8,10 @@
     "schema_version": { "const": 1 },
     "workspace_state": { "type": "string" },
     "base_commit": { "type": ["string", "null"] },
+    "dependency_contract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
     "implementation_dependency_lock_sha256": { "type": ["string", "null"] },
     "dependency_lock_sha256": { "type": ["string", "null"] },
-    "toolchain_manifest_sha256": { "type": ["string", "null"] }
+    "toolchain_manifest_sha256": { "type": ["string", "null"] },
+    "reconciled_at": { "type": ["string", "null"] }
   }
 }

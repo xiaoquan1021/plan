@@ -17,7 +17,14 @@ jobs:
       - name: Harness unit tests
         run: python -m pytest harness/tests
       - name: Python syntax check
-        run: python -m py_compile harness/*.py
+        run: |
+          python - <<'PY'
+          import py_compile
+          from pathlib import Path
+          for path in sorted(Path("harness").glob("*.py")):
+              py_compile.compile(str(path), doraise=True)
+          print("py_compile passed")
+          PY
       - name: Schema validation
         run: python harness/validate_schema.py
       - name: Task graph validation

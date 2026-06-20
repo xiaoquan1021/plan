@@ -6,19 +6,44 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M1",
   "epic_id": "XQ-M1-CORE-DATA",
-  "dependencies": ["XQ-M1-CORE-004"],
-  "source_contracts": ["docs/contracts/core-data-semantics.md", "docs/contracts/task-packs/XQ-M1-CORE-005.draft.yaml"],
+  "dependencies": [
+    "XQ-M1-CORE-004"
+  ],
+  "source_contracts": [
+    "docs/contracts/core-data-semantics.md",
+    "docs/contracts/task-packs/XQ-M1-CORE-005.draft.yaml"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src/core", "IMPLEMENTATION_WORKSPACE/tests/core"],
-  "forbidden_actions": ["modify PLAN_WORKSPACE", "add dependency", "touch legacy Code tree", "implement UI reader"],
-  "claimability_rules": ["Task Pack must be issued", "execution_ready must be true"],
-  "machine_acceptance": ["XQProject lifecycle L0 checks pass"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src/core",
+    "IMPLEMENTATION_WORKSPACE/tests/core"
+  ],
+  "forbidden_actions": [
+    "modify PLAN_WORKSPACE",
+    "add dependency",
+    "touch legacy Code tree",
+    "implement UI reader"
+  ],
+  "claimability_rules": [
+    "Task Pack must be issued",
+    "execution_ready must be true"
+  ],
+  "machine_acceptance": [
+    "XQProject lifecycle L0 checks pass"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "upstream Core task and XQ-M0 execution readiness are not complete",
   "unblock_condition": "XQ-M1-CORE-004 accepted and task pack issued",
   "owner": "Codex B",
   "next_action": "wait for XQ-M1-CORE-004",
-  "supersedes": ["02-core-data-01-xqproject-lifecycle"],
+  "supersedes": [
+    "02-core-data-01-xqproject-lifecycle"
+  ],
   "status": "blocked",
-  "decision_state": "proposed"
+  "decision_state": "proposed",
+  "required_for_epic": true,
+  "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-005.draft.yaml"
 }

@@ -4,35 +4,20 @@
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from pathlib import Path
 from typing import Any
 
 try:
-    import yaml
     from jsonschema import Draft202012Validator
 except ModuleNotFoundError as exc:  # pragma: no cover - exercised by CI install step.
     print(f"missing CI dependency: {exc}", file=sys.stderr)
     raise
 
+from schema_validation import load_data, load_schema, validator_for
+
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-class SchemaValidationError(ValueError):
-    pass
-
-
-def load_data(path: Path) -> Any:
-    text = path.read_text(encoding="utf-8-sig")
-    if path.suffix.lower() in {".yaml", ".yml"}:
-        return yaml.safe_load(text)
-    return json.loads(text)
-
-
-def load_schema(name: str) -> dict[str, Any]:
-    return load_data(ROOT / "ledger/schema" / name)
 
 
 def display_path(path: Path) -> str:
@@ -48,7 +33,8 @@ def validate_instance(path: Path, schema: dict[str, Any], errors: list[str]) -> 
     except Exception as exc:  # noqa: BLE001 - report malformed YAML/JSON.
         errors.append(f"{display_path(path)}: parse failed: {exc}")
         return
-    validator = Draft202012Validator(schema)
+    schema_name = schema.get("title", "")
+    validator = Draft202012Validator(schema) if not schema_name else Draft202012Validator(schema)
     for error in sorted(validator.iter_errors(data), key=lambda item: list(item.path)):
         location = "/".join(str(part) for part in error.path) or "<root>"
         errors.append(f"{display_path(path)}:{location}: {error.message}")
@@ -122,7 +108,7 @@ def validate_required_groups(errors: list[str]) -> None:
     for path in sorted((ROOT / "docs/contracts/task-packs").glob("*.yaml")):
         validate_instance(path, load_schema("atomic-task-pack.schema.json"), errors)
 
-    for name in ["task-result", "task-gate-result", "epic-review"]:
+    for name in ["task-result", "task-gate-result", "epic-review", "epic-contract-approval"]:
         template = ROOT / "docs/contracts/templates" / f"{name}.template.yaml"
         validate_instance(template, load_schema(f"{name}.schema.json"), errors)
 

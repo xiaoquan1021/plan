@@ -36,7 +36,8 @@
       "required": ["record_type", "record_sha256"],
       "properties": {
         "record_type": { "enum": ["codex-a-epic-contract-approval", "codex-a-epic-review", "none"] },
-        "record_sha256": { "type": ["string", "null"] }
+        "record_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "record_path": { "type": ["string", "null"] }
       }
     },
     "base_commit": { "type": ["string", "null"] },
@@ -52,5 +53,23 @@
     "acceptance_levels": { "type": "array", "items": { "type": "string" } },
     "required_evidence": { "type": "array", "items": { "type": "string" } },
     "stale_triggers": { "type": "array", "items": { "type": "string" } }
-  }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision_state": { "const": "approved" } } },
+      "then": {
+        "properties": {
+          "approval_record": {
+            "type": "object",
+            "required": ["record_type", "record_sha256", "record_path"],
+            "properties": {
+              "record_type": { "enum": ["codex-a-epic-contract-approval"] },
+              "record_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "record_path": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

@@ -126,10 +126,21 @@ def task_local_blockers(task: dict[str, Any], tasks: list[dict[str, Any]]) -> li
     if task.get("decision_state") in {"open", "proposed"} and task.get("task_kind") not in {"plan-contract", "harness"}:
         blockers.append(f"decision_state is {task.get('decision_state')}")
     if task.get("task_kind") in {"implementation", "implementation-readiness", "acceptance"}:
-        if not task.get("task_pack_issued", False) and "Task Pack must be issued" in task.get("claimability_rules", []):
-            blockers.append("task pack is not issued")
+        if not task.get("task_pack_path"):
+            blockers.append("task pack is missing")
+        if task.get("task_pack_schema_valid") is False:
+            blockers.append("task pack schema invalid")
+        if task.get("issuance_status") != "issued":
+            blockers.append(f"task pack is {task.get('issuance_status') or 'missing'}")
         if task.get("execution_ready") is False:
             blockers.append("execution_ready is false")
+        for key in ["base_commit", "rollback_point", "worktree_binding"]:
+            if not task.get(key):
+                blockers.append(f"{key} is missing")
+        if task.get("task_pack_hash_valid") is False:
+            blockers.append("task pack hash mismatch")
+        if task.get("epic_contract_status") not in {None, "approved"}:
+            blockers.append("epic contract is not approved")
     return blockers
 
 

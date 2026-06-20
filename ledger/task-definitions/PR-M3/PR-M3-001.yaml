@@ -6,7 +6,9 @@
   "plan_rewrite_milestone": "PR-M3",
   "product_milestone": "XQ-M1",
   "epic_id": "XQ-M1-CORE-DATA",
-  "dependencies": ["PR-M2-001"],
+  "dependencies": [
+    "PR-M2-001"
+  ],
   "source_contracts": [
     "docs/contracts/core-data-semantics.md",
     "docs/contracts/templates/epic-contract.template.yaml",
@@ -15,16 +17,30 @@
     "docs/contracts/task-packs/XQ-M1-CORE-001.draft.yaml"
   ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["PLAN_WORKSPACE"],
-  "forbidden_actions": ["issue task without baseline", "start implementation"],
-  "claimability_rules": ["schema validates draft task pack"],
-  "machine_acceptance": ["atomic task draft validates", "execution_ready remains false"],
-  "required_evidence": ["schema validation output"],
+  "allowed_logical_scopes": [
+    "PLAN_WORKSPACE"
+  ],
+  "forbidden_actions": [
+    "issue task without baseline",
+    "start implementation"
+  ],
+  "claimability_rules": [
+    "schema validates draft task pack"
+  ],
+  "machine_acceptance": [
+    "atomic task draft validates",
+    "execution_ready remains false"
+  ],
+  "required_evidence": [
+    "schema validation output"
+  ],
   "blocked_reason": null,
   "unblock_condition": null,
   "owner": "Codex A",
   "next_action": "approve or revise Core Data Epic Contract",
   "supersedes": [],
   "status": "ready-for-ledger-review",
-  "decision_state": "proposed"
+  "decision_state": "proposed",
+  "required_for_epic": false,
+  "task_pack_path": null
 }

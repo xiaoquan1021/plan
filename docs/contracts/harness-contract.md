@@ -62,9 +62,13 @@ Decision state is not task runtime state.
 
 ## Deterministic Snapshot Generation
 
-`generated_at` is derived from the newest authoritative event time, then source commit time, then `SOURCE_DATE_EPOCH`. Wall-clock now is forbidden for committed snapshots.
+Definitions-only `generated_at` is derived only from `SOURCE_DATE_EPOCH`; when it is unset, the fixed value is `1970-01-01T00:00:00+00:00`. Definitions-only snapshots must never read Git HEAD commit time.
+
+Full projection `generated_at` is derived from the newest valid timestamp in runtime, completion, and workspace reconciliation inputs; if none exists, it uses `SOURCE_DATE_EPOCH`. Input timestamps are parsed as ISO 8601 with timezone and normalized to UTC. Wall-clock now is forbidden for committed snapshots.
 
 Generator output must use stable JSON key order, stable array ordering, UTF-8, LF newlines, repository-relative logical paths, and redacted private paths.
+
+Atomic Task Pack SHA256 is computed from the parsed Task Pack object after normalizing `task_pack_sha256` to `null`, serializing with sorted JSON keys, UTF-8, and fixed LF. An `issued` pack must declare the computed hash. A `draft` pack must keep `task_pack_sha256: null`.
 
 ## Snapshot Check
 

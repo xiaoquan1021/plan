@@ -1,0 +1,10 @@
+schema_version: 1
+epic_id: XQ-M1-CORE-DATA
+epic_contract_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+reviewer_role: Codex A
+reviewed_at: "1970-01-01T00:00:00+00:00"
+decision: blocked
+architecture_findings: []
+unresolved_decisions: []
+required_repairs: []
+approval_record_sha256: null

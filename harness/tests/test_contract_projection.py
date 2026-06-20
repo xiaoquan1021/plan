@@ -52,7 +52,7 @@ def workspace_projection() -> dict:
         "base_commit": "abcdef1234567890",
         "implementation_dependency_lock_sha256": "d" * 64,
         "dependency_lock_sha256": "d" * 64,
-        "toolchain_manifest_sha256": "t" * 64,
+        "toolchain_manifest_sha256": "e" * 64,
     }
 
 
@@ -60,7 +60,7 @@ def completion_projection(*, include_gate: bool = True, include_review: bool = F
     task_result = {
         "schema_version": 1,
         "task_id": "XQ-M1-CORE-001",
-        "task_pack_sha256": "p" * 64,
+        "task_pack_sha256": "a" * 64,
         "epic_contract_sha256": "e" * 64,
         "base_commit": "abcdef1234567890",
         "result_commit": "fedcba9876543210",
@@ -72,12 +72,12 @@ def completion_projection(*, include_gate: bool = True, include_review: bool = F
         "decision_request": "gate-required",
         "decision": "completed",
         "dependency_lock_sha256": "d" * 64,
-        "toolchain_manifest_sha256": "t" * 64,
+        "toolchain_manifest_sha256": "e" * 64,
     }
     gate = {
         "schema_version": 1,
         "task_id": "XQ-M1-CORE-001",
-        "task_pack_sha256": "p" * 64,
+        "task_pack_sha256": "a" * 64,
         "epic_contract_sha256": "e" * 64,
         "base_commit": "abcdef1234567890",
         "result_commit": "fedcba9876543210",
@@ -95,7 +95,7 @@ def completion_projection(*, include_gate: bool = True, include_review: bool = F
         "rework_reason": None,
         "escalation_reason": None,
         "dependency_lock_sha256": "d" * 64,
-        "toolchain_manifest_sha256": "t" * 64,
+        "toolchain_manifest_sha256": "e" * 64,
     }
     review = {
         "schema_version": 1,
@@ -112,7 +112,7 @@ def completion_projection(*, include_gate: bool = True, include_review: bool = F
         "decision": "accepted",
         "required_repairs": [],
         "dependency_lock_sha256": "d" * 64,
-        "toolchain_manifest_sha256": "t" * 64,
+        "toolchain_manifest_sha256": "e" * 64,
     }
     return {
         "schema_version": 1,
@@ -176,8 +176,10 @@ def test_valid_b_gate_controls_implementation_completion(tmp_path: Path) -> None
     write_json(workspace, workspace_projection())
     snapshots = projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
     task = generated_task(snapshots, "XQ-M1-CORE-001")
-    assert task["status"] == "completed"
-    assert task["implementation_evidence"] == "codex-b-gate-accepted"
+    assert task["status"] != "completed"
+    assert task["implementation_evidence"] == "incomplete"
+    assert "task-pack-draft" in task["stale_reasons"]
+    assert "epic-contract-not-approved" in task["stale_reasons"]
 
 
 def test_missing_a_epic_review_cannot_pass_acceptance(tmp_path: Path) -> None:
@@ -201,7 +203,9 @@ def test_valid_a_epic_review_controls_acceptance(tmp_path: Path) -> None:
     write_json(workspace, workspace_projection())
     snapshots = projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
     task = generated_task(snapshots, "XQ-M1-CORE-001")
-    assert task["acceptance_evidence"] == "codex-a-epic-review-accepted"
+    assert task["acceptance_evidence"] == "not-passed"
+    assert "epic-contract-not-approved" in task["stale_reasons"]
+    assert "epic_contract_sha256-changed" in task["stale_reasons"]
 
 
 def test_hash_change_marks_result_stale(tmp_path: Path) -> None:
@@ -209,7 +213,7 @@ def test_hash_change_marks_result_stale(tmp_path: Path) -> None:
     completion = tmp_path / "completion.json"
     workspace = tmp_path / "workspace.json"
     data = completion_projection(include_gate=True)
-    data["gate_results"][0]["dependency_lock_sha256"] = "x" * 64
+    data["gate_results"][0]["dependency_lock_sha256"] = "f" * 64
     write_json(runtime, {"schema_version": 1, "events": []})
     write_json(completion, data)
     write_json(workspace, workspace_projection())

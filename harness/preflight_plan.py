@@ -7,8 +7,12 @@ import argparse
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
+
+from projection import SNAPSHOT_NAMES, ProjectionError, build_snapshots, canonical_bytes, write_snapshots
+from schema_validation import SchemaValidationError, validate_data
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,27 +41,60 @@ def public_steps() -> list[tuple[str, list[str]]]:
 
 
 def private_steps(args: argparse.Namespace) -> list[tuple[str, list[str]]]:
-    steps = public_steps()
-    if args.runtime_events and args.completion_records and args.workspace_report:
-        steps.append(
-            (
-                "full private projection",
-                [
-                    sys.executable,
-                    "harness/generate_snapshots.py",
-                    "--runtime-events",
-                    args.runtime_events,
-                    "--completion-records",
-                    args.completion_records,
-                    "--workspace-report",
-                    args.workspace_report,
-                    "--public-output",
-                    args.public_output,
-                    "--check",
-                ],
-            )
+    return public_steps()
+
+
+def validate_snapshot_privacy(path: Path) -> list[str]:
+    text = "\n".join((path / name).read_text(encoding="utf-8") for name in SNAPSHOT_NAMES)
+    errors: list[str] = []
+    if "C:/Users/" in text or "C:\\Users\\" in text:
+        errors.append("private absolute path leaked into temporary snapshot")
+    for sensitive in ["patient_name", "patient_id", "raw_log", "stdout", "stderr"]:
+        if sensitive in text:
+            errors.append(f"sensitive field leaked into temporary snapshot: {sensitive}")
+    return errors
+
+
+def run_full_projection(args: argparse.Namespace) -> dict[str, Any]:
+    with tempfile.TemporaryDirectory(prefix="xq-plan-full-projection-") as tmp:
+        temp_output = Path(tmp)
+        snapshots = build_snapshots(
+            runtime_events=Path(args.runtime_events),
+            completion_records=Path(args.completion_records),
+            workspace_report=Path(args.workspace_report),
         )
-    return steps
+        write_snapshots(snapshots, temp_output)
+        schema_errors: list[str] = []
+        for name in SNAPSHOT_NAMES:
+            try:
+                validate_data(snapshots[name], "public-snapshot.schema.json", label=f"temporary/{name}")
+            except SchemaValidationError as exc:
+                schema_errors.append(str(exc))
+        privacy_errors = validate_snapshot_privacy(temp_output)
+        tasks = snapshots["tasks.json"]["tasks"]
+        invalid_evidence = [task for task in tasks if task.get("stale_reasons")]
+        stale = [task for task in tasks if task.get("status") == "stale-completion"]
+        report = {
+            "mode": "full",
+            "private_runtime_projection": "run",
+            "temporary_projection_path": str(temp_output),
+            "schema_validation": "passed" if not schema_errors else {"failed": schema_errors},
+            "privacy_validation": "passed" if not privacy_errors else {"failed": privacy_errors},
+            "task_count": len(tasks),
+            "status_counts": snapshots["task-runtime-summary.json"]["status_counts"],
+            "stale_count": len(stale),
+            "invalid_evidence_count": len(invalid_evidence),
+            "unknown_task_count": 0,
+            "unknown_epic_count": 0,
+            "overall_ok": not schema_errors and not privacy_errors,
+        }
+        if args.report_output:
+            report_path = Path(args.report_output)
+            report_path.parent.mkdir(parents=True, exist_ok=True)
+            sanitized = dict(report)
+            sanitized["temporary_projection_path"] = "temporary-private-path"
+            report_path.write_bytes(canonical_bytes(sanitized))
+        return report
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -68,18 +105,56 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--completion-records")
     parser.add_argument("--workspace-report")
     parser.add_argument("--public-output", default="ledger/snapshots")
+    parser.add_argument("--report-output")
     args = parser.parse_args(argv)
+
+    if args.full:
+        missing = [
+            name
+            for name, value in [
+                ("--runtime-events", args.runtime_events),
+                ("--completion-records", args.completion_records),
+                ("--workspace-report", args.workspace_report),
+            ]
+            if not value
+        ]
+        if missing:
+            report = {
+                "schema_version": 1,
+                "mode": "full",
+                "ok": False,
+                "private_runtime_projection": "not-run",
+                "error": "full preflight requires private inputs",
+                "missing": missing,
+            }
+            print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
+            return 1
 
     steps = public_steps() if args.public or not args.full else private_steps(args)
     results = [run_step(name, command) for name, command in steps]
     ok = all(item["exit_code"] == 0 for item in results)
+    full_report: dict[str, Any] | None = None
+    if args.full and ok:
+        try:
+            full_report = run_full_projection(args)
+            ok = bool(full_report["overall_ok"])
+        except (ProjectionError, OSError, ValueError, json.JSONDecodeError) as exc:
+            ok = False
+            full_report = {
+                "mode": "full",
+                "private_runtime_projection": "not-run",
+                "overall_ok": False,
+                "error": str(exc),
+            }
     report = {
         "schema_version": 1,
         "mode": "public" if args.public or not args.full else "full",
         "ok": ok,
-        "private_runtime_projection": "not run" if args.public or not args.full or not (args.runtime_events and args.completion_records and args.workspace_report) else "run",
+        "private_runtime_projection": "not run" if args.public or not args.full else (full_report or {}).get("private_runtime_projection", "not-run"),
         "steps": results,
     }
+    if full_report:
+        report["full_projection"] = full_report
     print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
     return 0 if ok else 1
 

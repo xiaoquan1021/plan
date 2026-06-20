@@ -6,19 +6,38 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M5",
   "epic_id": "XQ-M5-SEGMENTATION-SURFACE",
-  "dependencies": ["XQ-M3-001", "XQ-M4-001"],
-  "source_contracts": ["docs/contracts/target-architecture.md"],
+  "dependencies": [
+    "XQ-M3-001",
+    "XQ-M4-001"
+  ],
+  "source_contracts": [
+    "docs/contracts/target-architecture.md"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src", "IMPLEMENTATION_WORKSPACE/tests"],
-  "forbidden_actions": ["expose ITK or VTK public API"],
-  "claimability_rules": ["image and path/contour slices accepted"],
-  "machine_acceptance": ["segmentation/surface canonical checks pass"],
-  "required_evidence": ["Task Result", "Codex B Gate Result"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE/src",
+    "IMPLEMENTATION_WORKSPACE/tests"
+  ],
+  "forbidden_actions": [
+    "expose ITK or VTK public API"
+  ],
+  "claimability_rules": [
+    "image and path/contour slices accepted"
+  ],
+  "machine_acceptance": [
+    "segmentation/surface canonical checks pass"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result"
+  ],
   "blocked_reason": "upstream slices are not complete",
   "unblock_condition": "XQ-M3 and XQ-M4 accepted",
   "owner": "Codex B",
   "next_action": "wait for upstream slices",
   "supersedes": [],
   "status": "blocked",
-  "decision_state": "none"
+  "decision_state": "none",
+  "required_for_epic": true,
+  "task_pack_path": null
 }

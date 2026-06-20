@@ -6,19 +6,40 @@
   "plan_rewrite_milestone": null,
   "product_milestone": "XQ-M9",
   "epic_id": "XQ-M9-FINAL-ACCEPTANCE",
-  "dependencies": ["XQ-M8-001"],
-  "source_contracts": ["docs/contracts/final-acceptance-contract.md", "docs/contracts/acceptance-data-policy.md"],
+  "dependencies": [
+    "XQ-M8-001"
+  ],
+  "source_contracts": [
+    "docs/contracts/final-acceptance-contract.md",
+    "docs/contracts/acceptance-data-policy.md"
+  ],
   "source_contract_hashes": {},
-  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE", "ACCEPTANCE_PROJECT"],
-  "forbidden_actions": ["commit medical data", "print sensitive patient fields"],
-  "claimability_rules": ["approved L2 real project binding exists"],
-  "machine_acceptance": ["Codex A Epic Review decision accepted"],
-  "required_evidence": ["ACCEPTANCE_PROJECT binding", "checksums", "performance evidence"],
+  "allowed_logical_scopes": [
+    "IMPLEMENTATION_WORKSPACE",
+    "ACCEPTANCE_PROJECT"
+  ],
+  "forbidden_actions": [
+    "commit medical data",
+    "print sensitive patient fields"
+  ],
+  "claimability_rules": [
+    "approved L2 real project binding exists"
+  ],
+  "machine_acceptance": [
+    "Codex A Epic Review decision accepted"
+  ],
+  "required_evidence": [
+    "ACCEPTANCE_PROJECT binding",
+    "checksums",
+    "performance evidence"
+  ],
   "blocked_reason": "L2 real full acceptance project is not approved",
   "unblock_condition": "ACCEPTANCE_PROJECT binding approved with privacy policy",
   "owner": "Codex A",
   "next_action": "find or approve real acceptance project",
   "supersedes": [],
   "status": "blocked",
-  "decision_state": "open"
+  "decision_state": "open",
+  "required_for_epic": true,
+  "task_pack_path": null
 }

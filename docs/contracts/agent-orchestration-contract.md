@@ -14,6 +14,8 @@ Creates Atomic Task Packs from approved contracts, manages task worktrees, check
 
 Executes only `issued` Atomic Task Packs with `execution_ready: true`. Flash must not modify plan, change acceptance, expand scope, add unapproved dependencies, or continue after a stop condition.
 
+Flash eligibility is read from public projection fields `issuance_status` and `execution_ready`. The projection computes Task Pack SHA256 by normalizing `task_pack_sha256` to `null` before canonical JSON hashing; issued packs must declare that computed hash, while draft packs keep it `null`.
+
 ## Atomic Task Boundaries
 
 One task has one main goal, usually changes 1-5 main files, does not cross two domain Epics, includes a deterministic test or static check, and avoids incidental refactors.

@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "generated_at": "2026-06-19T23:17:55+08:00",
+    "generated_at": "1970-01-01T00:00:00+00:00",
     "generator": "harness/generate_snapshots.py",
-    "generator_version": 2,
+    "generator_version": 3,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "e33d423dcda27c00bfd4a83558bf1504daee022022a917e71d346a82dcee6f69",
-    "task_definition_hash": "c63b664fb3711bc23c95bce5bcc93449e330ec5c9565ed9707b94358253ed467"
+    "source_hash": "140e4b9d3e458c5fc9ce780fee489c9a12859a74c79139b933b8ca34a51e8742",
+    "task_definition_hash": "0293c23a19ebe8241cc0c9d56197c00b3b9d192a10d9da1757665c658de8c56f"
   },
   "note": "private runtime projection: not run",
   "private_inputs": {

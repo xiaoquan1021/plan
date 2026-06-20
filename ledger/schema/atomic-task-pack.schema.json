@@ -40,12 +40,12 @@
     "base_commit": { "type": ["string", "null"] },
     "rollback_point": { "type": ["string", "null"] },
     "worktree_binding": { "type": ["string", "null"] },
-    "epic_contract_sha256": { "type": ["string", "null"] },
-    "task_pack_sha256": { "type": ["string", "null"] },
-    "dependency_contract_sha256": { "type": ["string", "null"] },
+    "epic_contract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "task_pack_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "dependency_contract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
     "implementation_dependency_lock_path": { "type": "string", "minLength": 1 },
-    "implementation_dependency_lock_sha256": { "type": ["string", "null"] },
-    "toolchain_manifest_sha256": { "type": ["string", "null"] },
+    "implementation_dependency_lock_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "toolchain_manifest_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
     "supersedes": { "type": "array", "items": { "type": "string" } },
     "allowed_logical_scopes": { "type": "array", "items": { "type": "string" } },
     "allowed_paths": { "type": "array", "items": { "type": "string" } },
@@ -74,7 +74,8 @@
           "execution_ready": { "const": false },
           "base_commit": { "type": "null" },
           "rollback_point": { "type": "null" },
-          "worktree_binding": { "type": "null" }
+          "worktree_binding": { "type": "null" },
+          "task_pack_sha256": { "type": "null" }
         }
       }
     },
