@@ -60,13 +60,38 @@ def run_required_commit_ancestor_check(
     implementation_workspace: str | None,
     workspace_data: dict[str, Any],
     tasks: list[dict[str, Any]],
+    required: bool = False,
 ) -> dict[str, Any]:
     if not implementation_workspace:
+        if required:
+            return {
+                "status": "failed",
+                "reason": "implementation workspace binding required for accepted Epic integration or product acceptance",
+                "checked_count": 0,
+                "errors": ["implementation-workspace-required"],
+            }
         return {
             "status": "not-run",
             "reason": "implementation workspace binding not provided",
             "checked_count": 0,
             "errors": [],
+        }
+    repo = Path(implementation_workspace)
+    try:
+        probe = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"], cwd=str(repo), text=True, capture_output=True)
+    except OSError as exc:
+        return {
+            "status": "failed",
+            "reason": "implementation workspace is not accessible",
+            "checked_count": 0,
+            "errors": [f"implementation-workspace-invalid:{exc}"],
+        }
+    if probe.returncode != 0:
+        return {
+            "status": "failed",
+            "reason": "implementation workspace is not a git repository",
+            "checked_count": 0,
+            "errors": ["implementation-workspace-invalid"],
         }
     epic_head = workspace_data.get("epic_head_commit")
     integrated = workspace_data.get("integrated_task_commits") if isinstance(workspace_data.get("integrated_task_commits"), dict) else {}
@@ -86,11 +111,22 @@ def run_required_commit_ancestor_check(
     ]
     errors: list[str] = []
     checked = 0
-    repo = Path(implementation_workspace)
+    head_exists = subprocess.run(["git", "cat-file", "-e", f"{epic_head}^{{commit}}"], cwd=str(repo), text=True, capture_output=True)
+    if head_exists.returncode != 0:
+        return {
+            "status": "failed",
+            "reason": "workspace epic_head_commit does not exist in implementation workspace",
+            "checked_count": 0,
+            "errors": ["epic-head-commit-missing"],
+        }
     for task in required:
         task_id = str(task.get("task_id") or task.get("id"))
         commit = integrated.get(task_id)
         if not commit:
+            errors.append(f"required-task-commit-missing:{task_id}")
+            continue
+        commit_exists = subprocess.run(["git", "cat-file", "-e", f"{commit}^{{commit}}"], cwd=str(repo), text=True, capture_output=True)
+        if commit_exists.returncode != 0:
             errors.append(f"required-task-commit-missing:{task_id}")
             continue
         checked += 1
@@ -111,6 +147,32 @@ def run_required_commit_ancestor_check(
     }
 
 
+def ancestor_check_required(workspace_data: dict[str, Any], tasks: list[dict[str, Any]]) -> bool:
+    integrated = workspace_data.get("integrated_task_commits")
+    if workspace_data.get("epic_head_commit") or (isinstance(integrated, dict) and bool(integrated)):
+        return True
+    if any(task.get("acceptance_evidence") == "codex-a-epic-review-accepted" for task in tasks):
+        return True
+    return False
+
+
+def invalid_claimed_evidence(tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    invalid: list[dict[str, Any]] = []
+    for task in tasks:
+        if task.get("status") == "stale-completion":
+            invalid.append(task)
+            continue
+        if task.get("implementation_evidence") == "codex-b-gate-accepted" and task.get("stale_reasons"):
+            invalid.append(task)
+            continue
+        if task.get("acceptance_evidence") == "codex-a-epic-review-accepted" and task.get("stale_reasons"):
+            invalid.append(task)
+            continue
+        if task.get("plan_gate_evidence") == "stale" or task.get("plan_review_evidence") == "stale":
+            invalid.append(task)
+    return invalid
+
+
 def run_full_projection(args: argparse.Namespace) -> dict[str, Any]:
     with tempfile.TemporaryDirectory(prefix="xq-plan-full-projection-") as tmp:
         temp_output = Path(tmp)
@@ -129,13 +191,16 @@ def run_full_projection(args: argparse.Namespace) -> dict[str, Any]:
                 schema_errors.append(str(exc))
         privacy_errors = validate_snapshot_privacy(temp_output)
         tasks = snapshots["tasks.json"]["tasks"]
-        invalid_evidence = [task for task in tasks if task.get("stale_reasons")]
+        invalid_evidence = invalid_claimed_evidence(tasks)
         stale = [task for task in tasks if task.get("status") == "stale-completion"]
+        ancestor_required = ancestor_check_required(workspace_data if isinstance(workspace_data, dict) else {}, tasks)
         ancestor_check = run_required_commit_ancestor_check(
             implementation_workspace=args.implementation_workspace,
             workspace_data=workspace_data if isinstance(workspace_data, dict) else {},
             tasks=tasks,
+            required=ancestor_required,
         )
+        ancestor_ok = ancestor_check["status"] == "passed" or (ancestor_check["status"] == "not-run" and not ancestor_required)
         report = {
             "mode": "full",
             "private_runtime_projection": "run",
@@ -149,7 +214,7 @@ def run_full_projection(args: argparse.Namespace) -> dict[str, Any]:
             "invalid_evidence_count": len(invalid_evidence),
             "unknown_task_count": 0,
             "unknown_epic_count": 0,
-            "overall_ok": not schema_errors and not privacy_errors and ancestor_check["status"] in {"passed", "not-run"},
+            "overall_ok": not schema_errors and not privacy_errors and not invalid_evidence and ancestor_ok,
         }
         if args.report_output:
             report_path = Path(args.report_output)

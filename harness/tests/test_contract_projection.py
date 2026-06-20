@@ -290,6 +290,20 @@ def test_migration_uses_synthetic_legacy_input_and_is_deterministic(tmp_path: Pa
     assert first["legacy_completed_inherited_as_implementation_completed"] is False
 
 
+def test_migration_report_paths_are_stable_for_relative_and_absolute_inputs() -> None:
+    relative_legacy = Path("harness/tests/fixtures/synthetic-legacy-tasks.json")
+    relative_definition = Path("harness/tests/fixtures/synthetic-migration.yaml")
+    absolute_legacy = ROOT / relative_legacy
+    absolute_definition = ROOT / relative_definition
+
+    relative_report = migrate_legacy_ledger.build_report(relative_legacy, relative_definition)
+    absolute_report = migrate_legacy_ledger.build_report(absolute_legacy, absolute_definition)
+
+    assert relative_report == absolute_report
+    assert relative_report["legacy_input"] == "harness/tests/fixtures/synthetic-legacy-tasks.json"
+    assert relative_report["migration_definition"] == "harness/tests/fixtures/synthetic-migration.yaml"
+
+
 def test_migration_check_detects_drift(tmp_path: Path) -> None:
     legacy = ROOT / "harness/tests/fixtures/synthetic-legacy-tasks.json"
     definition = ROOT / "harness/tests/fixtures/synthetic-migration.yaml"

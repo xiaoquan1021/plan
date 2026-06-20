@@ -22,7 +22,7 @@
   "properties": {
     "schema_version": { "const": 1 },
     "plan_rewrite_milestone": { "enum": ["PR-M0", "PR-M1", "PR-M2", "PR-M3"] },
-    "plan_commit_sha": { "type": ["string", "null"] },
+    "plan_commit_sha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{7,40}$" },
     "reviewer_role": { "enum": ["Codex A", "Codex B", "Plan Gate"] },
     "reviewed_at": {
       "type": "string",
@@ -30,13 +30,65 @@
     },
     "decision": { "enum": ["accepted", "repair-required", "blocked", "not-run"] },
     "required_outcomes": { "type": "array", "items": { "type": "string" } },
-    "ci_evidence": { "type": "array", "items": { "type": "string" } },
+    "ci_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["workflow_name", "run_id", "run_url", "commit_sha", "conclusion", "jobs"],
+        "properties": {
+          "workflow_name": { "type": "string", "minLength": 1 },
+          "run_id": { "type": ["integer", "string"], "minLength": 1 },
+          "run_url": { "type": "string", "minLength": 1 },
+          "commit_sha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+          "conclusion": { "type": "string", "minLength": 1 },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "conclusion"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "conclusion": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
     "snapshot_hashes": {
       "type": "object",
       "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
     },
-    "migration_evidence": { "type": "array", "items": { "type": "string" } },
-    "public_preflight_evidence": { "type": "array", "items": { "type": "string" } },
+    "migration_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "exit_code", "status", "report_path", "report_sha256"],
+        "properties": {
+          "command": { "type": "string", "minLength": 1 },
+          "exit_code": { "type": "integer" },
+          "status": { "type": "string", "minLength": 1 },
+          "report_path": { "type": "string", "minLength": 1 },
+          "report_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "public_preflight_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "exit_code", "status"],
+        "properties": {
+          "command": { "type": "string", "minLength": 1 },
+          "exit_code": { "type": "integer" },
+          "status": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
     "unresolved_findings": { "type": "array", "items": { "type": "string" } },
     "required_repairs": { "type": "array", "items": { "type": "string" } },
     "review_record_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" }
@@ -46,8 +98,8 @@
       "if": { "properties": { "decision": { "const": "accepted" } } },
       "then": {
         "properties": {
-          "plan_commit_sha": { "type": "string", "minLength": 7 },
-          "reviewer_role": { "const": "Codex A" },
+          "plan_commit_sha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+          "reviewer_role": { "enum": ["Codex A", "Plan Gate"] },
           "required_outcomes": { "type": "array", "minItems": 1 },
           "ci_evidence": { "type": "array", "minItems": 1 },
           "snapshot_hashes": { "type": "object", "minProperties": 1 },

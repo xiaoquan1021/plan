@@ -78,6 +78,17 @@ Accepted Epic Reviews must not contain any unresolved risk with `severity: block
 
 Accepted Epic Reviews must match workspace reconciliation: `review_base_commit` equals `epic_base_commit`, `review_head_commit` equals `epic_head_commit`, and each required task's accepted Gate Result `result_commit` is listed in `integrated_task_commits`.
 
+Plan Rewrite Review SHA256 is also a canonical self-hash. The review is parsed, `review_record_sha256` is normalized to `null`, canonical JSON bytes are hashed, and accepted records must declare that computed value. Object key order is ignored; array order remains normative.
+
+Plan rewrite acceptance requires two independent accepted records for the same PR milestone:
+
+- a `Plan Gate` record proving mechanical checks for the reviewed commit;
+- a `Codex A` record proving independent plan architecture and contract review.
+
+Both records must bind to `plan_commit_sha`. The commit must exist and be current `HEAD` or an ancestor of `HEAD`. If the review record is added after the reviewed commit, every changed file between `plan_commit_sha` and `HEAD` must be limited to review or evidence paths; changes to harness, schemas, task definitions, workflows, snapshots, contracts, or migration definitions make the review stale.
+
+Accepted plan rewrite records must carry structured CI evidence for the `plan-contracts` workflow, current public snapshot hashes, migration check evidence, and public preflight evidence. Snapshot hashes are compared against the actual committed public snapshot files. CI evidence must bind workflow, run, commit, success conclusion, and job conclusions; arbitrary text is not accepted.
+
 ## Snapshot Check
 
 `harness/generate_snapshots.py --check` regenerates into a temporary directory and compares without overwriting the repository. Differences must report the field/source that changed.

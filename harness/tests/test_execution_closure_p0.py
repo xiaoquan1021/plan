@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
+from argparse import Namespace
 from pathlib import Path
 
 import pytest
@@ -121,12 +123,14 @@ def completion_projection(
     task_results: list[dict] | None = None,
     gate_results: list[dict] | None = None,
     epic_reviews: list[dict] | None = None,
+    plan_rewrite_reviews: list[dict] | None = None,
 ) -> dict:
     return {
         "schema_version": 1,
         "task_results": task_results or [],
         "gate_results": gate_results or [],
         "epic_reviews": epic_reviews or [],
+        "plan_rewrite_reviews": plan_rewrite_reviews or [],
     }
 
 
@@ -702,3 +706,314 @@ def test_product_acceptance_passes_only_after_all_required_tasks_complete() -> N
 
     assert milestones["XQ-M1"]["implementation_status"] == "completed"
     assert milestones["XQ-M1"]["acceptance_status"] == "passed"
+
+
+def current_commit() -> str:
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout.strip()
+
+
+def file_sha256(path: Path) -> str:
+    import hashlib
+
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def current_snapshot_hashes() -> dict[str, str]:
+    return {name: file_sha256(ROOT / "ledger/snapshots" / name) for name in projection.SNAPSHOT_NAMES}
+
+
+def migration_report_hash() -> str:
+    return file_sha256(ROOT / "ledger/archive/legacy-public-snapshot-202606/migration-report.json")
+
+
+def plan_rewrite_review(role: str, milestone: str = "PR-M0", **overrides) -> dict:
+    record = {
+        "schema_version": 1,
+        "plan_rewrite_milestone": milestone,
+        "plan_commit_sha": current_commit(),
+        "reviewer_role": role,
+        "reviewed_at": "2026-06-20T00:00:00+00:00",
+        "decision": "accepted",
+        "required_outcomes": ["public plan checks passed"],
+        "ci_evidence": [
+            {
+                "workflow_name": "plan-contracts",
+                "run_id": 123456,
+                "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/123456",
+                "commit_sha": current_commit(),
+                "conclusion": "success",
+                "jobs": [{"name": "public-contracts", "conclusion": "success"}],
+            }
+        ],
+        "snapshot_hashes": current_snapshot_hashes(),
+        "migration_evidence": [
+            {
+                "command": "python harness/migrate_legacy_ledger.py --check",
+                "exit_code": 0,
+                "status": "passed",
+                "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+                "report_sha256": migration_report_hash(),
+            }
+        ],
+        "public_preflight_evidence": [
+            {
+                "command": "python harness/preflight_plan.py --public",
+                "exit_code": 0,
+                "status": "passed",
+            }
+        ],
+        "unresolved_findings": [],
+        "required_repairs": [],
+        "review_record_sha256": None,
+    }
+    record.update(overrides)
+    record["review_record_sha256"] = projection.canonical_plan_rewrite_review_hash(record)
+    return record
+
+
+def build_plan_review_snapshots(tmp_path: Path, reviews: list[dict], monkeypatch=None) -> dict:
+    if monkeypatch is not None:
+        monkeypatch.setattr(projection, "github_ci_evidence_verified", lambda item: (True, []))
+    runtime, completion, workspace = write_full_inputs(
+        tmp_path,
+        runtime_projection(),
+        completion_projection(plan_rewrite_reviews=reviews),
+        workspace_projection(),
+    )
+    return projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
+
+
+def test_plan_rewrite_reviews_are_read_and_projected_to_pr_milestone(tmp_path: Path, monkeypatch) -> None:
+    snapshots = build_plan_review_snapshots(
+        tmp_path,
+        [
+            plan_rewrite_review("Plan Gate", "PR-M0"),
+            plan_rewrite_review("Codex A", "PR-M0"),
+        ],
+        monkeypatch,
+    )
+
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+    milestone = snapshots["public-state-summary.json"]["milestones"]["PR-M0"]
+
+    assert task["plan_gate_evidence"] == "accepted"
+    assert task["plan_review_evidence"] == "accepted"
+    assert milestone["plan_acceptance_status"] == "accepted"
+
+
+def test_plan_gate_and_codex_a_review_are_both_required(tmp_path: Path, monkeypatch) -> None:
+    only_gate = build_plan_review_snapshots(tmp_path / "gate", [plan_rewrite_review("Plan Gate", "PR-M0")], monkeypatch)
+    only_review = build_plan_review_snapshots(tmp_path / "review", [plan_rewrite_review("Codex A", "PR-M0")], monkeypatch)
+
+    assert only_gate["public-state-summary.json"]["milestones"]["PR-M0"]["plan_acceptance_status"] != "accepted"
+    assert only_review["public-state-summary.json"]["milestones"]["PR-M0"]["plan_acceptance_status"] != "accepted"
+
+
+def test_pr_m0_to_pr_m3_can_be_accepted_with_valid_plan_gate_and_review(tmp_path: Path, monkeypatch) -> None:
+    reviews = []
+    for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
+        reviews.append(plan_rewrite_review("Plan Gate", milestone))
+        reviews.append(plan_rewrite_review("Codex A", milestone))
+
+    snapshots = build_plan_review_snapshots(tmp_path, reviews, monkeypatch)
+
+    for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
+        assert snapshots["public-state-summary.json"]["milestones"][milestone]["plan_acceptance_status"] == "accepted"
+
+
+def test_conflicting_accepted_plan_reviews_are_rejected(tmp_path: Path) -> None:
+    first = plan_rewrite_review("Codex A", "PR-M0")
+    second = plan_rewrite_review("Codex A", "PR-M0", required_outcomes=["different outcome"])
+
+    runtime, completion, workspace = write_full_inputs(
+        tmp_path,
+        runtime_projection(),
+        completion_projection(plan_rewrite_reviews=[first, second]),
+        workspace_projection(),
+    )
+
+    with pytest.raises(projection.ProjectionError, match="multiple accepted plan rewrite reviews"):
+        projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
+
+
+def test_plan_rewrite_review_self_hash_tamper_is_stale(tmp_path: Path, monkeypatch) -> None:
+    gate = plan_rewrite_review("Plan Gate", "PR-M0")
+    review = plan_rewrite_review("Codex A", "PR-M0")
+    review["required_outcomes"] = ["tampered after hash"]
+
+    snapshots = build_plan_review_snapshots(tmp_path, [gate, review], monkeypatch)
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+
+    assert task["plan_review_evidence"] == "stale"
+    assert "plan-review-self-hash-mismatch" in task["stale_reasons"]
+    assert snapshots["public-state-summary.json"]["milestones"]["PR-M0"]["plan_acceptance_status"] == "stale"
+
+
+def test_plan_rewrite_review_snapshot_hash_mismatch_is_stale(tmp_path: Path, monkeypatch) -> None:
+    gate = plan_rewrite_review("Plan Gate", "PR-M0")
+    review = plan_rewrite_review("Codex A", "PR-M0")
+    review["snapshot_hashes"]["tasks.json"] = HEX_A
+    review["review_record_sha256"] = projection.canonical_plan_rewrite_review_hash(review)
+
+    snapshots = build_plan_review_snapshots(tmp_path, [gate, review], monkeypatch)
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+
+    assert task["plan_review_evidence"] == "stale"
+    assert "snapshot-hash-mismatch:tasks.json" in task["stale_reasons"]
+
+
+def test_plan_rewrite_review_ci_commit_mismatch_is_stale(tmp_path: Path, monkeypatch) -> None:
+    gate = plan_rewrite_review("Plan Gate", "PR-M0")
+    review = plan_rewrite_review("Codex A", "PR-M0")
+    review["ci_evidence"][0]["commit_sha"] = "0" * 40
+    review["review_record_sha256"] = projection.canonical_plan_rewrite_review_hash(review)
+
+    snapshots = build_plan_review_snapshots(tmp_path, [gate, review], monkeypatch)
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+
+    assert task["plan_review_evidence"] == "stale"
+    assert "ci-commit-mismatch" in task["stale_reasons"]
+
+
+def test_plan_rewrite_review_after_allowed_review_file_change_remains_valid(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(projection, "git_commit_exists", lambda commit: True)
+    monkeypatch.setattr(projection, "git_is_ancestor", lambda commit, head="HEAD": True)
+    monkeypatch.setattr(projection, "changed_files_since_commit", lambda commit: ["ledger/reviews/PR-M0-review.yaml"])
+
+    snapshots = build_plan_review_snapshots(
+        tmp_path,
+        [plan_rewrite_review("Plan Gate", "PR-M0"), plan_rewrite_review("Codex A", "PR-M0")],
+        monkeypatch,
+    )
+
+    assert snapshots["public-state-summary.json"]["milestones"]["PR-M0"]["plan_acceptance_status"] == "accepted"
+
+
+def test_plan_rewrite_review_after_harness_change_is_stale(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(projection, "git_commit_exists", lambda commit: True)
+    monkeypatch.setattr(projection, "git_is_ancestor", lambda commit, head="HEAD": True)
+    monkeypatch.setattr(projection, "changed_files_since_commit", lambda commit: ["harness/projection.py"])
+
+    snapshots = build_plan_review_snapshots(
+        tmp_path,
+        [plan_rewrite_review("Plan Gate", "PR-M0"), plan_rewrite_review("Codex A", "PR-M0")],
+        monkeypatch,
+    )
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+
+    assert task["plan_review_evidence"] == "stale"
+    assert "plan-review-stale-after-reviewed-commit" in task["stale_reasons"]
+
+
+def test_plan_rewrite_review_migration_and_public_preflight_evidence_are_checked(tmp_path: Path, monkeypatch) -> None:
+    gate = plan_rewrite_review("Plan Gate", "PR-M0")
+    review = plan_rewrite_review("Codex A", "PR-M0")
+    review["migration_evidence"][0]["report_sha256"] = HEX_A
+    review["public_preflight_evidence"][0]["exit_code"] = 1
+    review["review_record_sha256"] = projection.canonical_plan_rewrite_review_hash(review)
+
+    snapshots = build_plan_review_snapshots(tmp_path, [gate, review], monkeypatch)
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+
+    assert task["plan_review_evidence"] == "stale"
+    assert "migration-report-hash-mismatch" in task["stale_reasons"]
+    assert "public-preflight-failed" in task["stale_reasons"]
+
+
+def test_plan_rewrite_review_ci_api_verification_failure_is_stale(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(projection, "github_ci_evidence_verified", lambda item: (False, ["ci-run-unverified:test"]))
+
+    snapshots = build_plan_review_snapshots(
+        tmp_path,
+        [plan_rewrite_review("Plan Gate", "PR-M0"), plan_rewrite_review("Codex A", "PR-M0")],
+    )
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M0-001")
+
+    assert task["plan_review_evidence"] == "stale"
+    assert "ci-run-unverified:test" in task["stale_reasons"]
+
+
+def test_full_preflight_requires_ancestor_check_when_accepted_epic_review_exists(tmp_path: Path) -> None:
+    runtime, completion, workspace = write_full_inputs(
+        tmp_path,
+        runtime_projection(),
+        completion_projection(epic_reviews=[accepted_review(epic_id="XQ-M1-CORE-DATA")]),
+        {**workspace_projection(), "epic_id": "XQ-M1-CORE-DATA", "epic_base_commit": "base123", "epic_head_commit": "head456"},
+    )
+
+    report = preflight_plan.run_full_projection(
+        Namespace(
+            runtime_events=str(runtime),
+            completion_records=str(completion),
+            workspace_report=str(workspace),
+            implementation_workspace=None,
+            report_output=None,
+        )
+    )
+
+    assert report["ancestor_validation"]["status"] == "failed"
+    assert "implementation-workspace-required" in report["ancestor_validation"]["errors"]
+    assert report["overall_ok"] is False
+
+
+def test_full_preflight_allows_ancestor_not_run_without_epic_integration(tmp_path: Path) -> None:
+    runtime, completion, workspace = write_full_inputs(
+        tmp_path,
+        runtime_projection(),
+        completion_projection(),
+        workspace_projection(),
+    )
+
+    report = preflight_plan.run_full_projection(
+        Namespace(
+            runtime_events=str(runtime),
+            completion_records=str(completion),
+            workspace_report=str(workspace),
+            implementation_workspace=None,
+            report_output=None,
+        )
+    )
+
+    assert report["ancestor_validation"]["status"] == "not-run"
+    assert report["overall_ok"] is True
+
+
+def test_required_task_commit_not_ancestor_fails(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run(["git", "init"], cwd=repo, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.email", "test@example.invalid"], cwd=repo, check=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
+    (repo / "file.txt").write_text("base\n", encoding="utf-8")
+    subprocess.run(["git", "add", "file.txt"], cwd=repo, check=True)
+    subprocess.run(["git", "commit", "-m", "base"], cwd=repo, check=True, capture_output=True)
+    base = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, text=True, capture_output=True, check=True).stdout.strip()
+    subprocess.run(["git", "checkout", "-b", "side"], cwd=repo, check=True, capture_output=True)
+    (repo / "file.txt").write_text("side\n", encoding="utf-8")
+    subprocess.run(["git", "commit", "-am", "side"], cwd=repo, check=True, capture_output=True)
+    side = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, text=True, capture_output=True, check=True).stdout.strip()
+    subprocess.run(["git", "checkout", "master"], cwd=repo, check=True, capture_output=True)
+    (repo / "file.txt").write_text("head\n", encoding="utf-8")
+    subprocess.run(["git", "commit", "-am", "head"], cwd=repo, check=True, capture_output=True)
+    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, text=True, capture_output=True, check=True).stdout.strip()
+
+    passed = preflight_plan.run_required_commit_ancestor_check(
+        implementation_workspace=str(repo),
+        workspace_data={"epic_id": "EPIC", "epic_head_commit": head, "integrated_task_commits": {"T1": base}},
+        tasks=[{"task_id": "T1", "task_kind": "implementation", "required_for_epic": True, "epic_id": "EPIC"}],
+    )
+    failed = preflight_plan.run_required_commit_ancestor_check(
+        implementation_workspace=str(repo),
+        workspace_data={"epic_id": "EPIC", "epic_head_commit": head, "integrated_task_commits": {"T1": side}},
+        tasks=[{"task_id": "T1", "task_kind": "implementation", "required_for_epic": True, "epic_id": "EPIC"}],
+    )
+
+    assert passed["status"] == "passed"
+    assert failed["status"] == "failed"
+    assert "required-task-not-integrated:T1" in failed["errors"]

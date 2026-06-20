@@ -38,6 +38,8 @@
       "issuance_status": null,
       "next_action": "validate PR-M0 contracts",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": "PR-M0",
       "product_milestone": null,
       "required_evidence": [
@@ -97,6 +99,8 @@
       "issuance_status": null,
       "next_action": "validate contract kernel",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": "PR-M1",
       "product_milestone": null,
       "required_evidence": [
@@ -161,6 +165,8 @@
       "issuance_status": null,
       "next_action": "run projection checks",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": "PR-M2",
       "product_milestone": null,
       "required_evidence": [
@@ -223,6 +229,8 @@
       "issuance_status": null,
       "next_action": "approve or revise Core Data Epic Contract",
       "owner": "Codex A",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": "PR-M3",
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -287,6 +295,8 @@
       "issuance_status": null,
       "next_action": "resolve baseline strategy after plan rewrite",
       "owner": "Codex A",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M0",
       "required_evidence": [
@@ -349,6 +359,8 @@
       "issuance_status": "draft",
       "next_action": "wait for XQ-M0",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -415,6 +427,8 @@
       "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-001",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -480,6 +494,8 @@
       "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-002",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -545,6 +561,8 @@
       "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-003",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -611,6 +629,8 @@
       "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-004",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -676,6 +696,8 @@
       "issuance_status": "draft",
       "next_action": "wait for XQ-M1-CORE-005",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M1",
       "required_evidence": [
@@ -741,6 +763,8 @@
       "issuance_status": null,
       "next_action": "wait for Core Data Authority",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M2A",
       "required_evidence": [
@@ -802,6 +826,8 @@
       "issuance_status": null,
       "next_action": "resolve L1 fixture strategy",
       "owner": "Codex A",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M2B",
       "required_evidence": [
@@ -865,6 +891,8 @@
       "issuance_status": null,
       "next_action": "wait for XQ-M2B",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M3",
       "required_evidence": [
@@ -927,6 +955,8 @@
       "issuance_status": null,
       "next_action": "approve path and contour semantics",
       "owner": "Codex A",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M4",
       "required_evidence": [
@@ -989,6 +1019,8 @@
       "issuance_status": null,
       "next_action": "wait for upstream slices",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M5",
       "required_evidence": [
@@ -1051,6 +1083,8 @@
       "issuance_status": null,
       "next_action": "wait for XQ-M5",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M6",
       "required_evidence": [
@@ -1113,6 +1147,8 @@
       "issuance_status": null,
       "next_action": "wait for XQ-M6",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M7",
       "required_evidence": [
@@ -1174,6 +1210,8 @@
       "issuance_status": null,
       "next_action": "wait for XQ-M7",
       "owner": "Codex B",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M8",
       "required_evidence": [
@@ -1235,6 +1273,8 @@
       "issuance_status": null,
       "next_action": "find or approve real acceptance project",
       "owner": "Codex A",
+      "plan_gate_evidence": "not-run",
+      "plan_review_evidence": "not-run",
       "plan_rewrite_milestone": null,
       "product_milestone": "XQ-M9",
       "required_evidence": [
