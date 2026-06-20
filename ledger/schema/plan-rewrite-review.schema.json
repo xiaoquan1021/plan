@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XQ Plan Repository Rewrite Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "plan_rewrite_milestone",
+    "plan_commit_sha",
+    "reviewer_role",
+    "reviewed_at",
+    "decision",
+    "required_outcomes",
+    "ci_evidence",
+    "snapshot_hashes",
+    "migration_evidence",
+    "public_preflight_evidence",
+    "unresolved_findings",
+    "required_repairs",
+    "review_record_sha256"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "plan_rewrite_milestone": { "enum": ["PR-M0", "PR-M1", "PR-M2", "PR-M3"] },
+    "plan_commit_sha": { "type": ["string", "null"] },
+    "reviewer_role": { "enum": ["Codex A", "Codex B", "Plan Gate"] },
+    "reviewed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "decision": { "enum": ["accepted", "repair-required", "blocked", "not-run"] },
+    "required_outcomes": { "type": "array", "items": { "type": "string" } },
+    "ci_evidence": { "type": "array", "items": { "type": "string" } },
+    "snapshot_hashes": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "migration_evidence": { "type": "array", "items": { "type": "string" } },
+    "public_preflight_evidence": { "type": "array", "items": { "type": "string" } },
+    "unresolved_findings": { "type": "array", "items": { "type": "string" } },
+    "required_repairs": { "type": "array", "items": { "type": "string" } },
+    "review_record_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "accepted" } } },
+      "then": {
+        "properties": {
+          "plan_commit_sha": { "type": "string", "minLength": 7 },
+          "reviewer_role": { "const": "Codex A" },
+          "required_outcomes": { "type": "array", "minItems": 1 },
+          "ci_evidence": { "type": "array", "minItems": 1 },
+          "snapshot_hashes": { "type": "object", "minProperties": 1 },
+          "migration_evidence": { "type": "array", "minItems": 1 },
+          "public_preflight_evidence": { "type": "array", "minItems": 1 },
+          "unresolved_findings": { "type": "array", "maxItems": 0 },
+          "required_repairs": { "type": "array", "maxItems": 0 },
+          "review_record_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    }
+  ]
+}

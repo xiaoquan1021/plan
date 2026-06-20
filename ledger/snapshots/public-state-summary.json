@@ -12,8 +12,8 @@
     "generator_version": 3,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "140e4b9d3e458c5fc9ce780fee489c9a12859a74c79139b933b8ca34a51e8742",
-    "task_definition_hash": "0293c23a19ebe8241cc0c9d56197c00b3b9d192a10d9da1757665c658de8c56f"
+    "source_hash": "4e6348e2be4ddbee04cf2b2dd334119d652b8589668da4923daca5456e1618d0",
+    "task_definition_hash": "527873963fa777dd36744f7ba116530cbe36bf04ce9d66ff22e3727ad6c04edb"
   },
   "milestones": {
     "PR-M0": {
@@ -21,6 +21,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "not-started",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [],
       "status_source": "generated from task definitions and runtime projection"
     },
@@ -29,6 +30,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "not-started",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [],
       "status_source": "generated from task definitions and runtime projection"
     },
@@ -37,6 +39,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "not-started",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [],
       "status_source": "generated from task definitions and runtime projection"
     },
@@ -45,6 +48,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "not-started",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [],
       "status_source": "generated from task definitions and runtime projection"
     },
@@ -53,6 +57,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M0-001"
       ],
@@ -63,6 +68,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M1-CORE-001",
         "XQ-M1-CORE-002",
@@ -78,6 +84,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M2A-001"
       ],
@@ -88,6 +95,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M2B-001"
       ],
@@ -98,6 +106,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M3-001"
       ],
@@ -108,6 +117,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M4-001"
       ],
@@ -118,6 +128,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M5-001"
       ],
@@ -128,6 +139,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M6-001"
       ],
@@ -138,6 +150,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M7-001"
       ],
@@ -148,6 +161,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "blocked",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [
         "XQ-M8-001"
       ],
@@ -158,6 +172,7 @@
       "contract_readiness_status": "not-started",
       "contract_status": "draft",
       "implementation_status": "not-started",
+      "plan_acceptance_status": "not-run",
       "required_task_ids": [],
       "status_source": "generated from task definitions and runtime projection"
     }

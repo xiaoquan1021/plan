@@ -1,0 +1,14 @@
+schema_version: 1
+plan_rewrite_milestone: PR-M0
+plan_commit_sha: null
+reviewer_role: Codex A
+reviewed_at: "1970-01-01T00:00:00+00:00"
+decision: not-run
+required_outcomes: []
+ci_evidence: []
+snapshot_hashes: {}
+migration_evidence: []
+public_preflight_evidence: []
+unresolved_findings: []
+required_repairs: []
+review_record_sha256: null

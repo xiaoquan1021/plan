@@ -108,7 +108,7 @@ def validate_required_groups(errors: list[str]) -> None:
     for path in sorted((ROOT / "docs/contracts/task-packs").glob("*.yaml")):
         validate_instance(path, load_schema("atomic-task-pack.schema.json"), errors)
 
-    for name in ["task-result", "task-gate-result", "epic-review", "epic-contract-approval"]:
+    for name in ["task-result", "task-gate-result", "epic-review", "epic-contract-approval", "plan-rewrite-review"]:
         template = ROOT / "docs/contracts/templates" / f"{name}.template.yaml"
         validate_instance(template, load_schema(f"{name}.schema.json"), errors)
 

@@ -370,6 +370,7 @@ def test_completed_plan_task_does_not_approve_contract() -> None:
 
     assert milestones["PR-M0"]["contract_status"] != "approved"
     assert milestones["PR-M0"]["contract_readiness_status"] in {"ready-for-approval", "in-progress"}
+    assert milestones["PR-M0"]["plan_acceptance_status"] == "not-run"
 
 
 def test_one_completed_task_does_not_complete_multi_task_milestone() -> None:
@@ -475,3 +476,229 @@ def test_epic_review_before_required_tasks_complete_is_rejected_in_projection(tm
     task = next(item for item in projected if item["task_id"] == "TASK-A")
     assert task["acceptance_evidence"] == "not-passed"
     assert "epic-review-before-required-tasks-complete" in task["stale_reasons"]
+
+
+def test_canonical_hash_preserves_array_order_and_sorts_object_keys() -> None:
+    assert projection.hash_data({"b": 2, "a": 1}) == projection.hash_data({"a": 1, "b": 2})
+    assert projection.hash_data({"commands": ["configure", "build", "test"]}) != projection.hash_data(
+        {"commands": ["test", "build", "configure"]}
+    )
+    assert projection.hash_data({"workflow_steps": ["one", "two"]}) != projection.hash_data({"workflow_steps": ["two", "one"]})
+
+
+def test_task_pack_command_order_changes_hash() -> None:
+    pack = {
+        "schema_version": 1,
+        "task_id": "T",
+        "epic_id": "E",
+        "task_pack_sha256": None,
+        "commands": [{"command": "configure"}, {"command": "build"}, {"command": "test"}],
+    }
+    reordered = {**pack, "commands": list(reversed(pack["commands"]))}
+
+    assert projection.canonical_task_pack_hash(pack) != projection.canonical_task_pack_hash(reordered)
+
+
+def test_epic_contract_content_hash_ignores_runtime_fields_and_path() -> None:
+    contract = {"schema_version": 1, "epic_id": "E", "required_outcomes": ["a", "b"]}
+    with_runtime = {**contract, "_path": "docs/contracts/epics/E.yaml", "_computed_sha256": HEX_A}
+    changed = {**contract, "required_outcomes": ["b", "a"]}
+
+    assert projection.canonical_contract_hash(contract) == projection.canonical_contract_hash(with_runtime)
+    assert projection.canonical_contract_hash(contract) != projection.canonical_contract_hash(changed)
+
+
+def test_approval_record_self_hash_and_tamper_detection() -> None:
+    approval = {
+        "schema_version": 1,
+        "epic_id": "E",
+        "epic_contract_sha256": HEX_B,
+        "reviewer_role": "Codex A",
+        "reviewed_at": "2026-06-20T00:00:00+00:00",
+        "decision": "approved",
+        "architecture_findings": ["ok"],
+        "unresolved_decisions": [],
+        "required_repairs": [],
+        "approval_record_sha256": None,
+    }
+    computed = projection.canonical_approval_record_hash(approval)
+    approval["approval_record_sha256"] = computed
+    tampered = {**approval, "architecture_findings": ["changed"]}
+
+    assert projection.canonical_approval_record_hash(approval) == computed
+    assert projection.canonical_approval_record_hash(tampered) != approval["approval_record_sha256"]
+
+
+def test_valid_approval_record_uses_contract_content_hash(tmp_path: Path, monkeypatch) -> None:
+    contract = {"epic_id": "E", "decision_state": "approved"}
+    contract_hash = projection.canonical_contract_hash(contract)
+    approval = {
+        "schema_version": 1,
+        "epic_id": "E",
+        "epic_contract_sha256": contract_hash,
+        "reviewer_role": "Codex A",
+        "reviewed_at": "2026-06-20T00:00:00+00:00",
+        "decision": "approved",
+        "architecture_findings": ["architecture reviewed"],
+        "unresolved_decisions": [],
+        "required_repairs": [],
+        "approval_record_sha256": None,
+    }
+    approval["approval_record_sha256"] = projection.canonical_approval_record_hash(approval)
+    approval_path = tmp_path / "approval.yaml"
+    write_json(approval_path, approval)
+    monkeypatch.setattr(projection, "ROOT", tmp_path)
+    contract.update(
+        {
+            "_computed_sha256": contract_hash,
+            "approval_record": {
+                "record_type": "codex-a-epic-contract-approval",
+                "record_sha256": approval["approval_record_sha256"],
+                "record_path": "approval.yaml",
+            },
+        }
+    )
+
+    assert projection.approval_record_valid(contract)
+
+
+def accepted_review(**overrides) -> dict:
+    review = {
+        "schema_version": 1,
+        "epic_id": "EPIC",
+        "epic_contract_sha256": HEX_B,
+        "review_base_commit": "base123",
+        "review_head_commit": "head456",
+        "required_outcomes": ["outcome"],
+        "architecture_constraints": ["constraint"],
+        "acceptance_evidence": ["evidence"],
+        "cross_task_integration_findings": [],
+        "unresolved_risks": [],
+        "contract_defects": [],
+        "decision": "accepted",
+        "required_repairs": [],
+        "dependency_lock_sha256": HEX_D,
+        "toolchain_manifest_sha256": HEX_E,
+    }
+    review.update(overrides)
+    return review
+
+
+def test_accepted_review_with_blocking_risk_is_rejected() -> None:
+    review = accepted_review(
+        unresolved_risks=[
+            {
+                "severity": "blocking",
+                "description": "cannot accept",
+                "evidence": "missing required path",
+                "owner": "Codex A",
+            }
+        ]
+    )
+
+    ok, reasons = projection.valid_epic_review(
+        {**task_definition(), "epic_id": "EPIC"},
+        workspace_projection(),
+        review,
+    )
+
+    assert ok is False
+    assert "epic-review-blocking-risk" in reasons
+
+
+def test_accepted_review_with_non_blocking_risk_is_allowed() -> None:
+    review = accepted_review(
+        unresolved_risks=[
+            {
+                "severity": "non-blocking",
+                "description": "follow later",
+                "follow_up": "track in next milestone",
+                "owner": "Codex A",
+                "non_blocking_rationale": "does not affect current acceptance contract",
+            }
+        ]
+    )
+
+    ok, reasons = projection.valid_epic_review(
+        {**task_definition(), "epic_id": "EPIC"},
+        workspace_projection(),
+        review,
+    )
+
+    assert ok is True
+    assert reasons == []
+
+
+def test_epic_review_head_and_task_commit_must_match_workspace() -> None:
+    required = [{"task_id": "T1", "status": "completed"}]
+    gates = {"T1": {"result_commit": "taskcommit"}}
+    workspace = {
+        "epic_id": "EPIC",
+        "epic_base_commit": "base123",
+        "epic_head_commit": "head456",
+        "integrated_task_commits": {"T1": "taskcommit"},
+    }
+
+    assert projection.epic_review_integration_reasons(accepted_review(), workspace, required, gates) == []
+    assert "epic-review-head-mismatch" in projection.epic_review_integration_reasons(
+        accepted_review(review_head_commit="otherhead"), workspace, required, gates
+    )
+    assert "epic-review-base-mismatch" in projection.epic_review_integration_reasons(
+        accepted_review(review_base_commit="otherbase"), workspace, required, gates
+    )
+    assert "required-task-commit-missing" in projection.epic_review_integration_reasons(
+        accepted_review(), {**workspace, "integrated_task_commits": {}}, required, gates
+    )
+    assert "required-task-commit-mismatch" in projection.epic_review_integration_reasons(
+        accepted_review(), {**workspace, "integrated_task_commits": {"T1": "other"}}, required, gates
+    )
+
+
+@pytest.mark.parametrize("implementation_status", ["not-started", "in-progress", "blocked"])
+def test_product_acceptance_requires_completed_implementation(implementation_status: str) -> None:
+    status_to_task_status = {
+        "not-started": "ready-for-ledger-review",
+        "in-progress": "in-progress",
+        "blocked": "blocked",
+    }
+    milestones = projection.aggregate_milestones(
+        [
+            {
+                "id": "impl",
+                "task_id": "impl",
+                "task_kind": "implementation",
+                "product_milestone": "XQ-M1",
+                "epic_id": "EPIC",
+                "required_for_epic": True,
+                "status": status_to_task_status[implementation_status],
+                "epic_contract_status": "approved",
+                "acceptance_evidence": "codex-a-epic-review-accepted",
+                "stale_reasons": [],
+            }
+        ]
+    )
+
+    assert milestones["XQ-M1"]["implementation_status"] == implementation_status
+    assert milestones["XQ-M1"]["acceptance_status"] != "passed"
+
+
+def test_product_acceptance_passes_only_after_all_required_tasks_complete() -> None:
+    milestones = projection.aggregate_milestones(
+        [
+            {
+                "id": "impl",
+                "task_id": "impl",
+                "task_kind": "implementation",
+                "product_milestone": "XQ-M1",
+                "epic_id": "EPIC",
+                "required_for_epic": True,
+                "status": "completed",
+                "epic_contract_status": "approved",
+                "acceptance_evidence": "codex-a-epic-review-accepted",
+                "stale_reasons": [],
+            }
+        ]
+    )
+
+    assert milestones["XQ-M1"]["implementation_status"] == "completed"
+    assert milestones["XQ-M1"]["acceptance_status"] == "passed"

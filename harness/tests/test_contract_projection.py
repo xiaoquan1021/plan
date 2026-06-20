@@ -308,3 +308,7 @@ def test_public_contract_scan_valid() -> None:
 
 def test_public_preflight_runs_without_private_data() -> None:
     assert preflight_plan.main(["--public"]) == 0
+
+
+def test_full_preflight_requires_all_private_inputs() -> None:
+    assert preflight_plan.main(["--full", "--runtime-events", "x.json"]) != 0

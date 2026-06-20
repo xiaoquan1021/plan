@@ -53,6 +53,10 @@ def canonical_bytes(data: Any) -> bytes:
     return (json.dumps(data, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
 
 
+def canonical_hash_bytes(data: Any) -> bytes:
+    return (json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
+
+
 def sha256_bytes(data: bytes) -> str:
     return sha256(data).hexdigest()
 
@@ -74,13 +78,28 @@ def normalize_for_hash(data: Any) -> Any:
     if isinstance(data, dict):
         return {key: normalize_for_hash(data[key]) for key in sorted(data)}
     if isinstance(data, list):
-        normalized_items = [normalize_for_hash(item) for item in data]
-        return sorted(normalized_items, key=lambda item: json.dumps(item, ensure_ascii=False, sort_keys=True))
+        return [normalize_for_hash(item) for item in data]
+    return data
+
+
+def normalize_projection_inputs(data: Any) -> Any:
+    if isinstance(data, dict):
+        normalized = {key: normalize_projection_inputs(value) for key, value in data.items()}
+        for list_key in ("events", "task_results", "gate_results", "epic_reviews"):
+            value = normalized.get(list_key)
+            if isinstance(value, list):
+                normalized[list_key] = sorted(
+                    value,
+                    key=lambda item: json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")),
+                )
+        return {key: normalized[key] for key in sorted(normalized)}
+    if isinstance(data, list):
+        return [normalize_projection_inputs(item) for item in data]
     return data
 
 
 def hash_data(data: Any) -> str:
-    return sha256_bytes(canonical_bytes(normalize_for_hash(data)))
+    return sha256_bytes(canonical_hash_bytes(normalize_for_hash(data)))
 
 
 def is_sha256(value: Any) -> bool:
@@ -90,6 +109,21 @@ def is_sha256(value: Any) -> bool:
 def canonical_task_pack_hash(task_pack: dict[str, Any]) -> str:
     normalized = json.loads(json.dumps(task_pack, ensure_ascii=False))
     normalized["task_pack_sha256"] = None
+    return hash_data(normalized)
+
+
+def canonical_contract_hash(raw_contract: dict[str, Any]) -> str:
+    normalized = {
+        key: value
+        for key, value in json.loads(json.dumps(raw_contract, ensure_ascii=False)).items()
+        if not str(key).startswith("_")
+    }
+    return hash_data(normalized)
+
+
+def canonical_approval_record_hash(record: dict[str, Any]) -> str:
+    normalized = json.loads(json.dumps(record, ensure_ascii=False))
+    normalized["approval_record_sha256"] = None
     return hash_data(normalized)
 
 
@@ -175,8 +209,9 @@ def load_epic_contracts() -> dict[str, dict[str, Any]]:
             validate_data(data, "epic-contract.schema.json", label=repo_relative(path))
         except SchemaValidationError as exc:
             raise ProjectionError(str(exc)) from exc
+        computed = canonical_contract_hash(data)
         data["_path"] = repo_relative(path)
-        data["_computed_sha256"] = hash_data(data)
+        data["_computed_sha256"] = computed
         contracts[str(data["epic_id"])] = data
     return contracts
 
@@ -200,10 +235,21 @@ def approval_record_valid(epic_contract: dict[str, Any]) -> bool:
         validate_data(approval, "epic-contract-approval.schema.json", label=record_path)
     except (OSError, json.JSONDecodeError, SchemaValidationError, ValueError):
         return False
+    computed = canonical_approval_record_hash(approval)
+    try:
+        parse_input_time(str(approval.get("reviewed_at")))
+    except ProjectionError:
+        return False
     return (
-        hash_data(approval) == record.get("record_sha256")
+        computed == approval.get("approval_record_sha256")
+        and computed == record.get("record_sha256")
         and approval.get("decision") == "approved"
+        and approval.get("reviewer_role") == "Codex A"
+        and approval.get("epic_id") == epic_contract.get("epic_id")
         and approval.get("epic_contract_sha256") == epic_contract.get("_computed_sha256")
+        and approval.get("unresolved_decisions") == []
+        and approval.get("required_repairs") == []
+        and bool(approval.get("architecture_findings"))
     )
 
 
@@ -402,6 +448,13 @@ def validate_private_inputs(
     validate_known_task_ids(events, known_tasks, "runtime event")
     validate_known_task_ids(task_results, known_tasks, "task result")
     validate_known_task_ids(gate_results, known_tasks, "gate result")
+    if workspace_data.get("epic_id") not in (None, "") and str(workspace_data.get("epic_id")) not in known_epics:
+        raise ProjectionError(f"workspace reconciliation references unknown epic_id {workspace_data.get('epic_id')}")
+    integrated = workspace_data.get("integrated_task_commits")
+    if isinstance(integrated, dict):
+        for key in integrated:
+            if str(key) not in known_tasks:
+                raise ProjectionError(f"workspace reconciliation references unknown task_id {key}")
 
     seen_events: set[str] = set()
     for index, event in enumerate(events):
@@ -412,14 +465,14 @@ def validate_private_inputs(
         if event.get("event_time"):
             parse_input_time(str(event["event_time"]))
 
-    terminal_by_task: dict[str, dict[str, Any]] = {}
     for label, records in {"task result": task_results, "gate result": gate_results}.items():
+        terminal_by_task: dict[str, dict[str, Any]] = {}
         for record in records:
             task_id = str(record.get("task_id"))
-            prior = terminal_by_task.get(f"{label}:{task_id}")
+            prior = terminal_by_task.get(task_id)
             if prior is not None and prior != record:
                 raise ProjectionError(f"{label} has conflicting terminal records for task_id {task_id}")
-            terminal_by_task[f"{label}:{task_id}"] = record
+            terminal_by_task[task_id] = record
 
     accepted_reviews: dict[str, dict[str, Any]] = {}
     for index, review in enumerate(epic_reviews):
@@ -476,13 +529,21 @@ def expected_hashes(task: dict[str, Any], workspace: dict[str, Any]) -> dict[str
     }
 
 
-def check_hashes(record: dict[str, Any] | None, expected: dict[str, Any], key_map: dict[str, str] | None = None) -> list[str]:
+def check_hashes(
+    record: dict[str, Any] | None,
+    expected: dict[str, Any],
+    key_map: dict[str, str] | None = None,
+    *,
+    require_expected: bool = False,
+) -> list[str]:
     if record is None:
         return []
     reasons: list[str] = []
     key_map = key_map or {}
     for key, expected_value in expected.items():
         if expected_value in (None, "", {}):
+            if require_expected:
+                reasons.append(f"missing-{key}")
             continue
         record_key = key_map.get(key, key)
         actual = record.get(record_key)
@@ -519,7 +580,7 @@ def valid_task_result(task: dict[str, Any], workspace: dict[str, Any], result: d
             require_nonempty(result, key, reasons)
         if result.get("unresolved_issues") not in ([], None):
             reasons.append("task-result-unresolved-issues")
-    reasons.extend(check_hashes(result, expected_hashes(task, workspace)))
+    reasons.extend(check_hashes(result, expected_hashes(task, workspace), require_expected=True))
     return not reasons, reasons
 
 
@@ -575,7 +636,7 @@ def valid_gate(task: dict[str, Any], workspace: dict[str, Any], gate: dict[str, 
         reasons.append("gate-escalation-reason-present")
     if result and result.get("task_pack_sha256") and gate.get("task_pack_sha256") != result.get("task_pack_sha256"):
         reasons.append("task-pack-hash-mismatch")
-    reasons.extend(check_hashes(gate, expected_hashes(task, workspace)))
+    reasons.extend(check_hashes(gate, expected_hashes(task, workspace), require_expected=True))
     return not reasons, reasons
 
 
@@ -592,13 +653,49 @@ def valid_epic_review(task: dict[str, Any], workspace: dict[str, Any], review: d
         reasons.append("epic-review-contract-defects")
     if review.get("required_repairs") not in ([], None):
         reasons.append("epic-review-required-repairs")
+    for risk in review.get("unresolved_risks") or []:
+        if isinstance(risk, dict) and risk.get("severity") == "blocking":
+            reasons.append("epic-review-blocking-risk")
+            break
     all_expected = expected_hashes(task, workspace)
     expected = {
         key: all_expected.get(key)
         for key in ["base_commit", "epic_contract_sha256", "dependency_lock_sha256", "toolchain_manifest_sha256"]
     }
-    reasons.extend(check_hashes(review, expected, {"base_commit": "review_base_commit"}))
+    reasons.extend(check_hashes(review, expected, {"base_commit": "review_base_commit"}, require_expected=True))
     return not reasons, reasons
+
+
+def epic_review_integration_reasons(
+    review: dict[str, Any] | None,
+    workspace: dict[str, Any],
+    required_tasks: list[dict[str, Any]],
+    gates_by_task: dict[str, dict[str, Any]],
+) -> list[str]:
+    if not review:
+        return []
+    reasons: list[str] = []
+    workspace_epic_id = workspace.get("epic_id")
+    if workspace_epic_id in (None, "") or workspace_epic_id != review.get("epic_id"):
+        reasons.append("workspace-epic-id-mismatch")
+    if workspace.get("epic_base_commit") in (None, "") or workspace.get("epic_base_commit") != review.get("review_base_commit"):
+        reasons.append("epic-review-base-mismatch")
+    if workspace.get("epic_head_commit") in (None, "") or workspace.get("epic_head_commit") != review.get("review_head_commit"):
+        reasons.append("epic-review-head-mismatch")
+    integrated = workspace.get("integrated_task_commits") if isinstance(workspace.get("integrated_task_commits"), dict) else {}
+    for required in required_tasks:
+        task_id = str(required.get("task_id") or required.get("id"))
+        integrated_commit = integrated.get(task_id)
+        gate = gates_by_task.get(task_id)
+        if not integrated_commit:
+            reasons.append("required-task-commit-missing")
+            continue
+        if not gate or not gate.get("result_commit"):
+            reasons.append("required-task-commit-missing")
+            continue
+        if gate.get("result_commit") != integrated_commit:
+            reasons.append("required-task-commit-mismatch")
+    return sorted(set(reasons))
 
 
 def task_pack_completion_reasons(task: dict[str, Any]) -> list[str]:
@@ -703,14 +800,23 @@ def apply_full_projection(
         required_tasks = required_by_epic.get(epic_id or "", [])
         incomplete_required = [item["task_id"] for item in required_tasks if item.get("status") != "completed"]
         stale_required = [item["task_id"] for item in required_tasks if item.get("status") == "stale-completion" or item.get("stale_reasons")]
+        integration_reasons = epic_review_integration_reasons(review, workspace, required_tasks, gates_by_task)
         if task.get("task_kind") in ACCEPTANCE_TASK_KINDS or epic_id:
             reasons = list(task.get("stale_reasons", []))
-            if review_ok and not incomplete_required and not stale_required and task.get("epic_contract_status") == "approved":
+            if (
+                review_ok
+                and not integration_reasons
+                and required_tasks
+                and not incomplete_required
+                and not stale_required
+                and task.get("epic_contract_status") == "approved"
+            ):
                 task["acceptance_evidence"] = "codex-a-epic-review-accepted"
             else:
                 task["acceptance_evidence"] = "not-passed"
                 reasons.extend(review_reasons)
-                if review_ok and incomplete_required:
+                reasons.extend(integration_reasons)
+                if review_ok and (not required_tasks or incomplete_required):
                     reasons.append("epic-review-before-required-tasks-complete")
                 if task.get("epic_contract_status") != "approved":
                     reasons.append("epic-contract-not-approved")
@@ -762,6 +868,7 @@ def aggregate_milestones(projected: list[dict[str, Any]]) -> dict[str, Any]:
                 {
                     "contract_status": "draft",
                     "contract_readiness_status": "not-started",
+                    "plan_acceptance_status": "not-run",
                     "implementation_status": "not-started",
                     "acceptance_status": "not-run",
                     "status_source": "generated from task definitions and runtime projection",
@@ -809,7 +916,18 @@ def aggregate_milestones(projected: list[dict[str, Any]]) -> dict[str, Any]:
         acceptance_tasks = [task for task in milestone_tasks if task.get("task_kind") in ACCEPTANCE_TASK_KINDS]
         accepted_evidence = any(task.get("acceptance_evidence") == "codex-a-epic-review-accepted" for task in milestone_tasks)
         review_before_complete = any("epic-review-before-required-tasks-complete" in task.get("stale_reasons", []) for task in milestone_tasks)
-        if accepted_evidence and entry.get("implementation_status") in {"completed", "not-started"} and entry.get("contract_status") == "approved":
+        if milestone.startswith("PR-"):
+            plan_gate = any(task.get("plan_gate_evidence") == "accepted" for task in milestone_tasks)
+            plan_review = any(task.get("plan_review_evidence") == "accepted" for task in milestone_tasks)
+            if plan_gate and plan_review:
+                entry["plan_acceptance_status"] = "accepted"
+            elif any(task.get("status") in {"claimed", "in-progress"} for task in milestone_tasks):
+                entry["plan_acceptance_status"] = "in-progress"
+            elif any(task.get("status") == "blocked" for task in milestone_tasks):
+                entry["plan_acceptance_status"] = "blocked"
+            else:
+                entry["plan_acceptance_status"] = "not-run"
+        if accepted_evidence and entry.get("implementation_status") == "completed" and entry.get("contract_status") == "approved":
             entry["acceptance_status"] = "passed"
         elif review_before_complete:
             entry["acceptance_status"] = "stale"
@@ -824,8 +942,8 @@ def projection_inputs_hash(definition_hash: str, runtime_data: Any | None, compl
     return hash_data(
         {
             "task_definitions": definition_hash,
-            "runtime_data": normalize_for_hash(runtime_data),
-            "completion_data": normalize_for_hash(completion_data),
+            "runtime_data": normalize_projection_inputs(runtime_data),
+            "completion_data": normalize_projection_inputs(completion_data),
             "workspace_data": normalize_for_hash(workspace_data),
         }
     )

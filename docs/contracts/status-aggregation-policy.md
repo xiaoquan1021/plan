@@ -4,6 +4,23 @@
 
 Define milestone rollup status as generated data, not hand-maintained Markdown state.
 
+## Product Milestones
+
+Product milestones use:
+
+- `contract_status`
+- `implementation_status`
+- `acceptance_status`
+
+## Plan Rewrite Milestones
+
+PR-M0 through PR-M3 use:
+
+- `contract_readiness_status`
+- `plan_acceptance_status`
+
+Plan rewrite task completion can make a contract ready for approval, but it does not make a product implementation complete and does not create formal plan acceptance.
+
 ## Contract Status
 
 Values: `not-started`, `draft`, `approved`, `superseded`, `blocked`.
@@ -20,7 +37,15 @@ Values: `not-started`, `in-progress`, `completed`, `stale`, `blocked`.
 
 Values: `not-run`, `in-progress`, `passed`, `failed`, `stale`, `blocked`.
 
-`passed` requires a valid Codex A Epic Review with decision `accepted`. Contract, base commit, dependency lock, or acceptance evidence changes stale the status.
+`passed` requires `contract_status == approved`, `implementation_status == completed`, all required implementation tasks completed without stale evidence, and a valid Codex A Epic Review with decision `accepted`. Contract, base commit, dependency lock, or acceptance evidence changes stale the status. A milestone with implementation `not-started`, `in-progress`, or `blocked` can never have acceptance `passed`.
+
+Accepted Epic Reviews are valid only when they contain no blocking unresolved risks, their review base/head match workspace reconciliation, and every required task result commit is integrated into the reviewed Epic head.
+
+## Plan Acceptance Status
+
+Values: `not-run`, `in-progress`, `accepted`, `repair-required`, `blocked`, `stale`.
+
+`accepted` requires valid Plan Gate and Plan Rewrite Review evidence bound to the current plan commit, current snapshot hashes, migration check evidence, schema validation evidence, and public preflight evidence. PR task completion alone does not imply formal plan acceptance.
 
 ## Generator Rule
 

@@ -8,6 +8,7 @@
     "schema_version": { "const": 1 },
     "task_results": { "type": "array", "items": { "$ref": "task-result.schema.json" } },
     "gate_results": { "type": "array", "items": { "$ref": "task-gate-result.schema.json" } },
-    "epic_reviews": { "type": "array", "items": { "$ref": "epic-review.schema.json" } }
+    "epic_reviews": { "type": "array", "items": { "$ref": "epic-review.schema.json" } },
+    "plan_rewrite_reviews": { "type": "array", "items": { "$ref": "plan-rewrite-review.schema.json" } }
   }
 }

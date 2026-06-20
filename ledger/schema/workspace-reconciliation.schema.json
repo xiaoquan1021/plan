@@ -12,6 +12,13 @@
     "implementation_dependency_lock_sha256": { "type": ["string", "null"] },
     "dependency_lock_sha256": { "type": ["string", "null"] },
     "toolchain_manifest_sha256": { "type": ["string", "null"] },
+    "epic_id": { "type": ["string", "null"] },
+    "epic_base_commit": { "type": ["string", "null"] },
+    "epic_head_commit": { "type": ["string", "null"] },
+    "integrated_task_commits": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
     "reconciled_at": { "type": ["string", "null"] }
   }
 }
