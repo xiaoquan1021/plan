@@ -1007,6 +1007,32 @@ def test_plan_rewrite_review_ci_api_verification_failure_is_stale(tmp_path: Path
     assert "ci-run-unverified:test" in task["stale_reasons"]
 
 
+def test_github_fetch_uses_token_when_available(monkeypatch) -> None:
+    observed: dict[str, str | None] = {}
+
+    class FakeResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self) -> bytes:
+            return b'{"ok": true}'
+
+    def fake_urlopen(request, timeout):
+        observed["authorization"] = request.get_header("Authorization")
+        observed["timeout"] = str(timeout)
+        return FakeResponse()
+
+    monkeypatch.setenv("GITHUB_TOKEN", "test-token")
+    monkeypatch.setattr(projection.urllib.request, "urlopen", fake_urlopen)
+
+    assert projection.fetch_github_json("https://api.github.com/repos/x/y/actions/runs/1") == {"ok": True}
+    assert observed["authorization"] == "Bearer test-token"
+    assert observed["timeout"] == "15"
+
+
 def test_full_preflight_requires_ancestor_check_when_accepted_epic_review_exists(tmp_path: Path) -> None:
     runtime, completion, workspace = write_full_inputs(
         tmp_path,

@@ -621,12 +621,16 @@ def github_repo_slug() -> str | None:
 
 
 def fetch_github_json(url: str) -> dict[str, Any]:
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "xq-plan-harness",
+    }
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
     request = urllib.request.Request(
         url,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "xq-plan-harness",
-        },
+        headers=headers,
     )
     with urllib.request.urlopen(request, timeout=15) as response:  # noqa: S310 - public GitHub API only.
         return json.loads(response.read().decode("utf-8"))
