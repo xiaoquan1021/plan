@@ -18,7 +18,7 @@ sys.path.insert(0, str(TOOLS_DIR))
 
 import preflight_plan  # noqa: E402
 import projection  # noqa: E402
-from task_selector import explain_selection  # noqa: E402
+from task_selector import explain_selection, task_local_blockers  # noqa: E402
 
 
 HEX_A = "a" * 64
@@ -825,6 +825,74 @@ def test_pr_m0_to_pr_m3_can_be_accepted_with_valid_plan_gate_and_review(tmp_path
 
     for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
         assert snapshots["public-state-summary.json"]["milestones"][milestone]["plan_acceptance_status"] == "accepted"
+
+
+def test_pr_m3_task_becomes_terminal_after_valid_gate_and_codex_a_review(tmp_path: Path, monkeypatch) -> None:
+    snapshots = build_plan_review_snapshots(
+        tmp_path,
+        [
+            plan_rewrite_review("Plan Gate", "PR-M3"),
+            plan_rewrite_review("Codex A", "PR-M3"),
+        ],
+        monkeypatch,
+    )
+
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M3-001")
+
+    assert task["plan_gate_evidence"] == "accepted"
+    assert task["plan_review_evidence"] == "accepted"
+    assert task["status"] == "completed"
+
+
+def test_xq_m0_no_longer_blocked_by_pr_m3_when_plan_reviews_are_valid(tmp_path: Path, monkeypatch) -> None:
+    reviews = []
+    for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
+        reviews.append(plan_rewrite_review("Plan Gate", milestone))
+        reviews.append(plan_rewrite_review("Codex A", milestone))
+
+    snapshots = build_plan_review_snapshots(tmp_path, reviews, monkeypatch)
+    tasks = snapshots["tasks.json"]["tasks"]
+    xq_m0 = next(item for item in tasks if item["task_id"] == "XQ-M0-001")
+    blockers = task_local_blockers(xq_m0, tasks)
+    explanation = explain_selection(tasks)
+
+    assert xq_m0["status"] == "blocked"
+    assert "dependency PR-M3-001 is not completed" not in blockers
+    assert any(blocker in blockers for blocker in ["decision_state is open", "task pack is missing"])
+    assert explanation["selected"] is None or explanation["selected"]["task_id"] != "XQ-M0-001"
+
+
+def test_pr_m3_task_does_not_complete_without_plan_gate(tmp_path: Path, monkeypatch) -> None:
+    snapshots = build_plan_review_snapshots(tmp_path, [plan_rewrite_review("Codex A", "PR-M3")], monkeypatch)
+
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M3-001")
+
+    assert task["plan_gate_evidence"] == "not-run"
+    assert task["plan_review_evidence"] == "accepted"
+    assert task["status"] != "completed"
+
+
+def test_pr_m3_task_does_not_complete_without_codex_a_review(tmp_path: Path, monkeypatch) -> None:
+    snapshots = build_plan_review_snapshots(tmp_path, [plan_rewrite_review("Plan Gate", "PR-M3")], monkeypatch)
+
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M3-001")
+
+    assert task["plan_gate_evidence"] == "accepted"
+    assert task["plan_review_evidence"] == "not-run"
+    assert task["status"] != "completed"
+
+
+def test_pr_m3_task_does_not_complete_with_stale_review(tmp_path: Path, monkeypatch) -> None:
+    gate = plan_rewrite_review("Plan Gate", "PR-M3")
+    review = plan_rewrite_review("Codex A", "PR-M3")
+    review["required_outcomes"] = ["tampered after hash"]
+
+    snapshots = build_plan_review_snapshots(tmp_path, [gate, review], monkeypatch)
+    task = next(item for item in snapshots["tasks.json"]["tasks"] if item["task_id"] == "PR-M3-001")
+
+    assert task["plan_gate_evidence"] == "accepted"
+    assert task["plan_review_evidence"] == "stale"
+    assert task["status"] != "completed"
 
 
 def test_conflicting_accepted_plan_reviews_are_rejected(tmp_path: Path) -> None:

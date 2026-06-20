@@ -49,6 +49,8 @@ Values: `not-run`, `in-progress`, `accepted`, `repair-required`, `blocked`, `sta
 
 The Plan Gate and Codex A Plan Rewrite Review are separate accepted records. A single completed plan task, a single review record, or free-form CI text is insufficient. If either record is absent the status stays `not-run`, `in-progress`, or `blocked` according to runtime state. If either record is present but hash, commit, snapshot, migration, public preflight, or CI evidence is invalid, the status is `stale`.
 
+The corresponding PR task reaches the selector-recognized terminal state only when the same `plan_rewrite_milestone` has both a valid `Plan Gate` record and a valid `Codex A` record, and both records bind to the same `plan_commit_sha`. Missing, stale, or commit-mismatched records leave the PR task non-terminal, so downstream dependencies remain blocked honestly.
+
 Plan review commit binding avoids self-reference: `plan_commit_sha` is the reviewed target commit, not necessarily the commit that stores the review record. Later commits may add only review/evidence files. Any later change to evaluated plan content, schemas, harness, workflows, snapshots, contracts, task definitions, or migration definitions invalidates the review.
 
 ## Generator Rule

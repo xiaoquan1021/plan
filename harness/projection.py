@@ -1119,6 +1119,15 @@ def apply_full_projection(
         codex_review = plan_reviews_by_milestone_role.get((milestone, "Codex A"))
         gate_ok, gate_reasons = valid_plan_rewrite_review(plan_gate, "Plan Gate")
         review_ok, review_reasons = valid_plan_rewrite_review(codex_review, "Codex A")
+        same_reviewed_commit = (
+            bool(plan_gate)
+            and bool(codex_review)
+            and plan_gate.get("plan_commit_sha") == codex_review.get("plan_commit_sha")
+        )
+        commit_pair_reasons = [] if same_reviewed_commit or not (gate_ok and review_ok) else ["plan-review-target-commit-mismatch"]
+        if commit_pair_reasons:
+            gate_ok = False
+            review_ok = False
         task["plan_gate_evidence"] = "accepted" if gate_ok else ("stale" if plan_gate else "not-run")
         task["plan_review_evidence"] = "accepted" if review_ok else ("stale" if codex_review else "not-run")
         reasons = list(task.get("stale_reasons", []))
@@ -1126,6 +1135,13 @@ def apply_full_projection(
             reasons.extend(gate_reasons)
         if codex_review:
             reasons.extend(review_reasons)
+        reasons.extend(commit_pair_reasons)
+        if (
+            gate_ok
+            and review_ok
+            and task.get("task_kind") in {"plan-contract", "contract-readiness", "harness"}
+        ):
+            task["status"] = "completed"
         task["stale_reasons"] = sorted(set(reasons))
 
 

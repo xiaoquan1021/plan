@@ -97,7 +97,7 @@ Accepted plan rewrite records must carry structured CI evidence for the `plan-co
 
 Product milestone `contract_status`, `implementation_status`, and `acceptance_status` are generated rollups. Markdown and task definitions do not hand-maintain completed implementation or passed acceptance state. Product acceptance can pass only when contract is approved, implementation status is completed, all required tasks are completed, and a valid accepted Epic Review exists.
 
-Plan rewrite milestones use `contract_readiness_status` and `plan_acceptance_status`. PR-M0 through PR-M3 task completion can make contracts ready for review, but it does not create formal plan acceptance without a valid Plan Rewrite Review record.
+Plan rewrite milestones use `contract_readiness_status` and `plan_acceptance_status`. PR-M0 through PR-M3 task completion can make contracts ready for review, but it does not create formal plan acceptance without a valid Plan Rewrite Review record. In full projection, a PR plan task is projected to `completed` only when its `plan_rewrite_milestone` has both a valid `Plan Gate` record and a valid `Codex A` record bound to the same reviewed commit. Missing, stale, or commit-mismatched records keep the PR task non-terminal for selector dependency checks.
 
 ## Command Capture
 
