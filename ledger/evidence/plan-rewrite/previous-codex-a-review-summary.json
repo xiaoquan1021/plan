@@ -1,0 +1,25 @@
+{
+  "converted_to_formal_record": false,
+  "findings": [
+    "ledger/evidence/ and ledger/reviews/ were untracked during review, so formal records were not committed repository state",
+    "no committed Codex A review records existed during review",
+    "reviewer shell policy blocked some git and python validation commands",
+    "CI evidence required authenticated verification",
+    "public snapshots remained definitions-only; formal acceptance required full projection evidence"
+  ],
+  "raw_decision": "repair-required",
+  "raw_evidence_commit_omission_reason": "raw output contains local shell paths and was not an accepted review",
+  "raw_evidence_committed": false,
+  "raw_evidence_retained_locally": true,
+  "raw_execution_status": "completed",
+  "required_repairs": [
+    "commit formal evidence artifacts",
+    "produce real Codex A records from a successful independent review",
+    "rerun projection and preflight from final evidence state",
+    "reverify CI with authenticated GitHub access"
+  ],
+  "reviewer_role": "Codex A",
+  "schema_version": 1,
+  "superseded_by_target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+  "target_commit": "d76b41f6e8cda54729e5ee445ef64f6fcac980b5"
+}

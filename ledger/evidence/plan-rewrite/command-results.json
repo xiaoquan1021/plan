@@ -1,0 +1,215 @@
+{
+  "commands": [
+    {
+      "command": "python -m pip install -r requirements-ci.txt",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "requirements already satisfied",
+      "result": "PASSED"
+    },
+    {
+      "command": "git diff --check",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "no whitespace errors",
+      "result": "PASSED"
+    },
+    {
+      "command": "python -m pytest harness/tests",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "151 passed in 42.90s",
+      "result": "PASSED"
+    },
+    {
+      "command": "python -m py_compile harness/*.py",
+      "evidence_path": "local command output",
+      "exit_code": 1,
+      "key_output": "PowerShell/native argument did not expand wildcard: [Errno 22] Invalid argument: 'harness\\*.py'",
+      "result": "FAILED"
+    },
+    {
+      "command": "python -m py_compile <all harness/*.py files>",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "all harness Python files compiled after explicit file expansion",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/validate_schema.py",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "schema validation passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/validate_task_graph.py",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "task graph validation passed (20 tasks)",
+      "result": "PASSED"
+    },
+    {
+      "command": "SOURCE_DATE_EPOCH=0 python harness/generate_snapshots.py --definitions-only --check",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "snapshot check passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/migrate_legacy_ledger.py --check",
+      "evidence_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+      "exit_code": 0,
+      "key_output": "migration check passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/preflight_environment.py --bindings config/toolchain-bindings.example.json",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "required git/python tools resolved; optional cmake/ninja/compiler/qt not bound",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/validate_public_contracts.py",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "public contract scan passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/preflight_plan.py --public",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "public preflight ok true; private_runtime_projection not-run",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/preflight_plan.py --full --runtime-events ledger/evidence/plan-rewrite/runtime-projection.json --completion-records ledger/evidence/plan-rewrite/completion-projection.json --workspace-report ledger/evidence/plan-rewrite/workspace-reconciliation.json --report-output ledger/evidence/plan-rewrite/preflight-full-formal-acceptance-report.json",
+      "evidence_path": "ledger/evidence/plan-rewrite/preflight-full-formal-acceptance-report.json",
+      "exit_code": 0,
+      "key_output": "full preflight ok true; status_counts completed=4 blocked=16; private_runtime_projection run",
+      "result": "PASSED"
+    }
+  ],
+  "generated_at": "2026-06-21T12:03:04+00:00",
+  "github_actions": {
+    "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 82566383023,
+        "name": "public-contracts",
+        "run_id": 27902915148,
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Install CI dependencies",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Harness unit tests",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Python syntax check",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Schema validation",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Task graph validation",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Deterministic snapshot check",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Migration idempotency check",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Example toolchain preflight",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Public contract scans",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Public plan preflight",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "run_id": 27902915148,
+    "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+    "schema_version": 1,
+    "verified_at": "2026-06-21T11:32:50+00:00",
+    "verified_via": "GitHub connector _fetch_workflow_run_jobs",
+    "workflow_name": "plan-contracts"
+  },
+  "schema_version": 1,
+  "target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf"
+}

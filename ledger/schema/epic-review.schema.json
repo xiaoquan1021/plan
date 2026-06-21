@@ -28,7 +28,37 @@
     "architecture_constraints": { "type": "array", "items": { "type": "string" } },
     "acceptance_evidence": { "type": "array", "items": { "type": "string" } },
     "cross_task_integration_findings": { "type": "array", "items": { "type": "string" } },
-    "unresolved_risks": { "type": "array", "items": { "type": "string" } },
+    "unresolved_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "description", "owner"],
+        "properties": {
+          "severity": { "enum": ["blocking", "non-blocking"] },
+          "description": { "type": "string", "minLength": 1 },
+          "evidence": { "type": ["string", "null"] },
+          "follow_up": { "type": ["string", "null"] },
+          "owner": { "type": "string", "minLength": 1 },
+          "non_blocking_rationale": { "type": ["string", "null"] }
+        },
+        "anyOf": [
+          { "required": ["evidence"] },
+          { "required": ["follow_up"] }
+        ],
+        "allOf": [
+          {
+            "if": { "properties": { "severity": { "const": "non-blocking" } } },
+            "then": {
+              "properties": {
+                "non_blocking_rationale": { "type": "string", "minLength": 1 }
+              },
+              "required": ["non_blocking_rationale"]
+            }
+          }
+        ]
+      }
+    },
     "contract_defects": { "type": "array", "items": { "type": "string" } },
     "decision": { "enum": ["accepted", "repair-required", "contract-defect", "blocked"] },
     "required_repairs": { "type": "array", "items": { "type": "string" } },
@@ -46,6 +76,16 @@
           "required_outcomes": { "type": "array", "minItems": 1 },
           "architecture_constraints": { "type": "array", "minItems": 1 },
           "acceptance_evidence": { "type": "array", "minItems": 1 },
+          "unresolved_risks": {
+            "type": "array",
+            "not": {
+              "contains": {
+                "type": "object",
+                "properties": { "severity": { "const": "blocking" } },
+                "required": ["severity"]
+              }
+            }
+          },
           "contract_defects": { "type": "array", "maxItems": 0 },
           "required_repairs": { "type": "array", "maxItems": 0 }
         }

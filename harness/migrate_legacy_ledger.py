@@ -46,6 +46,12 @@ def resolve(path_value: str | Path) -> Path:
     return path if path.is_absolute() else ROOT / path
 
 
+def repo_relative(path: Path) -> str:
+    if path.is_relative_to(ROOT):
+        return path.relative_to(ROOT).as_posix()
+    return path.as_posix()
+
+
 def legacy_tasks(legacy: Any) -> list[dict[str, Any]]:
     if isinstance(legacy, dict):
         tasks = legacy.get("tasks", [])
@@ -145,8 +151,8 @@ def build_report(legacy_input: Path = DEFAULT_LEGACY_TASKS, migration_definition
     report_without_hash = {
         "schema_version": 1,
         "migration_id": migration["migration_id"],
-        "legacy_input": str(legacy_input.relative_to(ROOT) if legacy_input.is_relative_to(ROOT) else legacy_input),
-        "migration_definition": str(migration_definition.relative_to(ROOT) if migration_definition.is_relative_to(ROOT) else migration_definition),
+        "legacy_input": repo_relative(legacy_input),
+        "migration_definition": repo_relative(migration_definition),
         "input_hash": hash_data(legacy),
         "migration_definition_hash": hash_data(migration),
         "mapped_count": counts["mapped"],

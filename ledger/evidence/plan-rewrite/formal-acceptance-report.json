@@ -1,0 +1,29 @@
+{
+  "ci_verification_report": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+  "codex_a_review_records": [
+    "ledger/reviews/plan-rewrite/PR-M0.codex-a.yaml",
+    "ledger/reviews/plan-rewrite/PR-M1.codex-a.yaml",
+    "ledger/reviews/plan-rewrite/PR-M2.codex-a.yaml",
+    "ledger/reviews/plan-rewrite/PR-M3.codex-a.yaml"
+  ],
+  "command_results": "ledger/evidence/plan-rewrite/command-results.json",
+  "completion_projection": "ledger/evidence/plan-rewrite/completion-projection.json",
+  "formal_plan_rewrite_review_status": "accepted",
+  "generated_at": "2026-06-21T11:56:57+00:00",
+  "github_actions": {
+    "target_commit_conclusion": "success",
+    "target_commit_run_id": 27902915148,
+    "target_commit_run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148"
+  },
+  "plan_gate_records": [
+    "ledger/reviews/plan-rewrite/PR-M0.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M1.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M2.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M3.plan-gate.yaml"
+  ],
+  "reviewer_summary": "ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json",
+  "runtime_projection": "ledger/evidence/plan-rewrite/runtime-projection.json",
+  "schema_version": 1,
+  "target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+  "workspace_reconciliation": "ledger/evidence/plan-rewrite/workspace-reconciliation.json"
+}

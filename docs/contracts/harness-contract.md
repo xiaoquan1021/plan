@@ -66,9 +66,28 @@ Definitions-only `generated_at` is derived only from `SOURCE_DATE_EPOCH`; when i
 
 Full projection `generated_at` is derived from the newest valid timestamp in runtime, completion, and workspace reconciliation inputs; if none exists, it uses `SOURCE_DATE_EPOCH`. Input timestamps are parsed as ISO 8601 with timezone and normalized to UTC. Wall-clock now is forbidden for committed snapshots.
 
-Generator output must use stable JSON key order, stable array ordering, UTF-8, LF newlines, repository-relative logical paths, and redacted private paths.
+Generator output must use stable JSON object key order, preserve array order, UTF-8, LF newlines, repository-relative logical paths, and redacted private paths. The generic canonical hash function never sorts arrays. Only fields that a contract explicitly declares as set-valued may be sorted by a dedicated field-specific helper.
 
 Atomic Task Pack SHA256 is computed from the parsed Task Pack object after normalizing `task_pack_sha256` to `null`, serializing with sorted JSON keys, UTF-8, and fixed LF. An `issued` pack must declare the computed hash. A `draft` pack must keep `task_pack_sha256: null`.
+
+Epic Contract SHA256 is the hash of the contract's normative content. It excludes runtime-injected fields such as `_path` and `_computed_sha256`; it is not a file path hash, Git blob hash, or mutable in-memory object hash.
+
+Epic Contract Approval SHA256 is a canonical self-hash. The approval record is parsed, `approval_record_sha256` is normalized to `null`, canonical JSON bytes are hashed, and the declared `approval_record_sha256` plus the Epic Contract's `approval_record.record_sha256` must both equal the computed value.
+
+Accepted Epic Reviews must not contain any unresolved risk with `severity: blocking`. Non-blocking risks are allowed only when owner, evidence or follow-up, and non-blocking rationale are present.
+
+Accepted Epic Reviews must match workspace reconciliation: `review_base_commit` equals `epic_base_commit`, `review_head_commit` equals `epic_head_commit`, and each required task's accepted Gate Result `result_commit` is listed in `integrated_task_commits`.
+
+Plan Rewrite Review SHA256 is also a canonical self-hash. The review is parsed, `review_record_sha256` is normalized to `null`, canonical JSON bytes are hashed, and accepted records must declare that computed value. Object key order is ignored; array order remains normative.
+
+Plan rewrite acceptance requires two independent accepted records for the same PR milestone:
+
+- a `Plan Gate` record proving mechanical checks for the reviewed commit;
+- a `Codex A` record proving independent plan architecture and contract review.
+
+Both records must bind to `plan_commit_sha`. The commit must exist and be current `HEAD` or an ancestor of `HEAD`. If the review record is added after the reviewed commit, every changed file between `plan_commit_sha` and `HEAD` must be limited to review or evidence paths; changes to harness, schemas, task definitions, workflows, snapshots, contracts, or migration definitions make the review stale.
+
+Accepted plan rewrite records must carry structured CI evidence for the `plan-contracts` workflow, current public snapshot hashes, migration check evidence, and public preflight evidence. Snapshot hashes are compared against the actual committed public snapshot files. CI evidence must bind workflow, run, commit, success conclusion, and job conclusions; arbitrary text is not accepted. When a committed CI verification report is supplied, the projection verifies the report path, report SHA256, workflow, run, commit, job conclusions, and successful job steps before treating CI evidence as valid.
 
 ## Snapshot Check
 
@@ -76,7 +95,9 @@ Atomic Task Pack SHA256 is computed from the parsed Task Pack object after norma
 
 ## Milestone Status Rollup
 
-Milestone `contract_status`, `implementation_status`, and `acceptance_status` are generated rollups. Markdown and task definitions do not hand-maintain completed implementation or passed acceptance state.
+Product milestone `contract_status`, `implementation_status`, and `acceptance_status` are generated rollups. Markdown and task definitions do not hand-maintain completed implementation or passed acceptance state. Product acceptance can pass only when contract is approved, implementation status is completed, all required tasks are completed, and a valid accepted Epic Review exists.
+
+Plan rewrite milestones use `contract_readiness_status` and `plan_acceptance_status`. PR-M0 through PR-M3 task completion can make contracts ready for review, but it does not create formal plan acceptance without a valid Plan Rewrite Review record. In full projection, a PR plan task is projected to `completed` only when its `plan_rewrite_milestone` has both a valid `Plan Gate` record and a valid `Codex A` record bound to the same reviewed commit. Missing, stale, or commit-mismatched records keep the PR task non-terminal for selector dependency checks.
 
 ## Command Capture
 

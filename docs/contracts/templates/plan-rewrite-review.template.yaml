@@ -1,0 +1,37 @@
+schema_version: 1
+plan_rewrite_milestone: PR-M0
+plan_commit_sha: null
+reviewer_role: Codex A
+reviewed_at: "1970-01-01T00:00:00+00:00"
+decision: not-run
+required_outcomes: []
+ci_evidence: []
+snapshot_hashes: {}
+migration_evidence: []
+public_preflight_evidence: []
+unresolved_findings: []
+required_repairs: []
+review_record_sha256: null
+
+# accepted record evidence shape:
+# ci_evidence:
+#   - workflow_name: plan-contracts
+#     run_id: 0
+#     run_url: https://github.com/xiaoquan1021/plan/actions/runs/0
+#     commit_sha: 0000000
+#     conclusion: success
+#     verification_report_path: ledger/evidence/plan-rewrite/ci-run-0.json
+#     verification_report_sha256: 0000000000000000000000000000000000000000000000000000000000000000
+#     jobs:
+#       - name: public-contracts
+#         conclusion: success
+# migration_evidence:
+#   - command: python harness/migrate_legacy_ledger.py --check
+#     exit_code: 0
+#     status: passed
+#     report_path: ledger/archive/legacy-public-snapshot-202606/migration-report.json
+#     report_sha256: 0000000000000000000000000000000000000000000000000000000000000000
+# public_preflight_evidence:
+#   - command: python harness/preflight_plan.py --public
+#     exit_code: 0
+#     status: passed

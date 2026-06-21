@@ -1,0 +1,460 @@
+{
+  "epic_reviews": [],
+  "gate_results": [],
+  "plan_rewrite_reviews": [
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M0",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Public schemas validate at target commit",
+        "Task graph validates and public snapshots are deterministic",
+        "Legacy migration check passes",
+        "Public preflight passes",
+        "Plan harness unit tests pass"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "95db18edc6871fcd07b3669eb6f5e49af3d9a97f556c80434b1319425d24274f",
+      "reviewed_at": "2026-06-21T11:32:50+00:00",
+      "reviewer_role": "Plan Gate",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M1",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Runtime and completion projection schemas validate",
+        "Task graph validates and public snapshots are deterministic",
+        "Legacy migration check passes",
+        "Public preflight passes",
+        "Plan harness unit tests pass"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "1e6612a095dd714422ddc797b64aef4286c22cac2e5f405258ba823ad9f3a495",
+      "reviewed_at": "2026-06-21T11:32:50+00:00",
+      "reviewer_role": "Plan Gate",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M2",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Task Pack issuance chain remains draft for XQ-M1 public packs",
+        "Selector and Projection dependency rules pass regression tests",
+        "Legacy migration check passes",
+        "Public preflight passes",
+        "Plan harness unit tests pass"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "178d97c17b4c32339eafa408434b15301398200e9a95d407f5e90d7b7275c9f8",
+      "reviewed_at": "2026-06-21T11:32:50+00:00",
+      "reviewer_role": "Plan Gate",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M3",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Core Data contract readiness harness validates without issuing implementation tasks",
+        "PR-M3 task terminal closure regression passes",
+        "XQ-M0 no longer reports PR-M3 dependency incomplete when formal reviews are valid",
+        "Public preflight passes",
+        "Plan harness unit tests pass"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "52e861f08a9d5c58ec4e45ccef16b3ab2814d1aab07d22b78b927592a25aed9b",
+      "reviewed_at": "2026-06-21T11:32:50+00:00",
+      "reviewer_role": "Plan Gate",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M0",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Independent Codex A Reviewer R2 accepted PR-M0 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf",
+        "Schema validation, task graph validation, deterministic public snapshots, migration check, public preflight and harness tests are bound to successful CI run 27902915148",
+        "Plan Gate evidence for PR-M0 is accepted and self-hash valid",
+        "Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "eecc31d4617e730c0ff104aa4b26dac862d7be994804920958a8f717ff971414",
+      "reviewed_at": "2026-06-21T11:56:57+00:00",
+      "reviewer_role": "Codex A",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M1",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Independent Codex A Reviewer R2 accepted PR-M1 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf",
+        "Runtime/completion projection contracts and full projection review path were assessed against the branch diff",
+        "Plan Gate evidence for PR-M1 is accepted and self-hash valid",
+        "Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "0ee287c70108c615669b0eb7f5bda86f15b5e6817fc5e0f91cd2dd58e65fd75d",
+      "reviewed_at": "2026-06-21T11:56:57+00:00",
+      "reviewer_role": "Codex A",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M2",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Independent Codex A Reviewer R2 accepted PR-M2 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf",
+        "Task Pack issuance and selector/projection dependency closure were assessed without issuing XQ implementation tasks",
+        "Plan Gate evidence for PR-M2 is accepted and self-hash valid",
+        "Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "8cc5d1a166f93d6dd824b9b1c0d41fe469dc999734bef1e2686250eda2d98759",
+      "reviewed_at": "2026-06-21T11:56:57+00:00",
+      "reviewer_role": "Codex A",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    },
+    {
+      "ci_evidence": [
+        {
+          "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "name": "public-contracts"
+            }
+          ],
+          "run_id": 27902915148,
+          "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+          "verification_report_path": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+          "verification_report_sha256": "b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b",
+          "workflow_name": "plan-contracts"
+        }
+      ],
+      "decision": "accepted",
+      "migration_evidence": [
+        {
+          "command": "python harness/migrate_legacy_ledger.py --check",
+          "exit_code": 0,
+          "report_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+          "report_sha256": "cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2",
+          "status": "passed"
+        }
+      ],
+      "plan_commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+      "plan_rewrite_milestone": "PR-M3",
+      "public_preflight_evidence": [
+        {
+          "command": "python harness/preflight_plan.py --public",
+          "exit_code": 0,
+          "status": "passed"
+        }
+      ],
+      "required_outcomes": [
+        "Independent Codex A Reviewer R2 accepted PR-M3 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf",
+        "Projection simulation showed PR-M3-001 completed when Plan Gate and Codex A evidence are both accepted",
+        "XQ-M0 PR-M3 dependency closure was assessed without executing XQ-M0 or issuing implementation tasks",
+        "Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json"
+      ],
+      "required_repairs": [],
+      "review_record_sha256": "4aa4d8d0c02694cd33e16a29b1c23cc5db62f765fb7b1e7bae12801a2f990d2c",
+      "reviewed_at": "2026-06-21T11:56:57+00:00",
+      "reviewer_role": "Codex A",
+      "schema_version": 1,
+      "snapshot_hashes": {
+        "public-state-summary.json": "ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0",
+        "task-graph.json": "648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65",
+        "task-runtime-summary.json": "462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0",
+        "tasks.json": "a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a"
+      },
+      "unresolved_findings": []
+    }
+  ],
+  "schema_version": 1,
+  "task_results": []
+}

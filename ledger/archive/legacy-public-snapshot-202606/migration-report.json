@@ -2,7 +2,7 @@
   "historical_only_count": 20,
   "input_hash": "72a09bb7da7580c816bf720f405ae9a5d9a9613626204286a74a91b8897048c4",
   "legacy_completed_inherited_as_implementation_completed": false,
-  "legacy_input": "ledger\\archive\\legacy-public-snapshot-202606\\tasks.json",
+  "legacy_input": "ledger/archive/legacy-public-snapshot-202606/tasks.json",
   "mapped_count": 0,
   "migrated_tasks": [
     {
@@ -888,10 +888,10 @@
       "superseded_by": "docs/contracts/normative-precedence.md"
     }
   ],
-  "migration_definition": "ledger\\migrations\\0001-task-definition-migration.yaml",
+  "migration_definition": "ledger/migrations/0001-task-definition-migration.yaml",
   "migration_definition_hash": "c03e0846f4f0cbd079d6499cbe488d578aa3c26faecf89169757f7e0cb5173d1",
   "migration_id": "0001-task-definition-migration",
-  "output_hash": "325b7970178a2bde78d33b08d6b6df6f84889086610bedbe754681023bddf405",
+  "output_hash": "c2044aea9d52fb78dc6fe32cbe52cb0e82853eea84fbe83b98cb502032299813",
   "requires_private_reconciliation_count": 26,
   "schema_version": 1,
   "stale_completion_count": 13,

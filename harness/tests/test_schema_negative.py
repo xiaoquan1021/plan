@@ -162,3 +162,51 @@ def test_accepted_review_missing_hashes_rejected() -> None:
         "required_repairs": [],
     }
     assert errors_for(review, "epic-review.schema.json")
+
+
+def test_accepted_review_blocking_risk_rejected() -> None:
+    review = {
+        "schema_version": 1,
+        "epic_id": "E",
+        "epic_contract_sha256": "e" * 64,
+        "review_base_commit": "base123",
+        "review_head_commit": "head456",
+        "required_outcomes": ["ok"],
+        "architecture_constraints": ["ok"],
+        "acceptance_evidence": ["ok"],
+        "cross_task_integration_findings": [],
+        "unresolved_risks": [
+            {
+                "severity": "blocking",
+                "description": "block",
+                "evidence": "evidence",
+                "owner": "Codex A",
+            }
+        ],
+        "contract_defects": [],
+        "decision": "accepted",
+        "required_repairs": [],
+        "dependency_lock_sha256": "d" * 64,
+        "toolchain_manifest_sha256": "t" * 64,
+    }
+    assert errors_for(review, "epic-review.schema.json")
+
+
+def test_plan_rewrite_review_template_schema_available() -> None:
+    review = {
+        "schema_version": 1,
+        "plan_rewrite_milestone": "PR-M0",
+        "plan_commit_sha": None,
+        "reviewer_role": "Codex A",
+        "reviewed_at": "1970-01-01T00:00:00+00:00",
+        "decision": "not-run",
+        "required_outcomes": [],
+        "ci_evidence": [],
+        "snapshot_hashes": {},
+        "migration_evidence": [],
+        "public_preflight_evidence": [],
+        "unresolved_findings": [],
+        "required_repairs": [],
+        "review_record_sha256": None,
+    }
+    assert errors_for(review, "plan-rewrite-review.schema.json") == []
