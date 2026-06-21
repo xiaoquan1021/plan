@@ -1,0 +1,42 @@
+schema_version: 1
+plan_rewrite_milestone: PR-M3
+plan_commit_sha: eafc973de118201d6ffd29aa21419c4aef2616bf
+reviewer_role: Codex A
+reviewed_at: '2026-06-21T11:56:57+00:00'
+decision: accepted
+required_outcomes:
+- Independent Codex A Reviewer R2 accepted PR-M3 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf
+- Projection simulation showed PR-M3-001 completed when Plan Gate and Codex A evidence
+  are both accepted
+- XQ-M0 PR-M3 dependency closure was assessed without executing XQ-M0 or issuing implementation
+  tasks
+- Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json
+ci_evidence:
+- workflow_name: plan-contracts
+  run_id: 27902915148
+  run_url: https://github.com/xiaoquan1021/plan/actions/runs/27902915148
+  commit_sha: eafc973de118201d6ffd29aa21419c4aef2616bf
+  conclusion: success
+  verification_report_path: ledger/evidence/plan-rewrite/ci-run-27902915148.json
+  verification_report_sha256: b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b
+  jobs:
+  - name: public-contracts
+    conclusion: success
+snapshot_hashes:
+  tasks.json: a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a
+  task-graph.json: 648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65
+  public-state-summary.json: ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0
+  task-runtime-summary.json: 462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0
+migration_evidence:
+- command: python harness/migrate_legacy_ledger.py --check
+  exit_code: 0
+  status: passed
+  report_path: ledger/archive/legacy-public-snapshot-202606/migration-report.json
+  report_sha256: cdacdbde45a19e7bc93a83ad2b1000a1ba8c3d1aad87696960675e26a87021d2
+public_preflight_evidence:
+- command: python harness/preflight_plan.py --public
+  exit_code: 0
+  status: passed
+unresolved_findings: []
+required_repairs: []
+review_record_sha256: 4aa4d8d0c02694cd33e16a29b1c23cc5db62f765fb7b1e7bae12801a2f990d2c

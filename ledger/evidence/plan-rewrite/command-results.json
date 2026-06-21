@@ -1,73 +1,98 @@
 {
   "commands": [
     {
+      "command": "python -m pip install -r requirements-ci.txt",
+      "evidence_path": "local command output",
+      "exit_code": 0,
+      "key_output": "requirements already satisfied",
+      "result": "PASSED"
+    },
+    {
       "command": "git diff --check",
+      "evidence_path": "local command output",
       "exit_code": 0,
       "key_output": "no whitespace errors",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe -m pip install -r requirements-ci.txt",
+      "command": "python -m pytest harness/tests",
+      "evidence_path": "local command output",
       "exit_code": 0,
-      "key_output": "CI requirements already satisfied",
+      "key_output": "151 passed in 42.90s",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe -m pytest harness\\tests",
+      "command": "python -m py_compile harness/*.py",
+      "evidence_path": "local command output",
+      "exit_code": 1,
+      "key_output": "PowerShell/native argument did not expand wildcard: [Errno 22] Invalid argument: 'harness\\*.py'",
+      "result": "FAILED"
+    },
+    {
+      "command": "python -m py_compile <all harness/*.py files>",
+      "evidence_path": "local command output",
       "exit_code": 0,
-      "key_output": "151 passed",
+      "key_output": "all harness Python files compiled after explicit file expansion",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe -m py_compile harness\\*.py",
-      "exit_code": 0,
-      "key_output": "all harness Python files compiled",
-      "result": "PASSED"
-    },
-    {
-      "command": "C:\\software\\anaconda\\python.exe harness\\validate_schema.py",
+      "command": "python harness/validate_schema.py",
+      "evidence_path": "local command output",
       "exit_code": 0,
       "key_output": "schema validation passed",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe harness\\validate_task_graph.py",
+      "command": "python harness/validate_task_graph.py",
+      "evidence_path": "local command output",
       "exit_code": 0,
       "key_output": "task graph validation passed (20 tasks)",
       "result": "PASSED"
     },
     {
-      "command": "SOURCE_DATE_EPOCH=0 C:\\software\\anaconda\\python.exe harness\\generate_snapshots.py --definitions-only --check",
+      "command": "SOURCE_DATE_EPOCH=0 python harness/generate_snapshots.py --definitions-only --check",
+      "evidence_path": "local command output",
       "exit_code": 0,
       "key_output": "snapshot check passed",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe harness\\migrate_legacy_ledger.py --check",
+      "command": "python harness/migrate_legacy_ledger.py --check",
+      "evidence_path": "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
       "exit_code": 0,
       "key_output": "migration check passed",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe harness\\preflight_environment.py --bindings config\\toolchain-bindings.example.json",
+      "command": "python harness/preflight_environment.py --bindings config/toolchain-bindings.example.json",
+      "evidence_path": "local command output",
       "exit_code": 0,
       "key_output": "required git/python tools resolved; optional cmake/ninja/compiler/qt not bound",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe harness\\validate_public_contracts.py",
+      "command": "python harness/validate_public_contracts.py",
+      "evidence_path": "local command output",
       "exit_code": 0,
       "key_output": "public contract scan passed",
       "result": "PASSED"
     },
     {
-      "command": "C:\\software\\anaconda\\python.exe harness\\preflight_plan.py --public",
+      "command": "python harness/preflight_plan.py --public",
+      "evidence_path": "local command output",
       "exit_code": 0,
-      "key_output": "public preflight ok true",
+      "key_output": "public preflight ok true; private_runtime_projection not-run",
+      "result": "PASSED"
+    },
+    {
+      "command": "python harness/preflight_plan.py --full --runtime-events ledger/evidence/plan-rewrite/runtime-projection.json --completion-records ledger/evidence/plan-rewrite/completion-projection.json --workspace-report ledger/evidence/plan-rewrite/workspace-reconciliation.json --report-output ledger/evidence/plan-rewrite/preflight-full-formal-acceptance-report.json",
+      "evidence_path": "ledger/evidence/plan-rewrite/preflight-full-formal-acceptance-report.json",
+      "exit_code": 0,
+      "key_output": "full preflight ok true; status_counts completed=4 blocked=16; private_runtime_projection run",
       "result": "PASSED"
     }
   ],
-  "generated_at": "2026-06-21T11:32:50+00:00",
+  "generated_at": "2026-06-21T12:03:04+00:00",
   "github_actions": {
     "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
     "conclusion": "success",

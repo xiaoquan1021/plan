@@ -1,0 +1,117 @@
+{
+  "implementation_task_issued": false,
+  "milestone_statuses": {
+    "PR-M0": {
+      "acceptance_status": "not-run",
+      "contract_readiness_status": "ready-for-approval",
+      "contract_status": "draft",
+      "implementation_status": "not-started",
+      "plan_acceptance_status": "accepted",
+      "required_task_ids": [],
+      "status_source": "generated from task definitions and runtime projection"
+    },
+    "PR-M1": {
+      "acceptance_status": "not-run",
+      "contract_readiness_status": "ready-for-approval",
+      "contract_status": "draft",
+      "implementation_status": "not-started",
+      "plan_acceptance_status": "accepted",
+      "required_task_ids": [],
+      "status_source": "generated from task definitions and runtime projection"
+    },
+    "PR-M2": {
+      "acceptance_status": "not-run",
+      "contract_readiness_status": "ready-for-approval",
+      "contract_status": "draft",
+      "implementation_status": "not-started",
+      "plan_acceptance_status": "accepted",
+      "required_task_ids": [],
+      "status_source": "generated from task definitions and runtime projection"
+    },
+    "PR-M3": {
+      "acceptance_status": "not-run",
+      "contract_readiness_status": "ready-for-approval",
+      "contract_status": "draft",
+      "implementation_status": "not-started",
+      "plan_acceptance_status": "accepted",
+      "required_task_ids": [],
+      "status_source": "generated from task definitions and runtime projection"
+    },
+    "XQ-M0": {
+      "acceptance_status": "not-run",
+      "contract_readiness_status": "not-started",
+      "contract_status": "draft",
+      "implementation_status": "stale",
+      "plan_acceptance_status": "not-run",
+      "required_task_ids": [
+        "XQ-M0-001"
+      ],
+      "status_source": "generated from task definitions and runtime projection"
+    },
+    "XQ-M1": {
+      "acceptance_status": "not-run",
+      "contract_readiness_status": "ready-for-approval",
+      "contract_status": "draft",
+      "implementation_status": "stale",
+      "plan_acceptance_status": "not-run",
+      "required_task_ids": [
+        "XQ-M1-CORE-001",
+        "XQ-M1-CORE-002",
+        "XQ-M1-CORE-003",
+        "XQ-M1-CORE-004",
+        "XQ-M1-CORE-005",
+        "XQ-M1-CORE-006"
+      ],
+      "status_source": "generated from task definitions and runtime projection"
+    }
+  },
+  "pr_m3_001": {
+    "plan_gate_evidence": "accepted",
+    "plan_review_evidence": "accepted",
+    "selector_terminal_ok": true,
+    "status": "completed"
+  },
+  "projection_mode": "full",
+  "schema_version": 1,
+  "selector": {
+    "reason": "no-claimable-task-after-dependencies",
+    "selected": null,
+    "skipped_tasks": [],
+    "status_counts": {
+      "blocked": 16,
+      "completed": 4
+    }
+  },
+  "status_counts": {
+    "blocked": 16,
+    "completed": 4
+  },
+  "target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+  "task_statuses": {
+    "PR-M0-001": "completed",
+    "PR-M1-001": "completed",
+    "PR-M2-001": "completed",
+    "PR-M3-001": "completed",
+    "XQ-M0-001": "blocked"
+  },
+  "xq_m0_001": {
+    "blocked_by_pr_m3_dependency": false,
+    "blocked_reason": "IMPLEMENTATION_WORKSPACE has not been baseline-frozen in this plan rewrite pass",
+    "depends_on_pr_m3_001": true,
+    "pr_m3_dependency_satisfied": true,
+    "remaining_blockers": [
+      "decision_state is open",
+      "task pack is missing",
+      "task pack schema invalid",
+      "task pack is missing",
+      "execution_ready is false",
+      "base_commit is missing",
+      "rollback_point is missing",
+      "worktree_binding is missing",
+      "task pack hash mismatch",
+      "epic contract is not approved"
+    ],
+    "status": "blocked",
+    "unblock_condition": "Codex A/user approves baseline strategy and produces workspace reconciliation report"
+  }
+}

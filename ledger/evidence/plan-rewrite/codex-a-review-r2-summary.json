@@ -1,0 +1,118 @@
+{
+  "converted_to_formal_records": true,
+  "evidence_assessed": [
+    "harness/projection.py",
+    "harness/preflight_plan.py",
+    "harness/task_selector.py",
+    "harness/ledger_task.py",
+    "ledger/schema/plan-rewrite-review.schema.json",
+    "ledger/schema/completion-projection.schema.json",
+    "ledger/schema/completion-runtime.schema.json",
+    "ledger/schema/workspace-reconciliation.schema.json",
+    "ledger/reviews/plan-rewrite/PR-M0.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M1.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M2.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M3.plan-gate.yaml",
+    "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+    "ledger/evidence/plan-rewrite/command-results.json",
+    "ledger/evidence/plan-rewrite/completion-projection.json",
+    "ledger/evidence/plan-rewrite/formal-acceptance-report.json",
+    "ledger/evidence/plan-rewrite/preflight-full-plan-gate-only-report.json",
+    "ledger/evidence/plan-rewrite/runtime-projection.json",
+    "ledger/evidence/plan-rewrite/workspace-reconciliation.json",
+    "ledger/snapshots/tasks.json",
+    "ledger/snapshots/task-graph.json",
+    "ledger/snapshots/public-state-summary.json",
+    "ledger/snapshots/task-runtime-summary.json",
+    "ledger/archive/legacy-public-snapshot-202606/migration-report.json",
+    "GitHub Actions run 27902915148 connector job data"
+  ],
+  "execution_status": "completed",
+  "findings": [],
+  "formal_record_paths": [
+    "ledger/reviews/plan-rewrite/PR-M0.codex-a.yaml",
+    "ledger/reviews/plan-rewrite/PR-M1.codex-a.yaml",
+    "ledger/reviews/plan-rewrite/PR-M2.codex-a.yaml",
+    "ledger/reviews/plan-rewrite/PR-M3.codex-a.yaml"
+  ],
+  "generated_at": "2026-06-21T11:56:57+00:00",
+  "milestone_decisions": {
+    "PR-M0": "accepted",
+    "PR-M1": "accepted",
+    "PR-M2": "accepted",
+    "PR-M3": "accepted"
+  },
+  "raw_decision": "accepted",
+  "raw_output_commit_omission_reason": "raw Codex CLI jsonl contains local runtime/plugin paths; this sanitized summary preserves the review decision and findings without private paths",
+  "raw_output_committed": false,
+  "raw_output_retained_locally": true,
+  "required_repairs": [],
+  "reviewer_commands_run": [
+    {
+      "command": "git status --short",
+      "exit_code": 0,
+      "key_output": "clean"
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit_code": 0,
+      "key_output": "32da76a3d815093ccf60c77ce9a1dd8cd8a9101d"
+    },
+    {
+      "command": "git rev-parse origin/main",
+      "exit_code": 0,
+      "key_output": "d74b5d2acc1bd66ec67c5b7c52e615159a5a89cf"
+    },
+    {
+      "command": "git diff --name-status origin/main...HEAD",
+      "exit_code": 0,
+      "key_output": "Reviewed branch diff includes harness/contracts/schema/snapshot changes plus plan-rewrite evidence and reviews"
+    },
+    {
+      "command": "git diff --name-status eafc973de118201d6ffd29aa21419c4aef2616bf..HEAD",
+      "exit_code": 0,
+      "key_output": "Only ledger/evidence/plan-rewrite/*.json and ledger/reviews/plan-rewrite/*.plan-gate.yaml added after target"
+    },
+    {
+      "command": "python harness/validate_schema.py ledger/evidence/plan-rewrite/completion-projection.json ledger/schema/completion-projection.schema.json",
+      "exit_code": 2,
+      "key_output": "Command form unsupported by this repository CLI: unrecognized arguments"
+    },
+    {
+      "command": "python harness/preflight_plan.py --plan-rewrite-review-root ledger/reviews/plan-rewrite",
+      "exit_code": 2,
+      "key_output": "Command form unsupported by this repository CLI: unrecognized arguments"
+    },
+    {
+      "command": "projection.canonical_plan_rewrite_review_hash over ledger/reviews/plan-rewrite/*.plan-gate.yaml",
+      "exit_code": 0,
+      "key_output": "PR-M0, PR-M1, PR-M2, PR-M3 stored review_record_sha256 values all matched calculated hashes"
+    },
+    {
+      "command": "projection.apply_full_projection with simulated Codex A records for PR-M0..PR-M3",
+      "exit_code": 0,
+      "key_output": "PR-M0-001, PR-M1-001, PR-M2-001, PR-M3-001 projected status completed with plan_gate_evidence accepted and plan_review_evidence accepted"
+    },
+    {
+      "command": "GitHub connector _fetch_workflow_run_jobs xiaoquan1021/plan 27902915148",
+      "exit_code": 0,
+      "key_output": "public-contracts completed success; all listed steps completed success"
+    },
+    {
+      "command": "python harness/preflight_plan.py --public",
+      "exit_code": 1,
+      "key_output": "schema validation, task graph validation, public contract scan, and migration fixture check passed; snapshot check blocked by read-only/no usable temporary directory"
+    }
+  ],
+  "reviewer_required_outcomes": [
+    "HEAD is clean and contains only ledger/reviews/ or ledger/evidence/ additions after TARGET_COMMIT",
+    "Plan Gate records for PR-M0..PR-M3 are accepted, self-hash-valid, target TARGET_COMMIT, and include required CI/snapshot/migration/preflight evidence",
+    "Committed CI evidence binds GitHub Actions run 27902915148 to TARGET_COMMIT with public-contracts success",
+    "GitHub connector job listing independently confirms run 27902915148 public-contracts success and all listed steps success",
+    "Snapshot and migration hashes in Plan Gate records match committed snapshot and migration-report bytes",
+    "Projection simulation with added Codex A accepted records makes PR-M0..PR-M3 tasks completed with Plan Gate and Codex A evidence accepted"
+  ],
+  "reviewer_type": "independent read-only Codex A Reviewer",
+  "schema_version": 1,
+  "target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf"
+}
