@@ -1033,6 +1033,77 @@ def test_github_fetch_uses_token_when_available(monkeypatch) -> None:
     assert observed["timeout"] == "15"
 
 
+def test_plan_rewrite_review_ci_verification_report_can_satisfy_ci_check(tmp_path: Path, monkeypatch) -> None:
+    report = {
+        "schema_version": 1,
+        "workflow_name": "plan-contracts",
+        "run_id": 123456,
+        "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/123456",
+        "commit_sha": current_commit(),
+        "conclusion": "success",
+        "verified_via": "GitHub connector _fetch_workflow_run_jobs",
+        "jobs": [
+            {
+                "name": "public-contracts",
+                "conclusion": "success",
+                "steps": [{"name": "Harness unit tests", "status": "completed", "conclusion": "success"}],
+            }
+        ],
+    }
+    report_path = tmp_path / "ledger/evidence/plan-rewrite/ci-run.json"
+    write_json(report_path, report)
+    review = plan_rewrite_review("Codex A", "PR-M0")
+    review["ci_evidence"][0]["verification_report_path"] = "ledger/evidence/plan-rewrite/ci-run.json"
+    review["ci_evidence"][0]["verification_report_sha256"] = file_sha256(report_path)
+    review["review_record_sha256"] = projection.canonical_plan_rewrite_review_hash(review)
+    monkeypatch.setattr(projection, "ROOT", tmp_path)
+    monkeypatch.setattr(
+        projection,
+        "github_ci_evidence_verified",
+        lambda item: (_ for _ in ()).throw(AssertionError("live GitHub API should not be called")),
+    )
+
+    reasons: list[str] = []
+    projection.validate_ci_evidence(review, reasons)
+
+    assert reasons == []
+
+
+def test_plan_rewrite_review_ci_verification_report_hash_mismatch_is_stale(tmp_path: Path, monkeypatch) -> None:
+    report_path = tmp_path / "ledger/evidence/plan-rewrite/ci-run.json"
+    write_json(
+        report_path,
+        {
+            "schema_version": 1,
+            "workflow_name": "plan-contracts",
+            "run_id": 123456,
+            "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/123456",
+            "commit_sha": current_commit(),
+            "conclusion": "success",
+            "verified_via": "GitHub connector _fetch_workflow_run_jobs",
+            "jobs": [
+                {
+                    "name": "public-contracts",
+                    "conclusion": "success",
+                    "steps": [{"name": "Harness unit tests", "status": "completed", "conclusion": "success"}],
+                }
+            ],
+        },
+    )
+    review = plan_rewrite_review("Codex A", "PR-M0")
+    review["ci_evidence"][0]["verification_report_path"] = "ledger/evidence/plan-rewrite/ci-run.json"
+    review["ci_evidence"][0]["verification_report_sha256"] = HEX_A
+    review["review_record_sha256"] = projection.canonical_plan_rewrite_review_hash(review)
+    monkeypatch.setattr(projection, "ROOT", tmp_path)
+    monkeypatch.setattr(projection, "github_ci_evidence_verified", lambda item: (False, ["live-ci-failed"]))
+
+    reasons: list[str] = []
+    projection.validate_ci_evidence(review, reasons)
+
+    assert "ci-verification-report-hash-mismatch" in reasons
+    assert "live-ci-failed" in reasons
+
+
 def test_full_preflight_requires_ancestor_check_when_accepted_epic_review_exists(tmp_path: Path) -> None:
     runtime, completion, workspace = write_full_inputs(
         tmp_path,

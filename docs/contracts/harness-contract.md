@@ -87,7 +87,7 @@ Plan rewrite acceptance requires two independent accepted records for the same P
 
 Both records must bind to `plan_commit_sha`. The commit must exist and be current `HEAD` or an ancestor of `HEAD`. If the review record is added after the reviewed commit, every changed file between `plan_commit_sha` and `HEAD` must be limited to review or evidence paths; changes to harness, schemas, task definitions, workflows, snapshots, contracts, or migration definitions make the review stale.
 
-Accepted plan rewrite records must carry structured CI evidence for the `plan-contracts` workflow, current public snapshot hashes, migration check evidence, and public preflight evidence. Snapshot hashes are compared against the actual committed public snapshot files. CI evidence must bind workflow, run, commit, success conclusion, and job conclusions; arbitrary text is not accepted.
+Accepted plan rewrite records must carry structured CI evidence for the `plan-contracts` workflow, current public snapshot hashes, migration check evidence, and public preflight evidence. Snapshot hashes are compared against the actual committed public snapshot files. CI evidence must bind workflow, run, commit, success conclusion, and job conclusions; arbitrary text is not accepted. When a committed CI verification report is supplied, the projection verifies the report path, report SHA256, workflow, run, commit, job conclusions, and successful job steps before treating CI evidence as valid.
 
 ## Snapshot Check
 

@@ -20,6 +20,8 @@ review_record_sha256: null
 #     run_url: https://github.com/xiaoquan1021/plan/actions/runs/0
 #     commit_sha: 0000000
 #     conclusion: success
+#     verification_report_path: ledger/evidence/plan-rewrite/ci-run-0.json
+#     verification_report_sha256: 0000000000000000000000000000000000000000000000000000000000000000
 #     jobs:
 #       - name: public-contracts
 #         conclusion: success

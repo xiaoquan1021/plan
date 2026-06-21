@@ -42,6 +42,8 @@
           "run_url": { "type": "string", "minLength": 1 },
           "commit_sha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
           "conclusion": { "type": "string", "minLength": 1 },
+          "verification_report_path": { "type": "string", "minLength": 1 },
+          "verification_report_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
           "jobs": {
             "type": "array",
             "items": {

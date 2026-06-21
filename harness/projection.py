@@ -574,6 +574,79 @@ def current_public_snapshot_hashes() -> dict[str, str]:
     return hashes
 
 
+def repository_relative_existing_file(path_value: Any, reasons: list[str], reason_prefix: str) -> Path | None:
+    if not isinstance(path_value, str) or not path_value:
+        reasons.append(f"{reason_prefix}-missing")
+        return None
+    path = Path(path_value)
+    if path.is_absolute() or ".." in path.parts:
+        reasons.append(f"{reason_prefix}-invalid-path")
+        return None
+    resolved = (ROOT / path).resolve()
+    try:
+        resolved.relative_to(ROOT.resolve())
+    except ValueError:
+        reasons.append(f"{reason_prefix}-invalid-path")
+        return None
+    if not resolved.exists():
+        reasons.append(f"{reason_prefix}-missing")
+        return None
+    return resolved
+
+
+def ci_verification_report_valid(item: dict[str, Any], reasons: list[str]) -> bool:
+    path_value = item.get("verification_report_path")
+    hash_value = item.get("verification_report_sha256")
+    if path_value in (None, "") and hash_value in (None, ""):
+        return False
+    report_path = repository_relative_existing_file(path_value, reasons, "ci-verification-report")
+    if report_path is None:
+        return False
+    if not is_sha256(hash_value) or file_sha256(report_path) != hash_value:
+        reasons.append("ci-verification-report-hash-mismatch")
+        return False
+    try:
+        report = load_data(report_path)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        reasons.append(f"ci-verification-report-invalid:{exc}")
+        return False
+
+    ok = True
+    for key in ["workflow_name", "run_id", "run_url", "commit_sha", "conclusion"]:
+        if report.get(key) != item.get(key):
+            reasons.append(f"ci-verification-report-{key}-mismatch")
+            ok = False
+    if report.get("conclusion") != "success":
+        reasons.append("ci-verification-report-not-success")
+        ok = False
+    if report.get("verified_via") not in {"GitHub connector _fetch_workflow_run_jobs", "GitHub Actions API"}:
+        reasons.append("ci-verification-report-source-invalid")
+        ok = False
+
+    expected_jobs = {job.get("name"): job.get("conclusion") for job in item.get("jobs", []) if isinstance(job, dict)}
+    actual_jobs = {job.get("name"): job for job in report.get("jobs", []) if isinstance(job, dict)}
+    if not expected_jobs:
+        reasons.append("ci-jobs-missing")
+        ok = False
+    for name, conclusion in expected_jobs.items():
+        actual = actual_jobs.get(name)
+        if not actual or actual.get("conclusion") != conclusion or conclusion != "success":
+            reasons.append("ci-verification-report-job-mismatch")
+            ok = False
+            break
+        steps = actual.get("steps") if isinstance(actual.get("steps"), list) else []
+        if not steps:
+            reasons.append("ci-verification-report-steps-missing")
+            ok = False
+            break
+        for step in steps:
+            if not isinstance(step, dict) or step.get("status") != "completed" or step.get("conclusion") != "success":
+                reasons.append("ci-verification-report-step-not-success")
+                ok = False
+                break
+    return ok
+
+
 def validate_ci_evidence(review: dict[str, Any], reasons: list[str]) -> None:
     plan_commit = review.get("plan_commit_sha")
     evidence = review.get("ci_evidence") if isinstance(review.get("ci_evidence"), list) else []
@@ -599,6 +672,8 @@ def validate_ci_evidence(review: dict[str, Any], reasons: list[str]) -> None:
             if not isinstance(job, dict) or job.get("conclusion") != "success":
                 reasons.append("ci-job-not-success")
                 break
+        if ci_verification_report_valid(item, reasons):
+            continue
         verified, verify_reasons = github_ci_evidence_verified(item)
         if not verified:
             reasons.extend(verify_reasons)
