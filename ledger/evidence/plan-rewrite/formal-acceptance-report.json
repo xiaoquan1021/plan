@@ -1,0 +1,19 @@
+{
+  "ci_verification_report": "ledger/evidence/plan-rewrite/ci-run-27902915148.json",
+  "codex_a_review_records": [],
+  "command_results": "ledger/evidence/plan-rewrite/command-results.json",
+  "completion_projection": "ledger/evidence/plan-rewrite/completion-projection.json",
+  "formal_plan_rewrite_review_status": "pending-codex-a-review",
+  "generated_at": "2026-06-21T11:32:50+00:00",
+  "plan_gate_records": [
+    "ledger/reviews/plan-rewrite/PR-M0.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M1.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M2.plan-gate.yaml",
+    "ledger/reviews/plan-rewrite/PR-M3.plan-gate.yaml"
+  ],
+  "previous_reviewer_summary": "ledger/evidence/plan-rewrite/previous-codex-a-review-summary.json",
+  "runtime_projection": "ledger/evidence/plan-rewrite/runtime-projection.json",
+  "schema_version": 1,
+  "target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+  "workspace_reconciliation": "ledger/evidence/plan-rewrite/workspace-reconciliation.json"
+}

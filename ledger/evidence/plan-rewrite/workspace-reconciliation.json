@@ -1,0 +1,14 @@
+{
+  "base_commit": null,
+  "dependency_contract_sha256": null,
+  "dependency_lock_sha256": null,
+  "epic_base_commit": null,
+  "epic_head_commit": null,
+  "epic_id": null,
+  "implementation_dependency_lock_sha256": null,
+  "integrated_task_commits": {},
+  "reconciled_at": "2026-06-21T11:32:50+00:00",
+  "schema_version": 1,
+  "toolchain_manifest_sha256": null,
+  "workspace_state": "plan-only-public-acceptance"
+}

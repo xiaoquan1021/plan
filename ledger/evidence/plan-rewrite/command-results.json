@@ -1,0 +1,190 @@
+{
+  "commands": [
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "key_output": "no whitespace errors",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe -m pip install -r requirements-ci.txt",
+      "exit_code": 0,
+      "key_output": "CI requirements already satisfied",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe -m pytest harness\\tests",
+      "exit_code": 0,
+      "key_output": "151 passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe -m py_compile harness\\*.py",
+      "exit_code": 0,
+      "key_output": "all harness Python files compiled",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe harness\\validate_schema.py",
+      "exit_code": 0,
+      "key_output": "schema validation passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe harness\\validate_task_graph.py",
+      "exit_code": 0,
+      "key_output": "task graph validation passed (20 tasks)",
+      "result": "PASSED"
+    },
+    {
+      "command": "SOURCE_DATE_EPOCH=0 C:\\software\\anaconda\\python.exe harness\\generate_snapshots.py --definitions-only --check",
+      "exit_code": 0,
+      "key_output": "snapshot check passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe harness\\migrate_legacy_ledger.py --check",
+      "exit_code": 0,
+      "key_output": "migration check passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe harness\\preflight_environment.py --bindings config\\toolchain-bindings.example.json",
+      "exit_code": 0,
+      "key_output": "required git/python tools resolved; optional cmake/ninja/compiler/qt not bound",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe harness\\validate_public_contracts.py",
+      "exit_code": 0,
+      "key_output": "public contract scan passed",
+      "result": "PASSED"
+    },
+    {
+      "command": "C:\\software\\anaconda\\python.exe harness\\preflight_plan.py --public",
+      "exit_code": 0,
+      "key_output": "public preflight ok true",
+      "result": "PASSED"
+    }
+  ],
+  "generated_at": "2026-06-21T11:32:50+00:00",
+  "github_actions": {
+    "commit_sha": "eafc973de118201d6ffd29aa21419c4aef2616bf",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 82566383023,
+        "name": "public-contracts",
+        "run_id": 27902915148,
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Install CI dependencies",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Harness unit tests",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Python syntax check",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Schema validation",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Task graph validation",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Deterministic snapshot check",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Migration idempotency check",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Example toolchain preflight",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Public contract scans",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Public plan preflight",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "run_id": 27902915148,
+    "run_url": "https://github.com/xiaoquan1021/plan/actions/runs/27902915148",
+    "schema_version": 1,
+    "verified_at": "2026-06-21T11:32:50+00:00",
+    "verified_via": "GitHub connector _fetch_workflow_run_jobs",
+    "workflow_name": "plan-contracts"
+  },
+  "schema_version": 1,
+  "target_commit": "eafc973de118201d6ffd29aa21419c4aef2616bf"
+}

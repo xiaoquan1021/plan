@@ -1,0 +1,23 @@
+{
+  "ancestor_validation": {
+    "checked_count": 0,
+    "errors": [],
+    "reason": "implementation workspace binding not provided",
+    "status": "not-run"
+  },
+  "invalid_evidence_count": 0,
+  "mode": "full",
+  "overall_ok": true,
+  "privacy_validation": "passed",
+  "private_runtime_projection": "run",
+  "schema_validation": "passed",
+  "stale_count": 0,
+  "status_counts": {
+    "blocked": 16,
+    "ready-for-ledger-review": 4
+  },
+  "task_count": 20,
+  "temporary_projection_path": "temporary-private-path",
+  "unknown_epic_count": 0,
+  "unknown_task_count": 0
+}
