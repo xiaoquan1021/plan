@@ -1,0 +1,88 @@
+schema_version: 1
+task_id: XQ-M1-CORE-002
+epic_id: XQ-M1-CORE-DATA
+task_pack_sha256: 9e364e258fe8a3c70ff7396efcc6288204a33b707d50d6ca26681924b4f62d1e
+execution_status: completed
+result_timestamp: "2026-06-23T00:26:00+00:00"
+
+base_commit: bf44820926f6b164e9c8963871b200b6254c0260
+result_commit: 30cfffa3c88e89d53c7a2c6e0c5a8e5c8e3c8e3c
+worktree_used: false
+
+implementation_agent: Codex GPT-5.5
+implementation_session_ids:
+  - 019eeead-323c-7f73-a268-c9ee937a12ad  # Initial (blocked)
+  - 019ef024-4918-7a20-9487-9f7874d62dcf  # Successful
+
+deliverables:
+  - path: src/core/XQProject.h
+    status: created
+    lines_added: 29
+  - path: src/core/XQProject.cpp
+    status: created
+    lines_added: 22
+  - path: src/core/XQScene.h
+    status: created
+    lines_added: 32
+  - path: src/core/XQScene.cpp
+    status: created
+    lines_added: 44
+  - path: tests/core/test_scene_management.cpp
+    status: created
+    lines_added: 95
+  - path: CMakeLists.txt
+    status: modified
+    lines_added: 10
+
+machine_acceptance_met:
+  - condition: "XQScene can insert XQDataNode instances and find-by-id returns the same node"
+    status: pass
+    evidence: "CTest scene_management test passed (insertNodeStoresAndFindsById)"
+  - condition: "Duplicate NodeId insertion produces deterministic diagnostic without crash"
+    status: pass
+    evidence: "CTest scene_management test passed (duplicateIdsAreRejectedWithDiagnostic)"
+  - condition: "XQProject owns exactly one XQScene instance"
+    status: pass
+    evidence: "XQProject implementation uses std::unique_ptr<XQScene>, CTest passed (projectOwnsOneScene)"
+  - condition: "Tests compile and pass"
+    status: pass
+    evidence: "MSVC build successful, CTest execution: 2/2 tests passed (100%)"
+
+forbidden_actions_violated: []
+
+stop_conditions_triggered: []
+
+gate_results:
+  - gate_type: Codex B Gate Result
+    gate_record: ledger/evidence/gate-results/XQ-M1-CORE-002.codex-b.yaml
+
+build_evidence:
+  compiler: MSVC 19.43.34810 x64
+  build_system: CMake + Ninja
+  test_framework: CTest
+  test_output: |
+    Test project C:/Users/OCEAN/Desktop/XIAOQUAN/XQrebuild/build
+        Start 1: node_identity
+    1/2 Test #1: node_identity ....................   Passed    0.01 sec
+        Start 2: scene_management
+    2/2 Test #2: scene_management .................   Passed    0.01 sec
+
+    100% tests passed, 0 tests failed out of 2
+
+    Total Test time (real) =   0.03 sec
+
+implementation_notes: |
+  Initial implementation attempt blocked by Codex read-only sandbox policy.
+  User corrected Codex configuration:
+  - sandbox_policy: danger-full-access
+  - approval_policy: never
+  - permission_profile: disabled
+
+  Second Codex session successfully implemented all deliverables.
+
+  Implementation details:
+  - XQProject owns XQScene via std::unique_ptr
+  - XQScene uses std::map<NodeId, std::unique_ptr<XQDataNode>> for node storage
+  - Null node and duplicate ID handling with explicit diagnostics
+  - Test suite follows expect() pattern from XQ-M1-CORE-001
+  - Extra test case added: null node rejection (beyond contract minimum)
