@@ -1,0 +1,69 @@
+schema_version: 1
+task_id: XQ-M1-CORE-001
+epic_id: XQ-M1-CORE-DATA
+task_pack_sha256: 873df4143d5968b6b9ee64de28cf67bed899b9d7404a7d1f2f103a0b04e7ce13
+execution_status: completed
+result_timestamp: "2026-06-22T08:37:56+00:00"
+
+base_commit: 21578ded4981bdb35e0a7519e20ead12f2c31299
+result_commit: bf44820926f6b164e9c8963871b200b6254c0260
+worktree_used: false
+
+implementation_agent: Codex GPT-5.5
+implementation_session_id: 019eee6b-6ec1-7773-903a-fee27d07e66a
+
+deliverables:
+  - path: CMakeLists.txt
+    status: created
+    lines_added: 36
+  - path: src/core/NodeId.h
+    status: created
+    lines_added: 79
+  - path: src/core/NodeId.cpp
+    status: created
+    lines_added: 62
+  - path: src/core/XQDataNode.h
+    status: created
+    lines_added: 29
+  - path: src/core/XQDataNode.cpp
+    status: created
+    lines_added: 57
+  - path: tests/core/test_node_identity.cpp
+    status: created
+    lines_added: 135
+
+machine_acceptance_met:
+  - condition: "NodeId can be created, compared, and serialized in L0 synthetic tests"
+    status: pass
+    evidence: "test_node_identity test suite passed with MSVC/CTest: 1/1 tests passed"
+  - condition: "XQDataNode has stable identity fields (NodeId, domain type, display name)"
+    status: pass
+    evidence: "XQDataNode.h defines m_id, m_domainType, m_displayName with accessor methods"
+  - condition: "No external library public types exposed in XQDataNode.h public API"
+    status: pass
+    evidence: "Public API uses only NodeId (XQ-owned) and std::string (standard library)"
+  - condition: "Tests compile and pass"
+    status: pass
+    evidence: "MSVC build successful, CTest execution: 100% tests passed, 0 tests failed out of 1"
+
+forbidden_actions_violated: []
+
+stop_conditions_triggered: []
+
+gate_results:
+  - gate_type: Codex B Gate Result
+    gate_record: ledger/evidence/gate-results/XQ-M1-CORE-001.codex-b.yaml
+
+build_evidence:
+  compiler: MSVC 19.43.34810 x64
+  build_system: CMake + Ninja
+  test_framework: CTest
+  test_output: |
+    1/1 Test #1: node_identity ... Passed
+    100% tests passed, 0 tests failed out of 1
+
+notes: |
+  Implementation completed successfully by Codex GPT-5.5 with full verification.
+  Initial build encountered lambda capture error (C3493) which was fixed.
+  Final verification confirms all machine acceptance criteria met.
+  CMake toolchain paths required discovery across multiple VS installations.
