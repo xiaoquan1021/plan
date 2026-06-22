@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "contract_version": 1,
+  "task_id": "XQ-M1-CORE-001",
+  "epic_id": "XQ-M1-CORE-DATA",
+  "issuance_status": "issued",
+  "execution_ready": true,
+  "baseline_requirement": "XQ-M0 baseline complete with base_commit 21578ded4981bdb35e0a7519e20ead12f2c31299",
+  "base_commit": "21578ded4981bdb35e0a7519e20ead12f2c31299",
+  "rollback_point": "21578ded4981bdb35e0a7519e20ead12f2c31299",
+  "worktree_binding": null,
+  "epic_contract_sha256": "3c7d0c10e6209218861650ead9fe8ae8a9125ea77fdbf8bd34ea27c299b7c599",
+  "task_pack_sha256": "COMPUTED_HASH_PLACEHOLDER",
+  "dependency_contract_sha256": null,
+  "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
+  "implementation_dependency_lock_sha256": null,
+  "toolchain_manifest_sha256": null,
+  "supersedes": [],
+  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src/core", "IMPLEMENTATION_WORKSPACE/tests/core"],
+  "allowed_paths": ["src/core/**", "tests/core/**"],
+  "forbidden_actions": [
+    "modify PLAN_WORKSPACE",
+    "modify legacy Code tree",
+    "add dependency without approval",
+    "change acceptance conditions",
+    "implement unrelated refactor",
+    "modify files outside allowed_paths"
+  ],
+  "commands": [
+    {
+      "command": "Create src/core/NodeId.h and NodeId.cpp with stable integer-based unique ID type",
+      "required": true
+    },
+    {
+      "command": "Create src/core/XQDataNode.h and XQDataNode.cpp with identity fields (NodeId, domain type string, display name)",
+      "required": true
+    },
+    {
+      "command": "Create tests/core/test_node_identity.cpp with L0 synthetic tests for NodeId creation, comparison, serialization",
+      "required": true
+    },
+    {
+      "command": "Create minimal CMakeLists.txt for core module (no external dependencies yet)",
+      "required": true
+    }
+  ],
+  "machine_acceptance": [
+    "NodeId can be created, compared, and serialized in L0 synthetic tests",
+    "XQDataNode has stable identity fields (NodeId, domain type, display name)",
+    "No external library public types exposed in XQDataNode.h public API",
+    "Tests compile and pass"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result",
+    "L0 synthetic core identity test output"
+  ],
+  "stop_conditions": [
+    "requires file outside allowed_paths",
+    "new architecture decision required",
+    "new dependency required",
+    "CMake cannot build without external dependencies"
+  ]
+}
