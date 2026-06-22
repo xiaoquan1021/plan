@@ -2,25 +2,28 @@
 
 ## Status
 
-Draft, requires Codex A approval before XQ-M0 can execute implementation work.
+Approved by Codex A on 2026-06-22.
 
 ## Decision
 
-The current proposal is to perform the integrated rebuild in the existing XQ repository lineage using `IMPLEMENTATION_WORKSPACE`, while keeping legacy `Code/` read-only until an explicit archive/delete decision is approved.
+Create a separate new repository for XQ integrated rebuild (Alternative approach).
 
-## Required Policy If Approved
+The implementation workspace is **XQrebuild**, independent from the legacy XQ repository lineage.
 
-- New integrated build entry points must not depend on `Code/`.
-- New CMake must not call `add_subdirectory(Code)`.
-- New targets must not link MITK, BlueBerry, CTK, or legacy plugin workbench targets.
-- Legacy and rebuild presets, targets, and tests must be isolated.
-- Old `Code/` is historical evidence and compatibility reference only until a later archival ADR.
-- Deleting or archiving legacy code requires a separate acceptance-backed decision.
+## Approved Policy
 
-## Alternative
+- XQrebuild is the clean implementation workspace with no legacy dependencies.
+- New integrated build has no dependency on legacy `Code/`, MITK, BlueBerry, CTK, or legacy plugin workbench targets.
+- Legacy XQ evidence roots (XQ1, XQ-fresh-ui, XQ-wrong, Externals, etc.) remain read-only references for behavior evidence only.
+- Path bindings reflect this decision: `IMPLEMENTATION_WORKSPACE` points to XQrebuild, `LEGACY_EVIDENCE_ROOTS` includes XQ1 and related directories.
+- The separate repository strategy eliminates historical coupling and simplifies the new architecture.
 
-Create a separate new repository for XQ integrated rebuild. This remains an open decision until Codex A approves or rejects it.
+## Rejected Alternative
+
+Performing the integrated rebuild in the existing XQ repository lineage was considered but rejected to avoid entanglement with legacy build systems and plugin architectures.
 
 ## Consequence
 
-Skeleton implementation must not move from contract readiness to execution readiness until this ADR is approved.
+- XQ-M0-001 baseline freeze can proceed with XQrebuild as `IMPLEMENTATION_WORKSPACE`.
+- Workspace reconciliation will establish the initial baseline in XQrebuild.
+- Legacy evidence is consulted for behavioral reference but does not dictate new architecture ownership.
