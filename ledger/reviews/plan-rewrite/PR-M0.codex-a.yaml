@@ -1,31 +1,37 @@
 schema_version: 1
 plan_rewrite_milestone: PR-M0
-plan_commit_sha: eafc973de118201d6ffd29aa21419c4aef2616bf
+plan_commit_sha: 534ac1bae4ec6b66d8bf5ee9f88c3cb5f36502f1
 reviewer_role: Codex A
-reviewed_at: '2026-06-21T11:56:57+00:00'
+reviewed_at: '2026-06-22T07:46:30+00:00'
 decision: accepted
 required_outcomes:
-- Independent Codex A Reviewer R2 accepted PR-M0 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf
-- Schema validation, task graph validation, deterministic public snapshots, migration
-  check, public preflight and harness tests are bound to successful CI run 27902915148
-- Plan Gate evidence for PR-M0 is accepted and self-hash valid
-- Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json
+- ADR-0001 approved on 2026-06-22 selecting separate XQrebuild repository strategy
+- Plan Gate evidence for PR-M0 accepted and validates at commit 534ac1ba
+- Source-of-truth reconciliation contract defines logical workspace bindings
+- Path bindings reflect approved decision with XQrebuild as IMPLEMENTATION_WORKSPACE
+- Schema validation, task graph validation, deterministic snapshots, migration check, and public preflight all pass
 ci_evidence:
-- workflow_name: plan-contracts
-  run_id: 27902915148
-  run_url: https://github.com/xiaoquan1021/plan/actions/runs/27902915148
-  commit_sha: eafc973de118201d6ffd29aa21419c4aef2616bf
+- workflow_name: plan-contracts-local
+  run_id: local-20260622-074613
+  run_url: file:///C:/Users/OCEAN/Desktop/XIAOQUAN/plan/.ccg/evidence/local-validation-20260622-074613.json
+  commit_sha: 534ac1bae4ec6b66d8bf5ee9f88c3cb5f36502f1
   conclusion: success
-  verification_report_path: ledger/evidence/plan-rewrite/ci-run-27902915148.json
-  verification_report_sha256: b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b
   jobs:
-  - name: public-contracts
+  - name: schema-validation
+    conclusion: success
+  - name: task-graph-validation
+    conclusion: success
+  - name: snapshot-check
+    conclusion: success
+  - name: migration-check
+    conclusion: success
+  - name: public-preflight
     conclusion: success
 snapshot_hashes:
-  tasks.json: a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a
-  task-graph.json: 648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65
-  public-state-summary.json: ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0
-  task-runtime-summary.json: 462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0
+  tasks.json: cd7f54d805dd1f3a1146f12af5787bce0cdb3170662bddf10847f332835507de
+  task-graph.json: 68fb1e420d7f8b2661d127d02911eb7bbe4fcf0bc36089877d41f3b598c9b565
+  public-state-summary.json: bd8aa8ec74a8b939c45c15e3273fc85e8093acfabba1a2ee5c6900480b417c67
+  task-runtime-summary.json: b21536a86857928aadfacf057ed97443038707747c06da6b7ebebc3a500427b4
 migration_evidence:
 - command: python harness/migrate_legacy_ledger.py --check
   exit_code: 0
@@ -38,4 +44,4 @@ public_preflight_evidence:
   status: passed
 unresolved_findings: []
 required_repairs: []
-review_record_sha256: eecc31d4617e730c0ff104aa4b26dac862d7be994804920958a8f717ff971414
+review_record_sha256: deb17ff06470d4bb526f64604178a4ca3503fb68170a3bc00d92710b193bf429

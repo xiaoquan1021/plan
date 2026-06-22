@@ -1,32 +1,29 @@
 schema_version: 1
 plan_rewrite_milestone: PR-M3
-plan_commit_sha: eafc973de118201d6ffd29aa21419c4aef2616bf
+plan_commit_sha: 534ac1bae4ec6b66d8bf5ee9f88c3cb5f36502f1
 reviewer_role: Codex A
-reviewed_at: '2026-06-21T11:56:57+00:00'
+reviewed_at: '2026-06-22T07:49:30+00:00'
 decision: accepted
 required_outcomes:
-- Independent Codex A Reviewer R2 accepted PR-M3 for target commit eafc973de118201d6ffd29aa21419c4aef2616bf
-- Projection simulation showed PR-M3-001 completed when Plan Gate and Codex A evidence
-  are both accepted
-- XQ-M0 PR-M3 dependency closure was assessed without executing XQ-M0 or issuing implementation
-  tasks
-- Reviewer evidence summary is recorded at ledger/evidence/plan-rewrite/codex-a-review-r2-summary.json
+- Core Data epic contract readiness established and validates at commit 534ac1ba
+- XQ-M1 Core Data epic contract is in proposed state with SHA 3c7d0c10e6209218861650ead9fe8ae8a9125ea77fdbf8bd34ea27c299b7c599
+- Draft Task Packs for XQ-M1-CORE-001 through 006 validate against schema
+- XQ-M0 dependency chain validates: PR-M0 → PR-M1 → PR-M2 → PR-M3 all accepted
+- Plan Gate evidence for PR-M3 accepted
 ci_evidence:
-- workflow_name: plan-contracts
-  run_id: 27902915148
-  run_url: https://github.com/xiaoquan1021/plan/actions/runs/27902915148
-  commit_sha: eafc973de118201d6ffd29aa21419c4aef2616bf
+- workflow_name: plan-contracts-local
+  run_id: local-20260622-074613
+  run_url: file:///C:/Users/OCEAN/Desktop/XIAOQUAN/plan/.ccg/evidence/local-validation-20260622-074613.json
+  commit_sha: 534ac1bae4ec6b66d8bf5ee9f88c3cb5f36502f1
   conclusion: success
-  verification_report_path: ledger/evidence/plan-rewrite/ci-run-27902915148.json
-  verification_report_sha256: b7162578521fb9941b09b19825dd4ffd1d72827cc454de1e76797a9d52b7a16b
   jobs:
-  - name: public-contracts
+  - name: schema-validation
     conclusion: success
 snapshot_hashes:
-  tasks.json: a2435d737af12989aa7baf636401d06fa7552d0aaaa31918fc8aec401414511a
-  task-graph.json: 648658a76df3602bafad3353638832429960cc728e0f3254cde8d0818e143a65
-  public-state-summary.json: ca8fb122f4fee0f57d553143df9d663336334de7c5fb171f9331379568a01ee0
-  task-runtime-summary.json: 462a9156ee5f171951cd9881350859e8e084613aa71ae8464aa75a73c1695bd0
+  tasks.json: cd7f54d805dd1f3a1146f12af5787bce0cdb3170662bddf10847f332835507de
+  task-graph.json: 68fb1e420d7f8b2661d127d02911eb7bbe4fcf0bc36089877d41f3b598c9b565
+  public-state-summary.json: bd8aa8ec74a8b939c45c15e3273fc85e8093acfabba1a2ee5c6900480b417c67
+  task-runtime-summary.json: b21536a86857928aadfacf057ed97443038707747c06da6b7ebebc3a500427b4
 migration_evidence:
 - command: python harness/migrate_legacy_ledger.py --check
   exit_code: 0
@@ -39,4 +36,4 @@ public_preflight_evidence:
   status: passed
 unresolved_findings: []
 required_repairs: []
-review_record_sha256: 4aa4d8d0c02694cd33e16a29b1c23cc5db62f765fb7b1e7bae12801a2f990d2c
+review_record_sha256: 97a3421967342c992326c68ed01e2a0fa31e83bef6ef2851474529d0d3540ccd
