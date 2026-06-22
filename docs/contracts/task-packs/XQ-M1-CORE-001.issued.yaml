@@ -10,7 +10,7 @@
   "rollback_point": "21578ded4981bdb35e0a7519e20ead12f2c31299",
   "worktree_binding": null,
   "epic_contract_sha256": "3c7d0c10e6209218861650ead9fe8ae8a9125ea77fdbf8bd34ea27c299b7c599",
-  "task_pack_sha256": "COMPUTED_HASH_PLACEHOLDER",
+  "task_pack_sha256": "873df4143d5968b6b9ee64de28cf67bed899b9d7404a7d1f2f103a0b04e7ce13",
   "dependency_contract_sha256": null,
   "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
   "implementation_dependency_lock_sha256": null,
