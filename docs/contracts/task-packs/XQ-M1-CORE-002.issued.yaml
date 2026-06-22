@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "contract_version": 1,
+  "task_id": "XQ-M1-CORE-002",
+  "epic_id": "XQ-M1-CORE-DATA",
+  "issuance_status": "issued",
+  "execution_ready": true,
+  "baseline_requirement": "XQ-M1-CORE-001 completed with result commit bf44820926f6b164e9c8963871b200b6254c0260",
+  "base_commit": "bf44820926f6b164e9c8963871b200b6254c0260",
+  "rollback_point": "bf44820926f6b164e9c8963871b200b6254c0260",
+  "worktree_binding": null,
+  "epic_contract_sha256": "3c7d0c10e6209218861650ead9fe8ae8a9125ea77fdbf8bd34ea27c299b7c599",
+  "task_pack_sha256": "9e364e258fe8a3c70ff7396efcc6288204a33b707d50d6ca26681924b4f62d1e",
+  "dependency_contract_sha256": null,
+  "implementation_dependency_lock_path": "IMPLEMENTATION_WORKSPACE/dependencies.lock.json",
+  "implementation_dependency_lock_sha256": null,
+  "toolchain_manifest_sha256": null,
+  "supersedes": [],
+  "allowed_logical_scopes": ["IMPLEMENTATION_WORKSPACE/src/core", "IMPLEMENTATION_WORKSPACE/tests/core"],
+  "allowed_paths": ["src/core/**", "tests/core/**"],
+  "forbidden_actions": [
+    "modify PLAN_WORKSPACE",
+    "modify legacy Code tree",
+    "add dependency without approval",
+    "change acceptance conditions",
+    "implement removal/relation cleanup beyond scope"
+  ],
+  "commands": [
+    {
+      "command": "Create src/core/XQProject.h and XQProject.cpp with project lifecycle and single XQScene ownership",
+      "required": true
+    },
+    {
+      "command": "Create src/core/XQScene.h and XQScene.cpp with node insertion, find-by-id, and duplicate ID diagnostic",
+      "required": true
+    },
+    {
+      "command": "Create tests/core/test_scene_management.cpp with L0 synthetic tests for insert/find/duplicate-id",
+      "required": true
+    },
+    {
+      "command": "Update CMakeLists.txt to build XQProject and XQScene with xq_core library",
+      "required": true
+    }
+  ],
+  "machine_acceptance": [
+    "XQScene can insert XQDataNode instances and find-by-id returns the same node",
+    "Duplicate NodeId insertion produces deterministic diagnostic without crash",
+    "XQProject owns exactly one XQScene instance",
+    "Tests compile and pass"
+  ],
+  "required_evidence": [
+    "Task Result",
+    "Codex B Gate Result",
+    "L0 synthetic scene management test output"
+  ],
+  "stop_conditions": [
+    "requires file outside allowed_paths",
+    "new architecture decision required (coordinate systems, transform representation)",
+    "new dependency required",
+    "relation/removal semantics need ADR"
+  ]
+}
