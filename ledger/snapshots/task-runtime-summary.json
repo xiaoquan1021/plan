@@ -5,8 +5,8 @@
     "generator_version": 3,
     "projection_mode": "definitions-only",
     "schema_version": 1,
-    "source_hash": "4e6348e2be4ddbee04cf2b2dd334119d652b8589668da4923daca5456e1618d0",
-    "task_definition_hash": "527873963fa777dd36744f7ba116530cbe36bf04ce9d66ff22e3727ad6c04edb"
+    "source_hash": "ef95ac83ccb17696783051518ab7389a45ad8493b2254d84709843836db3aed3",
+    "task_definition_hash": "a01284b3c688289ad3edbfc3ce720cf09f6a47d0518e7055eb27316f7d556e6b"
   },
   "note": "private runtime projection: not run",
   "private_inputs": {

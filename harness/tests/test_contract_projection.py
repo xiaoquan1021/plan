@@ -50,9 +50,11 @@ def workspace_projection() -> dict:
         "schema_version": 1,
         "workspace_state": "baseline-frozen",
         "base_commit": "abcdef1234567890",
+        "rollback_point": "rollback123",
         "implementation_dependency_lock_sha256": "d" * 64,
         "dependency_lock_sha256": "d" * 64,
         "toolchain_manifest_sha256": "e" * 64,
+        "local_git_state": None,
     }
 
 

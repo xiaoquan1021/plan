@@ -57,10 +57,12 @@ def workspace_projection() -> dict:
         "schema_version": 1,
         "workspace_state": "baseline-frozen",
         "base_commit": "base123",
+        "rollback_point": "rollback123",
         "dependency_contract_sha256": HEX_C,
         "implementation_dependency_lock_sha256": HEX_D,
         "dependency_lock_sha256": HEX_D,
         "toolchain_manifest_sha256": HEX_E,
+        "local_git_state": None,
         "reconciled_at": "2026-06-20T00:30:00+00:00",
     }
 
@@ -789,6 +791,55 @@ def build_plan_review_snapshots(tmp_path: Path, reviews: list[dict], monkeypatch
     return projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
 
 
+def reviewed_plan_rewrite_records() -> list[dict]:
+    reviews = []
+    for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
+        reviews.append(plan_rewrite_review("Plan Gate", milestone))
+        reviews.append(plan_rewrite_review("Codex A", milestone))
+    return reviews
+
+
+def patch_task_definitions(monkeypatch, patcher) -> None:
+    original_load = projection.load_task_definitions
+
+    def patched_load_task_definitions():
+        definitions, definition_hash = original_load()
+        patched = json.loads(json.dumps(definitions, ensure_ascii=False))
+        patcher(patched)
+        return patched, definition_hash
+
+    monkeypatch.setattr(projection, "load_task_definitions", patched_load_task_definitions)
+
+
+def approve_xq_m0_definition(definitions: list[dict]) -> None:
+    xq_m0 = next(item for item in definitions if item["task_id"] == "XQ-M0-001")
+    xq_m0.update(
+        {
+            "decision_state": "approved",
+            "status": "ready-for-ledger-review",
+            "blocked_reason": None,
+            "unblock_condition": None,
+            "next_action": "record implementation workspace baseline reconciliation",
+        }
+    )
+
+
+def readiness_workspace_projection() -> dict:
+    return {
+        **workspace_projection(),
+        "workspace_state": "baseline-frozen",
+        "base_commit": "base123",
+        "rollback_point": "rollback123",
+        "local_git_state": {
+            "is_git_repository": True,
+            "branch": "main",
+            "head_commit": "base123",
+            "remote_count": 0,
+            "clean": True,
+        },
+    }
+
+
 def test_plan_rewrite_reviews_are_read_and_projected_to_pr_milestone(tmp_path: Path, monkeypatch) -> None:
     snapshots = build_plan_review_snapshots(
         tmp_path,
@@ -816,12 +867,7 @@ def test_plan_gate_and_codex_a_review_are_both_required(tmp_path: Path, monkeypa
 
 
 def test_pr_m0_to_pr_m3_can_be_accepted_with_valid_plan_gate_and_review(tmp_path: Path, monkeypatch) -> None:
-    reviews = []
-    for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
-        reviews.append(plan_rewrite_review("Plan Gate", milestone))
-        reviews.append(plan_rewrite_review("Codex A", milestone))
-
-    snapshots = build_plan_review_snapshots(tmp_path, reviews, monkeypatch)
+    snapshots = build_plan_review_snapshots(tmp_path, reviewed_plan_rewrite_records(), monkeypatch)
 
     for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
         assert snapshots["public-state-summary.json"]["milestones"][milestone]["plan_acceptance_status"] == "accepted"
@@ -845,12 +891,7 @@ def test_pr_m3_task_becomes_terminal_after_valid_gate_and_codex_a_review(tmp_pat
 
 
 def test_xq_m0_no_longer_blocked_by_pr_m3_when_plan_reviews_are_valid(tmp_path: Path, monkeypatch) -> None:
-    reviews = []
-    for milestone in ["PR-M0", "PR-M1", "PR-M2", "PR-M3"]:
-        reviews.append(plan_rewrite_review("Plan Gate", milestone))
-        reviews.append(plan_rewrite_review("Codex A", milestone))
-
-    snapshots = build_plan_review_snapshots(tmp_path, reviews, monkeypatch)
+    snapshots = build_plan_review_snapshots(tmp_path, reviewed_plan_rewrite_records(), monkeypatch)
     tasks = snapshots["tasks.json"]["tasks"]
     xq_m0 = next(item for item in tasks if item["task_id"] == "XQ-M0-001")
     blockers = task_local_blockers(xq_m0, tasks)
@@ -858,8 +899,73 @@ def test_xq_m0_no_longer_blocked_by_pr_m3_when_plan_reviews_are_valid(tmp_path: 
 
     assert xq_m0["status"] == "blocked"
     assert "dependency PR-M3-001 is not completed" not in blockers
-    assert any(blocker in blockers for blocker in ["decision_state is open", "task pack is missing"])
+    assert "decision_state is open" in blockers
+    assert "task pack is missing" not in blockers
+    assert "worktree_binding is missing" not in blockers
     assert explanation["selected"] is None or explanation["selected"]["task_id"] != "XQ-M0-001"
+
+
+def test_xq_m0_readiness_completes_without_task_pack_or_worktree(tmp_path: Path, monkeypatch) -> None:
+    patch_task_definitions(monkeypatch, approve_xq_m0_definition)
+    monkeypatch.setattr(projection, "github_ci_evidence_verified", lambda item: (True, []))
+    runtime, completion, workspace = write_full_inputs(
+        tmp_path,
+        runtime_projection(),
+        completion_projection(plan_rewrite_reviews=reviewed_plan_rewrite_records()),
+        readiness_workspace_projection(),
+    )
+
+    snapshots = projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
+    tasks = snapshots["tasks.json"]["tasks"]
+    xq_m0 = next(item for item in tasks if item["task_id"] == "XQ-M0-001")
+
+    assert xq_m0["status"] == "completed"
+    assert xq_m0["implementation_evidence"] == "workspace-reconciliation-accepted"
+    assert xq_m0["task_pack_path"] is None
+    assert xq_m0["worktree_binding"] is None
+    assert xq_m0["stale_reasons"] == []
+    assert "XQ-M0-001" in snapshots["public-state-summary.json"]["milestones"]["XQ-M0"]["required_task_ids"]
+    assert snapshots["public-state-summary.json"]["milestones"]["XQ-M0"]["implementation_status"] == "completed"
+
+
+def test_selector_can_advance_after_xq_m0_and_next_task_are_ready(tmp_path: Path, monkeypatch) -> None:
+    def patcher(definitions: list[dict]) -> None:
+        approve_xq_m0_definition(definitions)
+        next_task = next(item for item in definitions if item["task_id"] == "XQ-M1-CORE-001")
+        next_task.update(
+            {
+                "status": "ready-for-ledger-review",
+                "decision_state": "approved",
+                "task_pack_path": "docs/contracts/task-packs/XQ-M1-CORE-001.issued.yaml",
+                "task_pack_schema_valid": True,
+                "issuance_status": "issued",
+                "execution_ready": True,
+                "base_commit": "base123",
+                "rollback_point": "rollback123",
+                "worktree_binding": "TASK_WORKTREE_XQ-M1-CORE-001",
+                "task_pack_hash_valid": True,
+                "computed_task_pack_sha256": HEX_A,
+                "task_pack_sha256": HEX_A,
+                "epic_contract_status": "approved",
+                "epic_contract_sha256": HEX_B,
+            }
+        )
+
+    patch_task_definitions(monkeypatch, patcher)
+    monkeypatch.setattr(projection, "github_ci_evidence_verified", lambda item: (True, []))
+    runtime, completion, workspace = write_full_inputs(
+        tmp_path,
+        runtime_projection(),
+        completion_projection(plan_rewrite_reviews=reviewed_plan_rewrite_records()),
+        readiness_workspace_projection(),
+    )
+
+    snapshots = projection.build_snapshots(runtime_events=runtime, completion_records=completion, workspace_report=workspace)
+    tasks = snapshots["tasks.json"]["tasks"]
+    explanation = explain_selection(tasks)
+
+    assert next(item for item in tasks if item["task_id"] == "XQ-M0-001")["status"] == "completed"
+    assert explanation["selected"]["task_id"] == "XQ-M1-CORE-001"
 
 
 def test_pr_m3_task_does_not_complete_without_plan_gate(tmp_path: Path, monkeypatch) -> None:

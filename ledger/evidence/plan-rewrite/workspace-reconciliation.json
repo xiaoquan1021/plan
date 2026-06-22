@@ -7,7 +7,9 @@
   "epic_id": null,
   "implementation_dependency_lock_sha256": null,
   "integrated_task_commits": {},
+  "local_git_state": null,
   "reconciled_at": "2026-06-21T11:32:50+00:00",
+  "rollback_point": null,
   "schema_version": 1,
   "toolchain_manifest_sha256": null,
   "workspace_state": "plan-only-public-acceptance"

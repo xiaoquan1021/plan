@@ -3,11 +3,24 @@
   "title": "XQ Workspace Reconciliation Projection",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "workspace_state", "base_commit", "implementation_dependency_lock_sha256", "toolchain_manifest_sha256"],
+  "required": ["schema_version", "workspace_state", "base_commit", "rollback_point", "implementation_dependency_lock_sha256", "toolchain_manifest_sha256"],
   "properties": {
     "schema_version": { "const": 1 },
     "workspace_state": { "type": "string" },
     "base_commit": { "type": ["string", "null"] },
+    "rollback_point": { "type": ["string", "null"] },
+    "local_git_state": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["is_git_repository", "branch", "head_commit", "remote_count", "clean"],
+      "properties": {
+        "is_git_repository": { "type": "boolean" },
+        "branch": { "type": ["string", "null"] },
+        "head_commit": { "type": ["string", "null"] },
+        "remote_count": { "type": "integer", "minimum": 0 },
+        "clean": { "type": "boolean" }
+      }
+    },
     "dependency_contract_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
     "implementation_dependency_lock_sha256": { "type": ["string", "null"] },
     "dependency_lock_sha256": { "type": ["string", "null"] },

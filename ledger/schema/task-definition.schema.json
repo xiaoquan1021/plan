@@ -71,7 +71,7 @@
   },
   "allOf": [
     {
-      "if": { "properties": { "task_kind": { "enum": ["implementation", "implementation-readiness", "acceptance"] } } },
+      "if": { "properties": { "task_kind": { "enum": ["implementation", "acceptance"] } } },
       "then": { "required": ["task_pack_path"] }
     }
   ]

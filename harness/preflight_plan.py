@@ -105,7 +105,7 @@ def run_required_commit_ancestor_check(
     required = [
         task
         for task in tasks
-        if task.get("task_kind") in {"implementation", "implementation-readiness"}
+        if task.get("task_kind") == "implementation"
         and task.get("required_for_epic")
         and (workspace_data.get("epic_id") in (None, "", task.get("epic_id")))
     ]

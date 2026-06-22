@@ -125,7 +125,7 @@ def task_local_blockers(task: dict[str, Any], tasks: list[dict[str, Any]]) -> li
             blockers.append(f"dependency {dependency_id} is not completed")
     if task.get("decision_state") in {"open", "proposed"} and task.get("task_kind") not in {"plan-contract", "harness"}:
         blockers.append(f"decision_state is {task.get('decision_state')}")
-    if task.get("task_kind") in {"implementation", "implementation-readiness", "acceptance"}:
+    if task.get("task_kind") in {"implementation", "acceptance"}:
         if not task.get("task_pack_path"):
             blockers.append("task pack is missing")
         if task.get("task_pack_schema_valid") is False:

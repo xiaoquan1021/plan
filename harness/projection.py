@@ -30,7 +30,9 @@ SNAPSHOT_NAMES = [
     "task-runtime-summary.json",
 ]
 
-IMPLEMENTATION_TASK_KINDS = {"implementation", "implementation-readiness"}
+IMPLEMENTATION_TASK_KINDS = {"implementation"}
+IMPLEMENTATION_READINESS_TASK_KINDS = {"implementation-readiness"}
+IMPLEMENTATION_ROLLUP_TASK_KINDS = IMPLEMENTATION_TASK_KINDS | IMPLEMENTATION_READINESS_TASK_KINDS
 ACCEPTANCE_TASK_KINDS = {"acceptance"}
 TASK_PACK_REQUIRED_KINDS = IMPLEMENTATION_TASK_KINDS | ACCEPTANCE_TASK_KINDS
 PRIVATE_PATH_RE = re.compile(r"[A-Za-z]:[/\\][^\\n\\r\\t\"']*", re.IGNORECASE)
@@ -1077,6 +1079,37 @@ def task_pack_completion_reasons(task: dict[str, Any]) -> list[str]:
     return reasons
 
 
+def implementation_readiness_completion_reasons(task: dict[str, Any], workspace: dict[str, Any]) -> list[str]:
+    if task.get("task_kind") not in IMPLEMENTATION_READINESS_TASK_KINDS:
+        return []
+    reasons: list[str] = []
+    if task.get("decision_state") != "approved":
+        reasons.append(f"decision-state-{task.get('decision_state') or 'missing'}")
+    if workspace.get("workspace_state") not in {"baseline-frozen", "implementation-baseline-frozen"}:
+        reasons.append("workspace-state-not-baseline-frozen")
+    for key in ["base_commit", "rollback_point"]:
+        if not task.get(key) and not workspace.get(key):
+            reasons.append(f"missing-{key}")
+    local_git_state = workspace.get("local_git_state")
+    if not isinstance(local_git_state, dict):
+        reasons.append("missing-local-git-state")
+        return sorted(set(reasons))
+    if local_git_state.get("is_git_repository") is not True:
+        reasons.append("local-git-repository-invalid")
+    if local_git_state.get("branch") != "main":
+        reasons.append("local-git-branch-not-main")
+    if local_git_state.get("remote_count") != 0:
+        reasons.append("local-git-remote-present")
+    if local_git_state.get("clean") is not True:
+        reasons.append("local-git-workspace-not-clean")
+    head_commit = local_git_state.get("head_commit")
+    if task.get("base_commit") and head_commit and task.get("base_commit") != head_commit:
+        reasons.append("base-commit-head-mismatch")
+    elif workspace.get("base_commit") and head_commit and workspace.get("base_commit") != head_commit:
+        reasons.append("base-commit-head-mismatch")
+    return sorted(set(reasons))
+
+
 def apply_full_projection(
     projected: list[dict[str, Any]],
     definitions: list[dict[str, Any]],
@@ -1124,7 +1157,7 @@ def apply_full_projection(
         task["evidence_status"] = "full-projection"
         task["runtime_projection"] = "projected"
         task["workspace_state"] = workspace.get("workspace_state", "projected")
-        for key in ["base_commit", "dependency_contract_sha256", "implementation_dependency_lock_sha256", "dependency_lock_sha256", "toolchain_manifest_sha256"]:
+        for key in ["base_commit", "rollback_point", "dependency_contract_sha256", "implementation_dependency_lock_sha256", "dependency_lock_sha256", "toolchain_manifest_sha256"]:
             if workspace.get(key) and not task.get(key):
                 task[key] = workspace[key]
 
@@ -1135,15 +1168,14 @@ def apply_full_projection(
                 task["status"] = event_status
             task["last_runtime_event"] = redact_private(event)
 
-        result = results_by_task.get(task_id)
-        gate = gates_by_task.get(task_id)
-        expected_context = {**definition, **task}
-        result_ok, result_reasons = valid_task_result(expected_context, workspace, result)
-        gate_ok, gate_reasons = valid_gate(expected_context, workspace, gate, result)
-
-        task_pack_reasons = task_pack_completion_reasons(task)
-        stale_reasons = result_reasons + gate_reasons + task_pack_reasons
         if definition.get("task_kind") in IMPLEMENTATION_TASK_KINDS:
+            result = results_by_task.get(task_id)
+            gate = gates_by_task.get(task_id)
+            expected_context = {**definition, **task}
+            result_ok, result_reasons = valid_task_result(expected_context, workspace, result)
+            gate_ok, gate_reasons = valid_gate(expected_context, workspace, gate, result)
+            task_pack_reasons = task_pack_completion_reasons(task)
+            stale_reasons = result_reasons + gate_reasons + task_pack_reasons
             if result_ok and gate_ok and not task_pack_reasons:
                 task["status"] = "completed"
                 task["implementation_evidence"] = "codex-b-gate-accepted"
@@ -1151,6 +1183,15 @@ def apply_full_projection(
                 task["implementation_evidence"] = "incomplete"
                 if result or gate:
                     task["status"] = "stale-completion" if any("changed" in reason for reason in stale_reasons) else task["status"]
+        elif definition.get("task_kind") in IMPLEMENTATION_READINESS_TASK_KINDS:
+            stale_reasons = implementation_readiness_completion_reasons(task, workspace)
+            if not stale_reasons:
+                task["status"] = "completed"
+                task["implementation_evidence"] = "workspace-reconciliation-accepted"
+            else:
+                task["implementation_evidence"] = "incomplete"
+        else:
+            stale_reasons = []
         task["stale_reasons"] = sorted(set(stale_reasons))
 
     required_by_epic: dict[str, list[dict[str, Any]]] = {}
@@ -1167,7 +1208,7 @@ def apply_full_projection(
         incomplete_required = [item["task_id"] for item in required_tasks if item.get("status") != "completed"]
         stale_required = [item["task_id"] for item in required_tasks if item.get("status") == "stale-completion" or item.get("stale_reasons")]
         integration_reasons = epic_review_integration_reasons(review, workspace, required_tasks, gates_by_task)
-        if task.get("task_kind") in ACCEPTANCE_TASK_KINDS or epic_id:
+        if task.get("task_kind") in ACCEPTANCE_TASK_KINDS or (epic_id and task.get("task_kind") not in IMPLEMENTATION_READINESS_TASK_KINDS):
             reasons = list(task.get("stale_reasons", []))
             if (
                 review_ok
@@ -1294,7 +1335,7 @@ def aggregate_milestones(projected: list[dict[str, Any]]) -> dict[str, Any]:
         required_impl = [
             task
             for task in milestone_tasks
-            if task.get("task_kind") in IMPLEMENTATION_TASK_KINDS and task.get("required_for_epic", True)
+            if task.get("task_kind") in IMPLEMENTATION_ROLLUP_TASK_KINDS and task.get("required_for_epic", True)
         ]
         entry["required_task_ids"] = sorted(str(task["task_id"]) for task in required_impl)
         if required_impl:
